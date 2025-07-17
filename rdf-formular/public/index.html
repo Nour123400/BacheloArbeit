@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>RDF Eingabeformular</title>
+</head>
+<body>
+  <h1>📄 Lehrveranstaltung erfassen</h1>
+  <form action="/submit" method="POST">
+    <label>Modulnummer:</label><br />
+    <input name="modulnummer" required /><br /><br />
+
+    <label>Modulbezeichnung:</label><br />
+    <input name="modulbezeichnung" required /><br /><br />
+
+    <label>Lehrveranstaltungsbezeichnung:</label><br />
+    <input name="bezeichnung" required /><br /><br />
+
+    <label>Gesamt SWS:</label><br />
+    <input name="sws" type="number" required /><br /><br />
+
+    <label>Dozent:</label><br />
+    <input name="dozent" required /><br /><br />
+
+    <label>Gruppe:</label><br />
+    <input name="gruppe" required /><br /><br />
+
+    <label>Technikanforderung:</label><br />
+    <input name="technik" /><br /><br />
+
+    <button type="submit">✅ Abschicken</button>
+  </form>
+</body>
+</html>
+

@@ -1,0 +1,22 @@
+{
+  "ET301": {
+    "modulbezeichnung": "Messtechnik",
+    "lehrveranstaltungsnummer": "ET301-VL",
+    "lehrveranstaltungsbezeichnung": "Vorlesung Messtechnik",
+    "dozent": "Prof. Dr. Müller",
+    "gesamtSWS": 4,
+    "vorlesungSWS": 2,
+    "seminarSWS": 1,
+    "praktikumSWS": 1
+  },
+  "INF102": {
+    "modulbezeichnung": "Programmierung",
+    "lehrveranstaltungsnummer": "INF102-VL",
+    "lehrveranstaltungsbezeichnung": "Einführung JavaScript",
+    "dozent": "Dr. Schulze",
+    "gesamtSWS": 5,
+    "vorlesungSWS": 3,
+    "seminarSWS": 1,
+    "praktikumSWS": 1
+  }
+}

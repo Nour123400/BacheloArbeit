@@ -2,48 +2,54 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Formular RDF-Planung</title>
+  <title>RDF Lehrplanung</title>
 </head>
 <body>
-  <h1>📝 Präsenzplanung WS2025/26</h1>
+  <h1>📄 Lehrveranstaltung erfassen</h1>
+
   <form method="POST" action="/submit">
+    <label>Modulnummer:</label><br>
+    <select id="modulnummer" name="modulnummer" onchange="ladeModulDaten()" required>
+      <option value="">– Modul wählen –</option>
+      <option value="ET301">ET301</option>
+      <option value="INF102">INF102</option>
+    </select><br><br>
 
-    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
-    <label>Eingang bei DS:</label><br><input name="eingang"><br>
-    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig"><br>
-    <label>Semester:</label><br><input name="semester" value="Wintersemester 2025/26"><br>
-    <label>Planungstyp:</label><br><input name="planungstyp" value="Stunden-Raumplanung"><br>
-    <label>Präsenzplanung:</label> <input type="checkbox" name="praesenz"><br>
-    <label>Digitale Anteile:</label> <input type="checkbox" name="digital"><br>
-    <label>Planungszeitraum:</label><br><input name="planungszeitraum" value="KW42-KW52, KW01-KW06"><br>
-    <label>Einführungswoche:</label><br><input name="einfuehrung"><br>
-    <label>Blockwoche:</label><br><input name="blockwoche"><br>
-    <label>Fakultät:</label><br><input name="fakultaet"><br>
-    <label>Studiengang:</label><br><input name="studiengang"><br>
-    <label>Fachsemester:</label><br><input name="fachsemester" type="number"><br>
+    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" id="modulbezeichnung"><br>
+    <label>Lehrveranstaltungsnummer:</label><br><input name="lvnummer" id="lvnummer"><br>
+    <label>Lehrveranstaltungsbezeichnung:</label><br><input name="lvname" id="lvname"><br>
+    <label>Gesamt SWS:</label><br><input name="sws" id="sws"><br>
+    <label>Vorlesung SWS:</label><br><input name="vl" id="vl"><br>
+    <label>Seminar SWS:</label><br><input name="sem" id="sem"><br>
+    <label>Praktikum SWS:</label><br><input name="prak" id="prak"><br>
+
+    <label>Dozent:</label><br><input name="dozent" id="dozent"><br>
     <label>Gruppe:</label><br><input name="gruppe"><br>
-    <label>Modulnummer:</label><br><input name="modulnummer"><br>
-    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung"><br>
-    <label>LV-Nummer:</label><br><input name="lvnummer"><br>
-    <label>LV-Bezeichnung:</label><br><input name="lvname"><br>
-    <label>Gesamt SWS:</label><br><input name="sws" type="number"><br>
-    <label>Vorlesung SWS:</label><br><input name="vl" type="number"><br>
-    <label>Seminar SWS:</label><br><input name="sem" type="number"><br>
-    <label>Praktikum SWS:</label><br><input name="prak" type="number"><br>
+    <label>Technikanforderung:</label><br><input name="technik"><br>
     <label>Raum:</label><br><input name="raum"><br>
-    <label>Technik:</label><br><input name="technik"><br>
-    <label>Campus-Bereich:</label><br><input name="campus"><br>
-    <label>Lehrform:</label><br><input name="lehrform" value="praesenz"><br>
-    <label>Verteilungswunsch:</label><br><input name="verteilung"><br>
-    <label>Wechselwunsch:</label><br><input name="abwechselnd"><br>
-    <label>Blockplanung:</label> <input type="checkbox" name="blockplanung"><br>
-    <label>Vorlesung vor Seminar:</label> <input type="checkbox" name="vlvorsem"><br><br>
-
-    <label>Unterschrift Professor:</label><br><input name="prof"><br>
-    <label>Unterschrift Dekan:</label><br><input name="dekan"><br>
-    <label>Unterschrift Dienstleistung:</label><br><input name="dienst"><br><br>
+    <label>Campus-Bereich:</label><br><input name="campus"><br><br>
 
     <button type="submit">✅ Speichern als RDF</button>
   </form>
+
+  <script>
+    function ladeModulDaten() {
+      const nummer = document.getElementById("modulnummer").value;
+      if (!nummer) return;
+
+      fetch(`/modul/${nummer}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
+          document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
+          document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
+          document.getElementById("dozent").value = data.dozent || "";
+          document.getElementById("sws").value = data.gesamtSWS || "";
+          document.getElementById("vl").value = data.vorlesungSWS || "";
+          document.getElementById("sem").value = data.seminarSWS || "";
+          document.getElementById("prak").value = data.praktikumSWS || "";
+        });
+    }
+  </script>
 </body>
 </html>

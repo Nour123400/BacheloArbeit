@@ -3,25 +3,84 @@
 <head>
   <meta charset="UTF-8" />
   <title>Zuarbeitsformular</title>
+  <style>
+    body { font-family: sans-serif; }
+    label { font-weight: bold; }
+    input, select, textarea { margin-bottom: 6px; }
+  </style>
 </head>
 <body>
-  <h1>📝 Zuarbeitsformular</h1>
+  <h1>📝 Zuarbeitsformular (Lehrveranstaltung)</h1>
   <form method="POST" action="/submit?type=zuarbeit">
+    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
+    <label>Eingang bei DS:</label><br><input name="eingang"><br>
+    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig"><br>
+    <label>Semester:</label><br><input name="semester" value="Wintersemester 2025/26"><br>
+    <label>Titel:</label><br><input name="titel"><br>
+    <label>Vorname:</label><br><input name="vorname"><br>
+    <label>Name:</label><br><input name="name"><br>
+    <label>E-Mail:</label><br><input name="email"><br>
+    <label>Telefon:</label><br><input name="telefon"><br>
+
+    <hr>
+
+    <label>Fakultät/Bereich:</label><br><input name="fakultaet"><br>
+    <label>Studiengang:</label><br><input name="studiengang"><br>
+    <label>Fachsemester:</label><br><input name="fachsemester" type="number"><br>
+    <label>Gruppe:</label><br><input name="gruppe"><br>
     <label>Modulnummer:</label><br>
     <select name="modulnummer" id="modulnummer" onchange="ladeModulDaten()" required>
       <option value="">– Modul wählen –</option>
       <option value="ET301">ET301 – Messtechnik</option>
       <option value="INF102">INF102 – Programmierung</option>
       <option value="INF404">INF404 – Software Technick</option>
-    </select><br><br>
+    </select><br>
     <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" id="modulbezeichnung"><br>
     <label>Lehrveranstaltungsnummer:</label><br><input name="lvnummer" id="lvnummer"><br>
     <label>Lehrveranstaltungsbezeichnung:</label><br><input name="lvname" id="lvname"><br>
-    <label>Dozent(en):</label><br><input name="dozent"><br>
     <label>Teilmodul:</label><br><input name="teilmodul"><br>
-    <label>SWS:</label><br><input name="sws" type="number"><br>
-    <label>Besondere Hinweise:</label><br><input name="hinweis"><br>
-    <label>Unterschrift (Zuarbeit):</label><br><input name="unterschrift"><br>
+    <label>Lehrende (mehrere möglich):</label><br><input name="dozent"><br>
+
+    <hr>
+    <label>Reale SWS (Vorlesung):</label><br><input name="realeSWS_V" type="number"><br>
+    <label>Reale SWS (Seminar):</label><br><input name="realeSWS_S" type="number"><br>
+    <label>Reale SWS (Praktikum):</label><br><input name="realeSWS_P" type="number"><br>
+    <label>Reale SWS (Summe):</label><br><input name="realeSWS" type="number"><br>
+    <label>Digital-Anteil (%):</label><br><input name="digital_anteil"><br>
+    <label>Bemerkung:</label><br><textarea name="bemerkung"></textarea><br>
+
+    <hr>
+    <label>Gewünschte Dozenten-/Forschungstage:</label><br>
+    <input type="checkbox" name="wunschtag_montag_D"> Montag (D)
+    <input type="checkbox" name="wunschtag_montag_F"> Montag (F)<br>
+    <input type="checkbox" name="wunschtag_dienstag_D"> Dienstag (D)
+    <input type="checkbox" name="wunschtag_dienstag_F"> Dienstag (F)<br>
+    <input type="checkbox" name="wunschtag_mittwoch_D"> Mittwoch (D)
+    <input type="checkbox" name="wunschtag_mittwoch_F"> Mittwoch (F)<br>
+    <input type="checkbox" name="wunschtag_donnerstag_D"> Donnerstag (D)
+    <input type="checkbox" name="wunschtag_donnerstag_F"> Donnerstag (F)<br>
+    <input type="checkbox" name="wunschtag_freitag_D"> Freitag (D)
+    <input type="checkbox" name="wunschtag_freitag_F"> Freitag (F)<br>
+
+    <hr>
+    <label>Notwendige Sperrzeiten:</label><br>
+    <label>Wochentag:</label>
+    <select name="sperr_wochentag">
+      <option value="">–</option>
+      <option value="Mo">Mo</option>
+      <option value="Di">Di</option>
+      <option value="Mi">Mi</option>
+      <option value="Do">Do</option>
+      <option value="Fr">Fr</option>
+    </select>
+    <label>von:</label><input name="sperr_von" type="time">
+    <label>bis:</label><input name="sperr_bis" type="time"><br>
+    <label>Begründung:</label><input name="sperr_begruendung"><br>
+
+    <hr>
+    <label>Hinweise zur Semesterplanung:</label><br><textarea name="hinweis_semester"></textarea><br>
+    <label>Hinweise bei Rückgabe an den Dozenten:</label><br><textarea name="hinweis_rueckgabe"></textarea><br>
+    <label>Unterschrift:</label><br><input name="unterschrift"><br>
     <button type="submit">✅ Speichern</button>
   </form>
   <a href="/">Zurück zur Auswahl</a>
@@ -36,7 +95,6 @@
           document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
           document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
           document.getElementsByName("dozent")[0].value = data.dozent || "";
-          document.getElementsByName("sws")[0].value = data.gesamtSWS || "";
         });
     }
   </script>

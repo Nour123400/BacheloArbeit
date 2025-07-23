@@ -72,20 +72,60 @@ app.post('/submit', (req, res) => {
 @prefix : <http://example.org/data/> .
 
 `;
+
     fileName = 'zuarbeitsblatt.ttl';
+
+    // Hilfsfunktion für die Tage-Checkboxen
+    function getWunschTag(d, tag, typ) {
+      return d[`wunschtag_${tag}_${typ}`] === 'on';
+    }
 
     turtle = `
 :Zuarbeitsblatt_${id} a ex:Zuarbeitsblatt ;
+  ex:abgabeterminDS "${d.abgabetermin || ""}"^^xsd:date ;
+  ex:eingangDS "${d.eingang || ""}" ;
+  ex:hochschule "${d.hochschule || ""}" ;
+  ex:semester "${d.semester || ""}" ;
+  ex:titel "${d.titel || ""}" ;
+  ex:vorname "${d.vorname || ""}" ;
+  ex:name "${d.name || ""}" ;
+  ex:email "${d.email || ""}" ;
+  ex:telefon "${d.telefon || ""}" ;
+  ex:fakultaet "${d.fakultaet || ""}" ;
+  ex:studiengang "${d.studiengang || ""}" ;
+  ex:fachsemester ${d.fachsemester || 0} ;
+  ex:gruppe "${d.gruppe || ""}" ;
   ex:modulnummer "${d.modulnummer || ""}" ;
   ex:modulbezeichnung "${d.modulbezeichnung || ""}" ;
   ex:lehrveranstaltungsnummer "${d.lvnummer || ""}" ;
   ex:lehrveranstaltungsbezeichnung "${d.lvname || ""}" ;
-  ex:dozent "${d.dozent || ""}" ;
   ex:teilmodul "${d.teilmodul || ""}" ;
-  ex:sws ${d.sws || 0} ;
-  ex:hinweis "${d.hinweis || ""}" ;
-  ex:unterschriftZuarbeit "${d.unterschrift || ""}" .
+  ex:dozent "${d.dozent || ""}" ;
+  ex:realeSWS_V ${d.realeSWS_V || 0} ;
+  ex:realeSWS_S ${d.realeSWS_S || 0} ;
+  ex:realeSWS_P ${d.realeSWS_P || 0} ;
+  ex:realeSWS ${d.realeSWS || 0} ;
+  ex:digitalAnteil "${d.digital_anteil || ""}" ;
+  ex:bemerkung """${d.bemerkung || ""}""" ;
+  ex:wunschtag_montag_D ${getWunschTag(d, "montag", "D")} ;
+  ex:wunschtag_montag_F ${getWunschTag(d, "montag", "F")} ;
+  ex:wunschtag_dienstag_D ${getWunschTag(d, "dienstag", "D")} ;
+  ex:wunschtag_dienstag_F ${getWunschTag(d, "dienstag", "F")} ;
+  ex:wunschtag_mittwoch_D ${getWunschTag(d, "mittwoch", "D")} ;
+  ex:wunschtag_mittwoch_F ${getWunschTag(d, "mittwoch", "F")} ;
+  ex:wunschtag_donnerstag_D ${getWunschTag(d, "donnerstag", "D")} ;
+  ex:wunschtag_donnerstag_F ${getWunschTag(d, "donnerstag", "F")} ;
+  ex:wunschtag_freitag_D ${getWunschTag(d, "freitag", "D")} ;
+  ex:wunschtag_freitag_F ${getWunschTag(d, "freitag", "F")} ;
+  ex:sperrzeit_wochentag "${d.sperr_wochentag || ""}" ;
+  ex:sperrzeit_von "${d.sperr_von || ""}" ;
+  ex:sperrzeit_bis "${d.sperr_bis || ""}" ;
+  ex:sperrzeit_begruendung "${d.sperr_begruendung || ""}" ;
+  ex:hinweisSemesterplanung """${d.hinweis_semester || ""}""" ;
+  ex:hinweisRueckgabe """${d.hinweis_rueckgabe || ""}""" ;
+  ex:unterschrift "${d.unterschrift || ""}" .
 `;
+
   } else {
     res.status(400).send('Ungültiger Formular-Typ!');
     return;

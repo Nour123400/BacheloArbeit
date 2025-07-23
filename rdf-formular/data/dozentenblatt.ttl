@@ -1,0 +1,31 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Dozentenblatt_1753286128725 a ex:Dozentenblatt ;
+  ex:abgabeterminDS ""^^xsd:date ;
+  ex:eingangDS "" ;
+  ex:hochschule "HTWK Leipzig" ;
+  ex:semester "Wintersemester 2025/26" ;
+  ex:titel "" ;
+  ex:vorname "" ;
+  ex:name "" ;
+  ex:email "" ;
+  ex:telefon "" ;
+  ex:arbeitszeit "Vollzeit" ;
+  ex:fakultaet "" ;
+  ex:studiengang "" ;
+  ex:modulnummer "INF404" ;
+  ex:modulbezeichnung "Software Technick" ;
+  ex:lehrveranstaltungsnummer "INF404-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Einführung Software" ;
+  ex:gesamtSWS 4 ;
+  ex:vorlesungSWS 2 ;
+  ex:seminarSWS 4 ;
+  ex:praktikumSWS 0 ;
+  ex:dozent "Dr. Weicker" ;
+  ex:bemerkung "" ;
+  ex:unterschriftProfessor "" ;
+  ex:unterschriftDekan "" .
+

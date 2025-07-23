@@ -3,7 +3,7 @@
 @prefix : <http://example.org/data/> .
 
 
-:Zuarbeitsblatt_1753266660015 a ex:Zuarbeitsblatt ;
+:Zuarbeitsblatt_1753286178004 a ex:Zuarbeitsblatt ;
   ex:abgabeterminDS ""^^xsd:date ;
   ex:eingangDS "" ;
   ex:hochschule "HTWK Leipzig" ;
@@ -17,12 +17,12 @@
   ex:studiengang "" ;
   ex:fachsemester 0 ;
   ex:gruppe "" ;
-  ex:modulnummer "INF102" ;
-  ex:modulbezeichnung "Programmierung" ;
-  ex:lehrveranstaltungsnummer "INF102-VL" ;
-  ex:lehrveranstaltungsbezeichnung "Einführung JavaScript" ;
+  ex:modulnummer "INF404" ;
+  ex:modulbezeichnung "Software Technick" ;
+  ex:lehrveranstaltungsnummer "INF404-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Einführung Software" ;
   ex:teilmodul "" ;
-  ex:dozent "Dr. Schulze" ;
+  ex:dozent "Dr. Weicker" ;
   ex:realeSWS_V 0 ;
   ex:realeSWS_S 0 ;
   ex:realeSWS_P 0 ;

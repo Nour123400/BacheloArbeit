@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// API: Modulstandardwerte abrufen
+// Modul-Daten bereitstellen (für Dropdown & Autovervollständigung)
 app.get('/modul/:modulnummer', (req, res) => {
   const modulnummer = req.params.modulnummer;
   const configPath = path.join(__dirname, 'config', 'module_config.json');
@@ -22,7 +22,7 @@ app.get('/modul/:modulnummer', (req, res) => {
   }
 });
 
-// Daten speichern als RDF/Turtle
+// RDF-Daten speichern
 app.post('/submit', (req, res) => {
   const d = req.body;
   const id = Date.now();
@@ -35,6 +35,20 @@ app.post('/submit', (req, res) => {
 
   const turtle = `
 :Formular_${id} a ex:Lehrplanung ;
+  ex:abgabeterminDS "${d.abgabetermin}"^^xsd:date ;
+  ex:eingangDS "${d.eingang}" ;
+  ex:hochschule "${d.hochschule}" ;
+  ex:semester "${d.semester}" ;
+  ex:planungstyp "${d.planungstyp}" ;
+  ex:praesenzplanung ${d.praesenz === 'on'} ;
+  ex:digitalAnteile ${d.digital === 'on'} ;
+  ex:planungszeitraum "${d.planungszeitraum}" ;
+  ex:einführungswoche "${d.einfuehrung}" ;
+  ex:blockwoche "${d.blockwoche}" ;
+  ex:fakultaet "${d.fakultaet}" ;
+  ex:studiengang "${d.studiengang}" ;
+  ex:fachsemester ${d.fachsemester} ;
+  ex:gruppe "${d.gruppe}" ;
   ex:modulnummer "${d.modulnummer}" ;
   ex:modulbezeichnung "${d.modulbezeichnung}" ;
   ex:lehrveranstaltungsnummer "${d.lvnummer}" ;
@@ -44,10 +58,17 @@ app.post('/submit', (req, res) => {
   ex:seminarSWS ${d.sem} ;
   ex:praktikumSWS ${d.prak} ;
   ex:dozent "${d.dozent}" ;
-  ex:gruppe "${d.gruppe}" ;
-  ex:technikAnforderung "${d.technik}" ;
   ex:raumAnforderung "${d.raum}" ;
-  ex:campusBereich "${d.campus}" .
+  ex:technikAnforderung "${d.technik}" ;
+  ex:campusBereich "${d.campus}" ;
+  ex:lehrform "${d.lehrform}" ;
+  ex:wunschVerteilung "${d.verteilung}" ;
+  ex:wunschAbwechselnd "${d.abwechselnd}" ;
+  ex:wunschBlockplanung ${d.blockplanung === 'on'} ;
+  ex:vorlesungVorSeminar ${d.vlvorsem === 'on'} ;
+  ex:unterschriftProfessor "${d.prof}" ;
+  ex:unterschriftDekan "${d.dekan}" ;
+  ex:unterschriftDienstleistung "${d.dienst}" .
 `;
 
   const filePath = path.join(__dirname, 'data', 'eintraege.ttl');

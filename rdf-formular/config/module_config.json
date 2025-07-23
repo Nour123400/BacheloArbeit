@@ -19,4 +19,15 @@
     "seminarSWS": 1,
     "praktikumSWS": 1
   }
+  ,
+  "INF404": {
+    "modulbezeichnung": "Software Technick",
+    "lehrveranstaltungsnummer": "INF404-VL",
+    "lehrveranstaltungsbezeichnung": "Einführung Software",
+    "dozent": "Dr. Weicker",
+    "gesamtSWS": 4,
+    "vorlesungSWS": 2,
+    "seminarSWS": 4,
+    "praktikumSWS": 0
+  }
 }

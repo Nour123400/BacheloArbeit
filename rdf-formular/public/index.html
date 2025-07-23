@@ -2,79 +2,14 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>RDF Planung</title>
+  <title>RDF Planung Auswahl</title>
 </head>
 <body>
-  <h1>📄 Lehrveranstaltung erfassen</h1>
-
-  <form method="POST" action="/submit">
-    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
-    <label>Eingang bei DS:</label><br><input name="eingang"><br>
-    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig"><br>
-    <label>Semester:</label><br><input name="semester" value="Wintersemester 2025/26"><br>
-    <label>Planungstyp:</label><br><input name="planungstyp" value="Stunden-Raumplanung"><br>
-    <label>Präsenzplanung:</label> <input type="checkbox" name="praesenz"><br>
-    <label>Digitale Anteile:</label> <input type="checkbox" name="digital"><br>
-    <label>Planungszeitraum:</label><br><input name="planungszeitraum"><br>
-    <label>Einführungswoche:</label><br><input name="einfuehrung"><br>
-    <label>Blockwoche:</label><br><input name="blockwoche"><br>
-    <label>Fakultät:</label><br><input name="fakultaet"><br>
-    <label>Studiengang:</label><br><input name="studiengang"><br>
-    <label>Fachsemester:</label><br><input name="fachsemester" type="number"><br>
-    <label>Gruppe:</label><br><input name="gruppe"><br><br>
-
-    <label>Modulnummer:</label><br>
-    <select name="modulnummer" id="modulnummer" onchange="ladeModulDaten()" required>
-      <option value="">– Modul wählen –</option>
-      <option value="ET301">ET301 – Messtechnik</option>
-      <option value="INF102">INF102 – Programmierung</option>
-      <option value="INF404">INF404 – Software Technick</option>
-      
-    </select><br><br>
-
-    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" id="modulbezeichnung"><br>
-    <label>LV-Nummer:</label><br><input name="lvnummer" id="lvnummer"><br>
-    <label>LV-Bezeichnung:</label><br><input name="lvname" id="lvname"><br>
-    <label>Gesamt SWS:</label><br><input name="sws" id="sws" type="number"><br>
-    <label>Vorlesung SWS:</label><br><input name="vl" id="vl" type="number"><br>
-    <label>Seminar SWS:</label><br><input name="sem" id="sem" type="number"><br>
-    <label>Praktikum SWS:</label><br><input name="prak" id="prak" type="number"><br>
-    <label>Dozent:</label><br><input name="dozent" id="dozent"><br>
-    <label>Raum:</label><br><input name="raum"><br>
-    <label>Technik:</label><br><input name="technik"><br>
-    <label>Campus-Bereich:</label><br><input name="campus"><br>
-    <label>Lehrform:</label><br><input name="lehrform"><br>
-    <label>Verteilungswunsch:</label><br><input name="verteilung"><br>
-    <label>Wechselwunsch:</label><br><input name="abwechselnd"><br>
-    <label>Blockplanung:</label> <input type="checkbox" name="blockplanung"><br>
-    <label>Vorlesung vor Seminar:</label> <input type="checkbox" name="vlvorsem"><br><br>
-
-    <label>Unterschrift Professor:</label><br><input name="prof"><br>
-    <label>Unterschrift Dekan:</label><br><input name="dekan"><br>
-    <label>Unterschrift Dienstleistung:</label><br><input name="dienst"><br><br>
-
-    <button type="submit">✅ Speichern</button>
-  </form>
-
-  <script>
-    function ladeModulDaten() {
-      const nummer = document.getElementById("modulnummer").value;
-      if (!nummer) return;
-
-      fetch(`/modul/${nummer}`)
-        .then(res => res.json())
-        .then(data => {
-          document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
-          document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
-          document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
-          document.getElementById("dozent").value = data.dozent || "";
-          document.getElementById("sws").value = data.gesamtSWS || "";
-          document.getElementById("vl").value = data.vorlesungSWS || "";
-          document.getElementById("sem").value = data.seminarSWS || "";
-          document.getElementById("prak").value = data.praktikumSWS || "";
-        })
-        .catch(err => console.error("Fehler beim Laden der Modul-Daten:", err));
-    }
-  </script>
+  <h1>RDF Lehrplanung</h1>
+  <h2>Wähle das Formular:</h2>
+  <ul>
+    <li><a href="/dozentenformular.html">Dozentenblatt</a></li>
+    <li><a href="/zuarbeitformular.html">Zuarbeitsformular</a></li>
+  </ul>
 </body>
 </html>

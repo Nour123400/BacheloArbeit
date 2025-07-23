@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zuarbeitsformular</title>
+</head>
+<body>
+  <h1>📝 Zuarbeitsformular</h1>
+  <form method="POST" action="/submit?type=zuarbeit">
+    <label>Modulnummer:</label><br>
+    <select name="modulnummer" id="modulnummer" onchange="ladeModulDaten()" required>
+      <option value="">– Modul wählen –</option>
+      <option value="ET301">ET301 – Messtechnik</option>
+      <option value="INF102">INF102 – Programmierung</option>
+      <option value="INF404">INF404 – Software Technick</option>
+    </select><br><br>
+    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" id="modulbezeichnung"><br>
+    <label>Lehrveranstaltungsnummer:</label><br><input name="lvnummer" id="lvnummer"><br>
+    <label>Lehrveranstaltungsbezeichnung:</label><br><input name="lvname" id="lvname"><br>
+    <label>Dozent(en):</label><br><input name="dozent"><br>
+    <label>Teilmodul:</label><br><input name="teilmodul"><br>
+    <label>SWS:</label><br><input name="sws" type="number"><br>
+    <label>Besondere Hinweise:</label><br><input name="hinweis"><br>
+    <label>Unterschrift (Zuarbeit):</label><br><input name="unterschrift"><br>
+    <button type="submit">✅ Speichern</button>
+  </form>
+  <a href="/">Zurück zur Auswahl</a>
+  <script>
+    function ladeModulDaten() {
+      const nummer = document.getElementById("modulnummer").value;
+      if (!nummer) return;
+      fetch(`/modul/${nummer}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
+          document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
+          document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
+          document.getElementsByName("dozent")[0].value = data.dozent || "";
+          document.getElementsByName("sws")[0].value = data.gesamtSWS || "";
+        });
+    }
+  </script>
+</body>
+</html>

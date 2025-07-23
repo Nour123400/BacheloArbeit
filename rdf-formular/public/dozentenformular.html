@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dozentenblatt</title>
+</head>
+<body>
+  <h1>📄 Dozentenblatt</h1>
+  <form method="POST" action="/submit?type=dozent">
+    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
+    <label>Eingang bei DS:</label><br><input name="eingang"><br>
+    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig"><br>
+    <label>Semester:</label><br><input name="semester" value="Wintersemester 2025/26"><br>
+    <label>Titel:</label><br><input name="titel"><br>
+    <label>Vorname:</label><br><input name="vorname"><br>
+    <label>Name:</label><br><input name="name"><br>
+    <label>E-Mail:</label><br><input name="email"><br>
+    <label>Telefon:</label><br><input name="telefon"><br>
+    <label>Arbeitszeit:</label>
+    <select name="arbeitszeit">
+      <option value="Vollzeit">Vollzeit</option>
+      <option value="Teilzeit">Teilzeit</option>
+      <option value="Gast">Gast</option>
+    </select><br>
+    <label>Fakultät:</label><br><input name="fakultaet"><br>
+    <label>Studiengang:</label><br><input name="studiengang"><br>
+    <label>Modulnummer:</label><br>
+    <select name="modulnummer" id="modulnummer" onchange="ladeModulDaten()" required>
+      <option value="">– Modul wählen –</option>
+      <option value="ET301">ET301 – Messtechnik</option>
+      <option value="INF102">INF102 – Programmierung</option>
+      <option value="INF404">INF404 – Software Technick</option>
+    </select><br><br>
+    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" id="modulbezeichnung"><br>
+    <label>Lehrveranstaltungsnummer:</label><br><input name="lvnummer" id="lvnummer"><br>
+    <label>Lehrveranstaltungsbezeichnung:</label><br><input name="lvname" id="lvname"><br>
+    <label>Gesamt SWS:</label><br><input name="sws" id="sws" type="number"><br>
+    <label>Vorlesung SWS:</label><br><input name="vl" id="vl" type="number"><br>
+    <label>Seminar SWS:</label><br><input name="sem" id="sem" type="number"><br>
+    <label>Praktikum SWS:</label><br><input name="prak" id="prak" type="number"><br>
+    <label>Dozent:</label><br><input name="dozent" id="dozent"><br>
+    <label>Bemerkung:</label><br><input name="bemerkung"><br>
+    <label>Unterschrift Professor:</label><br><input name="prof"><br>
+    <label>Unterschrift Dekan:</label><br><input name="dekan"><br>
+    <button type="submit">✅ Speichern</button>
+  </form>
+  <a href="/">Zurück zur Auswahl</a>
+  <script>
+    function ladeModulDaten() {
+      const nummer = document.getElementById("modulnummer").value;
+      if (!nummer) return;
+      fetch(`/modul/${nummer}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
+          document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
+          document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
+          document.getElementById("dozent").value = data.dozent || "";
+          document.getElementById("sws").value = data.gesamtSWS || "";
+          document.getElementById("vl").value = data.vorlesungSWS || "";
+          document.getElementById("sem").value = data.seminarSWS || "";
+          document.getElementById("prak").value = data.praktikumSWS || "";
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Dozentenblatt_1753265800497 a ex:Dozentenblatt ;
+  ex:abgabeterminDS "2025-07-24"^^xsd:date ;
+  ex:eingangDS "" ;
+  ex:hochschule "HTWK Leipzig" ;
+  ex:semester "Wintersemester 2025/26" ;
+  ex:titel "" ;
+  ex:vorname "" ;
+  ex:name "" ;
+  ex:email "" ;
+  ex:telefon "" ;
+  ex:arbeitszeit "Vollzeit" ;
+  ex:fakultaet "" ;
+  ex:studiengang "" ;
+  ex:modulnummer "INF102" ;
+  ex:modulbezeichnung "Programmierung" ;
+  ex:lehrveranstaltungsnummer "INF102-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Einführung JavaScript" ;
+  ex:gesamtSWS 5 ;
+  ex:vorlesungSWS 3 ;
+  ex:seminarSWS 1 ;
+  ex:praktikumSWS 1 ;
+  ex:dozent "Dr. Schulze" ;
+  ex:bemerkung "" ;
+  ex:unterschriftProfessor "" ;
+  ex:unterschriftDekan "" .
+

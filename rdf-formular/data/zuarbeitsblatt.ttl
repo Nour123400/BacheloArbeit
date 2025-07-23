@@ -1,0 +1,28 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Zuarbeitsblatt_1753265746215 a ex:Zuarbeitsblatt ;
+  ex:modulnummer "ET301" ;
+  ex:modulbezeichnung "Messtechnik" ;
+  ex:lehrveranstaltungsnummer "ET301-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Vorlesung Messtechnik" ;
+  ex:dozent "Prof. Dr. Müller" ;
+  ex:teilmodul "" ;
+  ex:sws 4 ;
+  ex:hinweis "" ;
+  ex:unterschriftZuarbeit "" .
+
+
+:Zuarbeitsblatt_1753265821330 a ex:Zuarbeitsblatt ;
+  ex:modulnummer "INF102" ;
+  ex:modulbezeichnung "Programmierung" ;
+  ex:lehrveranstaltungsnummer "INF102-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Einführung JavaScript" ;
+  ex:dozent "Dr. Schulze" ;
+  ex:teilmodul "" ;
+  ex:sws 5 ;
+  ex:hinweis "" ;
+  ex:unterschriftZuarbeit "" .
+

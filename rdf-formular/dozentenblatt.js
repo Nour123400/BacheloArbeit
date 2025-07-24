@@ -105,7 +105,7 @@ function saveDozentenblatt(data) {
   turtle += " .\n";
   turtle += hinweisTriples;  // an das Turtle anhängen
 
-  
+
     // Einsatzzeiten sammeln (analog zu einsaetze)
   const einsatzzeiten = Object.keys(data)
     .filter(key => key.startsWith('einsatzzeit_wochen_') && data[key] !== "")
@@ -143,6 +143,47 @@ function saveDozentenblatt(data) {
   }
   turtle += " .\n";
   turtle += einsatzzeitTriples;
+
+
+    // Sperrzeiten sammeln (analog zu einsatzzeiten)
+  const sperrzeiten = Object.keys(data)
+    .filter(key => key.startsWith('sperrzeit_wochen_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('sperrzeit_wochen_', '');
+      return {
+        nr,
+        wochen: data[`sperrzeit_wochen_${nr}`],
+        wochentag: data[`sperrzeit_wochentag_${nr}`],
+        bisab: data[`sperrzeit_bisab_${nr}`],
+        begruendung: data[`sperrzeit_begruendung_${nr}`]
+     };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let sperrzeitTriples = '';
+  let sperrzeitRefs = [];
+
+  sperrzeiten.forEach((eintrag, index) => {
+    const eid = `${id}_sperrzeit${eintrag.nr}`;
+    sperrzeitRefs.push(`:Sperrzeit_${eid}`);
+    sperrzeitTriples += `
+  :Sperrzeit_${eid} a ex:Sperrzeit ;
+   ex:lfd "${index + 1}" ;
+   ex:wochen "${eintrag.wochen || ""}" ;
+   ex:wochentag "${eintrag.wochentag || ""}" ;
+   ex:bisab "${eintrag.bisab || ""}" ;
+   ex:begruendung "${eintrag.begruendung || ""}" ;
+   ex:zugeordnetZu :Dozentenblatt_${id} .\n`;
+  });
+
+  if (sperrzeitRefs.length > 0) {
+   turtle += ` ;
+    ex:sperrzeit ${sperrzeitRefs.join(', ')}`;
+  }
+  turtle += " .\n";
+  turtle += sperrzeitTriples;
+
+
 
   // FEHLTE in deinem Snippet, ist aber wichtig!
   const dirPath = path.join(__dirname, 'data');

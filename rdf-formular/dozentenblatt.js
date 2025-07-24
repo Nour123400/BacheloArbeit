@@ -22,20 +22,7 @@ function saveDozentenblatt(data) {
   ex:email "${data.email || ""}" ;
   ex:telefon "${data.telefon || ""}" ;
   ex:arbeitszeit "${data.arbeitszeit || ""}" ;
-  ex:fakultaet "${data.fakultaet || ""}" ;
-  ex:studiengang "${data.studiengang || ""}" ;
-  ex:modulnummer "${data.modulnummer || ""}" ;
-  ex:modulbezeichnung "${data.modulbezeichnung || ""}" ;
-  ex:lehrveranstaltungsnummer "${data.lvnummer || ""}" ;
-  ex:lehrveranstaltungsbezeichnung "${data.lvname || ""}" ;
-  ex:gesamtSWS ${data.sws || 0} ;
-  ex:vorlesungSWS ${data.vl || 0} ;
-  ex:seminarSWS ${data.sem || 0} ;
-  ex:praktikumSWS ${data.prak || 0} ;
-  ex:dozent "${data.dozent || ""}" ;
-  ex:bemerkung "${data.bemerkung || ""}" ;
-  ex:unterschriftProfessor "${data.prof || ""}" ;
-  ex:unterschriftDekan "${data.dekan || ""}"`;
+  ex:fakultaet "${data.fakultaet || ""}"`;
 
   // Sammelt alle vorhandenen einsatz_* Einträge (egal wie nummeriert)
   const einsaetze = Object.keys(data)

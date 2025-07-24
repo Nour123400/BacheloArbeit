@@ -105,6 +105,44 @@ function saveDozentenblatt(data) {
   turtle += " .\n";
   turtle += hinweisTriples;  // an das Turtle anhängen
 
+  
+    // Einsatzzeiten sammeln (analog zu einsaetze)
+  const einsatzzeiten = Object.keys(data)
+    .filter(key => key.startsWith('einsatzzeit_wochen_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('einsatzzeit_wochen_', '');
+      return {
+        nr,
+        wochen: data[`einsatzzeit_wochen_${nr}`],
+        wochentag: data[`einsatzzeit_wochentag_${nr}`],
+        uhrzeit: data[`einsatzzeit_uhrzeit_${nr}`],
+        anmerkung: data[`einsatzzeit_anmerkung_${nr}`]
+     };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let einsatzzeitTriples = '';
+  let einsatzzeitRefs = [];
+
+  einsatzzeiten.forEach((eintrag, index) => {
+    const eid = `${id}_einsatzzeit${eintrag.nr}`;
+    einsatzzeitRefs.push(`:Einsatzzeit_${eid}`);
+    einsatzzeitTriples += `
+  :Einsatzzeit_${eid} a ex:Einsatzzeit ;
+    ex:lfd "${index + 1}" ;
+    ex:wochen "${eintrag.wochen || ""}" ;
+    ex:wochentag "${eintrag.wochentag || ""}" ;
+    ex:uhrzeit "${eintrag.uhrzeit || ""}" ;
+    ex:anmerkung "${eintrag.anmerkung || ""}" ;
+    ex:zugeordnetZu :Dozentenblatt_${id} .\n`;
+  });
+
+  if (einsatzzeitRefs.length > 0) {
+   turtle += ` ;
+   ex:einsatzzeit ${einsatzzeitRefs.join(', ')}`;
+  }
+  turtle += " .\n";
+  turtle += einsatzzeitTriples;
 
   // FEHLTE in deinem Snippet, ist aber wichtig!
   const dirPath = path.join(__dirname, 'data');

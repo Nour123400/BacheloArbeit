@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function addEinsatzRow() {
-  einsatzZaehler++;
   const tableDiv = document.getElementById("einsatzTabelle");
 
   // Tabelle mit Header erzeugen, falls noch nicht vorhanden
@@ -30,25 +29,51 @@ function addEinsatzRow() {
   const table = document.getElementById("einsatzTable");
   const row = table.insertRow(-1);
 
+  // Wir geben erstmal Platzhalter-IDs, die später korrekt nummeriert werden
   row.innerHTML = `
-    <td>${einsatzZaehler}</td>
-    <td><input name="einsatz_fakstg_${einsatzZaehler}" style="width:90px"></td>
-    <td><input name="einsatz_fsgruppen_${einsatzZaehler}" style="width:90px"></td>
-    <td><input name="einsatz_modul_${einsatzZaehler}" style="width:70px"></td>
-    <td><input name="einsatz_realesws_${einsatzZaehler}" type="number" min="0" style="width:60px"></td>
+    <td></td>
+    <td><input name="einsatz_fakstg_" style="width:90px"></td>
+    <td><input name="einsatz_fsgruppen_" style="width:90px"></td>
+    <td><input name="einsatz_modul_" style="width:70px"></td>
+    <td><input name="einsatz_realesws_" type="number" min="0" style="width:60px"></td>
     <td>
-      <select name="einsatz_digital_${einsatzZaehler}">
+      <select name="einsatz_digital_">
         <option value=""></option>
         <option value="ja">ja</option>
         <option value="nein">nein</option>
       </select>
     </td>
-    <td><input name="einsatz_bemerkung_${einsatzZaehler}" style="width:100px"></td>
+    <td><input name="einsatz_bemerkung_" style="width:100px"></td>
     <td><button type="button" onclick="removeEinsatzRow(this)">🗑️</button></td>
   `;
+  renumberEinsatzRows();
 }
 
 function removeEinsatzRow(btn) {
   const row = btn.closest('tr');
   row.parentNode.removeChild(row);
+  renumberEinsatzRows();
+}
+
+function renumberEinsatzRows() {
+  const table = document.getElementById("einsatzTable");
+  if (!table) return;
+
+  // Überspringe Kopfzeile
+  let nummer = 1;
+  for (let i = 1; i < table.rows.length; i++) {
+    const row = table.rows[i];
+    // lfd-Nummer setzen
+    row.cells[0].textContent = nummer;
+
+    // Felder-Name sauber durchnummerieren
+    row.querySelector('input[name^="einsatz_fakstg_"]').name = "einsatz_fakstg_" + nummer;
+    row.querySelector('input[name^="einsatz_fsgruppen_"]').name = "einsatz_fsgruppen_" + nummer;
+    row.querySelector('input[name^="einsatz_modul_"]').name = "einsatz_modul_" + nummer;
+    row.querySelector('input[name^="einsatz_realesws_"]').name = "einsatz_realesws_" + nummer;
+    row.querySelector('select[name^="einsatz_digital_"]').name = "einsatz_digital_" + nummer;
+    row.querySelector('input[name^="einsatz_bemerkung_"]').name = "einsatz_bemerkung_" + nummer;
+
+    nummer++;
+  }
 }

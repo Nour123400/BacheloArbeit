@@ -70,6 +70,42 @@ function saveDozentenblatt(data) {
   turtle += " .\n";
   turtle = turtle + einsatzTriples;
 
+  // Hinweise sammeln (analog zu einsaetze)
+  const hinweise = Object.keys(data)
+    .filter(key => key.startsWith('hinweis_dozent_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('hinweis_dozent_', '');
+      return {
+        nr,
+        dozent: data[`hinweis_dozent_${nr}`],
+        dekanat: data[`hinweis_dekanat_${nr}`]
+     };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let hinweisTriples = '';
+  let hinweisRefs = [];
+
+  hinweise.forEach((eintrag, index) => {
+    const hid = `${id}_hinweis${eintrag.nr}`;
+    hinweisRefs.push(`:Hinweis_${hid}`);
+    hinweisTriples += `
+  :Hinweis_${hid} a ex:Hinweis ;
+    ex:lfd "${index + 1}" ;
+    ex:dozentHinweis "${eintrag.dozent || ""}" ;
+    ex:dekanatHinweis "${eintrag.dekanat || ""}" ;
+    ex:zugeordnetZu :Dozentenblatt_${id} .\n`;  
+  });
+
+  // Optional: Wenn du die Hinweise als Referenz an das Blatt hängen willst, z.B. als ex:hinweis
+  if (hinweisRefs.length > 0) {
+   turtle += ` ;
+   ex:hinweis ${hinweisRefs.join(', ')}`;
+  }
+  turtle += " .\n";
+  turtle += hinweisTriples;  // an das Turtle anhängen
+
+
   // FEHLTE in deinem Snippet, ist aber wichtig!
   const dirPath = path.join(__dirname, 'data');
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });

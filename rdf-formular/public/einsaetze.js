@@ -7,35 +7,42 @@ document.addEventListener("DOMContentLoaded", function() {
 function addEinsatzRow() {
   const tableDiv = document.getElementById("einsatzTabelle");
 
-  // Tabelle mit Header erzeugen, falls noch nicht vorhanden
+  // Tabelle mit 2 Kopfzeilen (Gruppierung für "Reale SWS")
   if (!document.getElementById("einsatzTable")) {
     tableDiv.innerHTML = `
       <table border="1" style="border-collapse:collapse;" id="einsatzTable">
         <tr>
-          <th>lfd</th>
-          <th>Fak/Stg</th>
-          <th>FS-Gruppen</th>
-          <th>Modul</th>
-          <th>reale SWS</th>
-          <th>digital</th>
-          <th>Bemerkung</th>
-          <th>Löschen</th>
+          <th rowspan="2">lfd</th>
+          <th rowspan="2">Fak/Stg</th>
+          <th rowspan="2">FS-Gruppen</th>
+          <th rowspan="2">Modul</th>
+          <th colspan="3">Reale SWS (Präsenz)</th>
+          <th rowspan="2">digital</th>
+          <th rowspan="2">Bemerkung</th>
+          <th rowspan="2">Löschen</th>
+        </tr>
+        <tr>
+          <th>V</th>
+          <th>S</th>
+          <th>P</th>
         </tr>
       </table>
     `;
   }
 
-  // Neue Zeile mit leeren Eingabefeldern
   const table = document.getElementById("einsatzTable");
+  // Datenzeile immer am Ende einfügen
   const row = table.insertRow(-1);
 
-  // Wir geben erstmal Platzhalter-IDs, die später korrekt nummeriert werden
+  // Exakt 10 Spalten für die Datenzeile!
   row.innerHTML = `
     <td></td>
     <td><input name="einsatz_fakstg_" style="width:90px"></td>
     <td><input name="einsatz_fsgruppen_" style="width:90px"></td>
     <td><input name="einsatz_modul_" style="width:70px"></td>
-    <td><input name="einsatz_realesws_" type="number" min="0" style="width:60px"></td>
+    <td><input name="einsatz_sws_v_" type="number" min="0" style="width:40px"></td>
+    <td><input name="einsatz_sws_s_" type="number" min="0" style="width:40px"></td>
+    <td><input name="einsatz_sws_p_" type="number" min="0" style="width:40px"></td>
     <td>
       <select name="einsatz_digital_">
         <option value=""></option>
@@ -59,21 +66,19 @@ function renumberEinsatzRows() {
   const table = document.getElementById("einsatzTable");
   if (!table) return;
 
-  // Überspringe Kopfzeile
   let nummer = 1;
-  for (let i = 1; i < table.rows.length; i++) {
+  // WICHTIG: fange bei i = 2 an (weil: zwei Kopfzeilen)!
+  for (let i = 2; i < table.rows.length; i++) {
     const row = table.rows[i];
-    // lfd-Nummer setzen
     row.cells[0].textContent = nummer;
-
-    // Felder-Name sauber durchnummerieren
     row.querySelector('input[name^="einsatz_fakstg_"]').name = "einsatz_fakstg_" + nummer;
     row.querySelector('input[name^="einsatz_fsgruppen_"]').name = "einsatz_fsgruppen_" + nummer;
     row.querySelector('input[name^="einsatz_modul_"]').name = "einsatz_modul_" + nummer;
-    row.querySelector('input[name^="einsatz_realesws_"]').name = "einsatz_realesws_" + nummer;
+    row.querySelector('input[name^="einsatz_sws_v_"]').name = "einsatz_sws_v_" + nummer;
+    row.querySelector('input[name^="einsatz_sws_s_"]').name = "einsatz_sws_s_" + nummer;
+    row.querySelector('input[name^="einsatz_sws_p_"]').name = "einsatz_sws_p_" + nummer;
     row.querySelector('select[name^="einsatz_digital_"]').name = "einsatz_digital_" + nummer;
     row.querySelector('input[name^="einsatz_bemerkung_"]').name = "einsatz_bemerkung_" + nummer;
-
     nummer++;
   }
 }

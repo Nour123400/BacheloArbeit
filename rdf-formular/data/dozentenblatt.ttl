@@ -3,12 +3,52 @@
 @prefix : <http://example.org/data/> .
 
 
-:Dozentenblatt_1753302591874 a ex:Dozentenblatt ;
+:Dozentenblatt_1753356490265 a ex:Dozentenblatt ;
   ex:abgabeterminDS ""^^xsd:date ;
   ex:eingangDS "" ;
   // ex:hochschule "" ;
   ex:semester "Sommersemester 2025" ;
-  ex:titel "Prof. Dr.-Ing." ;
+  ex:titel "" ;
+  ex:vorname "" ;
+  ex:name "" ;
+  ex:email "" ;
+  ex:telefon "" ;
+  ex:arbeitszeit "Vollzeit" ;
+  ex:fakultaet "" ;
+  ex:studiengang "" ;
+  ex:modulnummer "ET301" ;
+  ex:modulbezeichnung "Messtechnik" ;
+  ex:lehrveranstaltungsnummer "ET301-VL" ;
+  ex:lehrveranstaltungsbezeichnung "Vorlesung Messtechnik" ;
+  ex:gesamtSWS 4 ;
+  ex:vorlesungSWS 2 ;
+  ex:seminarSWS 1 ;
+  ex:praktikumSWS 1 ;
+  ex:dozent "Prof. Dr. Müller" ;
+  ex:bemerkung "" ;
+  ex:unterschriftProfessor "" ;
+  ex:unterschriftDekan "" ;
+  ex:einsatz :Einsatz_1753356490265_einsatz1 .
+
+:Einsatz_1753356490265_einsatz1 a ex:Einsatz ;
+  ex:lfd "1" ;
+  ex:fakStg "dsf" ;
+  ex:fsGruppen "sdfsd" ;
+  ex:modul "dsfsdf" ;
+  ex:swsV 1 ;
+  ex:swsS 1 ;
+  ex:swsP 1 ;
+  ex:digital "ja" ;
+  ex:bemerkung "" ;
+  ex:zugeordnetZu :Dozentenblatt_1753356490265 .
+
+
+:Dozentenblatt_1753356545099 a ex:Dozentenblatt ;
+  ex:abgabeterminDS "2025-07-01"^^xsd:date ;
+  ex:eingangDS "" ;
+  // ex:hochschule "" ;
+  ex:semester "Sommersemester 2026" ;
+  ex:titel "" ;
   ex:vorname "" ;
   ex:name "" ;
   ex:email "" ;
@@ -28,15 +68,29 @@
   ex:bemerkung "" ;
   ex:unterschriftProfessor "" ;
   ex:unterschriftDekan "" ;
-  ex:einsatz :Einsatz_1753302591874_einsatz1 .
+  ex:einsatz :Einsatz_1753356545099_einsatz1, :Einsatz_1753356545099_einsatz2 .
 
-:Einsatz_1753302591874_einsatz1 a ex:Einsatz ;
+:Einsatz_1753356545099_einsatz1 a ex:Einsatz ;
   ex:lfd "1" ;
-  ex:fakStg "ASDF" ;
-  ex:fsGruppen "ASDFASD" ;
-  ex:modul "SDAFSDA" ;
-  ex:realeSWS 3 ;
+  ex:fakStg "dvf" ;
+  ex:fsGruppen "sdf" ;
+  ex:modul "dsf" ;
+  ex:swsV 1 ;
+  ex:swsS 1 ;
+  ex:swsP 1 ;
   ex:digital "ja" ;
-  ex:bemerkung "ASDF" ;
-  ex:zugeordnetZu :Dozentenblatt_1753302591874 .
+  ex:bemerkung "" ;
+  ex:zugeordnetZu :Dozentenblatt_1753356545099 .
+
+:Einsatz_1753356545099_einsatz2 a ex:Einsatz ;
+  ex:lfd "2" ;
+  ex:fakStg "sdf" ;
+  ex:fsGruppen "sdf" ;
+  ex:modul "sdf" ;
+  ex:swsV 2 ;
+  ex:swsS 2 ;
+  ex:swsP 2 ;
+  ex:digital "nein" ;
+  ex:bemerkung "" ;
+  ex:zugeordnetZu :Dozentenblatt_1753356545099 .
 

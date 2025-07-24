@@ -47,7 +47,10 @@ function saveDozentenblatt(data) {
         fakstg: data[`einsatz_fakstg_${nr}`],
         fsgruppen: data[`einsatz_fsgruppen_${nr}`],
         modul: data[`einsatz_modul_${nr}`],
-        realesws: data[`einsatz_realesws_${nr}`] || 0,
+        sws_v: data[`einsatz_sws_v_${nr}`] || 0,
+        sws_s: data[`einsatz_sws_s_${nr}`] || 0,
+        sws_p: data[`einsatz_sws_p_${nr}`] || 0,
+
         digital: data[`einsatz_digital_${nr}`],
         bemerkung: data[`einsatz_bemerkung_${nr}`]
       };
@@ -66,7 +69,9 @@ function saveDozentenblatt(data) {
   ex:fakStg "${eintrag.fakstg || ""}" ;
   ex:fsGruppen "${eintrag.fsgruppen || ""}" ;
   ex:modul "${eintrag.modul || ""}" ;
-  ex:realeSWS ${eintrag.realesws || 0} ;
+  ex:swsV ${eintrag.sws_v || 0} ;
+  ex:swsS ${eintrag.sws_s || 0} ;
+  ex:swsP ${eintrag.sws_p || 0} ;
   ex:digital "${eintrag.digital || ""}" ;
   ex:bemerkung "${eintrag.bemerkung || ""}" ;
   ex:zugeordnetZu :Dozentenblatt_${id} .\n`;

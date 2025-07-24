@@ -9,20 +9,44 @@
   <form method="POST" action="/submit?type=dozent">
     <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
     <label>Eingang bei DS:</label><br><input name="eingang"><br>
-    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig"><br>
-    <label>Semester:</label><br><input name="semester" value="Wintersemester 2025/26"><br>
-    <label>Titel:</label><br><input name="titel"><br>
+    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig" disabled><br>
+    <label>Semester:</label><select name="semester" id="semester"></select><br><script src="semester.js"></script>
+    <label>Titel:</label><select name="titel" id="titel"></select><br><script src="titel.js"></script>
     <label>Vorname:</label><br><input name="vorname"><br>
     <label>Name:</label><br><input name="name"><br>
     <label>E-Mail:</label><br><input name="email"><br>
     <label>Telefon:</label><br><input name="telefon"><br>
+    <label>Fakultät:</label><select name="fakultaet" id="fakultaet"></select><br><script src="fakultaet.js"></script>
     <label>Arbeitszeit:</label>
     <select name="arbeitszeit">
       <option value="Vollzeit">Vollzeit</option>
       <option value="Teilzeit">Teilzeit</option>
       <option value="Gast">Gast</option>
     </select><br>
-    <label>Fakultät:</label><br><input name="fakultaet"><br>
+
+    <label>Bitte geben Sie in der Tabelle Ihre Einsätze (auch Bedienfunktionen) an!Durchzuführende Lehrveranstaltungen</label>
+    
+    <label>Bitte geben Sie in der Tabelle Ihre Einsätze (auch Bedienfunktionen) an! Durchzuführende Lehrveranstaltungen</label><br>
+    <button type="button" id="einsatzAddBtn">Einsatz hinzufügen</button>
+    <div id="einsatzTabelle"></div>
+    <script src="einsaetze.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <label>Studiengang:</label><br><input name="studiengang"><br>
     <label>Modulnummer:</label><br>
     <select name="modulnummer" id="modulnummer" onchange="ladeModulDaten()" required>

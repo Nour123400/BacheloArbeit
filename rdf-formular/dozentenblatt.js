@@ -8,11 +8,13 @@ function saveDozentenblatt(data) {
 @prefix : <http://example.org/data/> .
 
 `;
-  const turtle = `
+
+  // Hauptblock
+  let turtle = `
 :Dozentenblatt_${id} a ex:Dozentenblatt ;
   ex:abgabeterminDS "${data.abgabetermin || ""}"^^xsd:date ;
   ex:eingangDS "${data.eingang || ""}" ;
-  ex:hochschule "${data.hochschule || ""}" ;
+  // ex:hochschule "${data.hochschule || ""}" ;
   ex:semester "${data.semester || ""}" ;
   ex:titel "${data.titel || ""}" ;
   ex:vorname "${data.vorname || ""}" ;
@@ -33,10 +35,54 @@ function saveDozentenblatt(data) {
   ex:dozent "${data.dozent || ""}" ;
   ex:bemerkung "${data.bemerkung || ""}" ;
   ex:unterschriftProfessor "${data.prof || ""}" ;
-  ex:unterschriftDekan "${data.dekan || ""}" .
-`;
+  ex:unterschriftDekan "${data.dekan || ""}"`;
 
-  const filePath = path.join(__dirname, 'data', 'dozentenblatt.ttl');
+  // Sammelt alle vorhandenen einsatz_* Einträge (egal wie nummeriert)
+  const einsaetze = Object.keys(data)
+    .filter(key => key.startsWith('einsatz_fakstg_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('einsatz_fakstg_', '');
+      return {
+        nr,
+        fakstg: data[`einsatz_fakstg_${nr}`],
+        fsgruppen: data[`einsatz_fsgruppen_${nr}`],
+        modul: data[`einsatz_modul_${nr}`],
+        realesws: data[`einsatz_realesws_${nr}`] || 0,
+        digital: data[`einsatz_digital_${nr}`],
+        bemerkung: data[`einsatz_bemerkung_${nr}`]
+      };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let einsatzTriples = '';
+  let einsatzRefs = [];
+
+  einsaetze.forEach((eintrag, index) => {
+    const eid = `${id}_einsatz${eintrag.nr}`;
+    einsatzRefs.push(`:Einsatz_${eid}`);
+    einsatzTriples += `
+:Einsatz_${eid} a ex:Einsatz ;
+  ex:lfd "${index + 1}" ;
+  ex:fakStg "${eintrag.fakstg || ""}" ;
+  ex:fsGruppen "${eintrag.fsgruppen || ""}" ;
+  ex:modul "${eintrag.modul || ""}" ;
+  ex:realeSWS ${eintrag.realesws || 0} ;
+  ex:digital "${eintrag.digital || ""}" ;
+  ex:bemerkung "${eintrag.bemerkung || ""}" ;
+  ex:zugeordnetZu :Dozentenblatt_${id} .\n`;
+  });
+  if (einsatzRefs.length > 0) {
+    turtle += ` ;
+  ex:einsatz ${einsatzRefs.join(', ')}`;
+  }
+  turtle += " .\n";
+  turtle = turtle + einsatzTriples;
+
+  // FEHLTE in deinem Snippet, ist aber wichtig!
+  const dirPath = path.join(__dirname, 'data');
+  if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
+
+  const filePath = path.join(dirPath, 'dozentenblatt.ttl');
   const fileExists = fs.existsSync(filePath);
   const content = (fileExists ? '' : prefix) + turtle + '\n';
 

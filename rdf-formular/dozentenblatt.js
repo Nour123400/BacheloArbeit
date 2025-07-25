@@ -183,6 +183,20 @@ function saveDozentenblatt(data) {
   turtle += " .\n";
   turtle += sperrzeitTriples;
 
+  // Dozenten-/Forschungstag (Checkboxen)
+  const dfTage = Object.keys(data)
+    .filter(key => key.startsWith('df_') && data[key]) // Nur angehakt!
+    .map(key => ({ key, value: data[key] }));
+
+  let dfTageTriples = '';
+  if (dfTage.length > 0) {
+    dfTage.forEach(df => {
+      dfTageTriples += `
+    ex:${df.key} "${df.value}" ;`;
+    });
+    // Vor dem letzten Punkt am Turtle-Block einfügen
+    turtle = turtle.replace(/;\s*\.$/, ';') + dfTageTriples + "\n.\n";
+  }
 
 
   // FEHLTE in deinem Snippet, ist aber wichtig!

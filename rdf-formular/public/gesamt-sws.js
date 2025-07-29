@@ -1,72 +1,112 @@
-let gesamtSwsZaehler = 0;
-
 document.addEventListener("DOMContentLoaded", function () {
-  document.getElementById("gesamtSwsAddBtn").addEventListener("click", addGesamtSwsRow);
+  const container = document.getElementById("gesamtSwsTabelle");
+  const addBtn = document.getElementById("gesamtSwsAddBtn");
+
+  let spalten = ["Vorlesung", "Seminar", "Praktikum"];
+  let zeilen = [];
+
+  // Tabelle initial erstellen
+  const table = document.createElement("table");
+  table.border = "1";
+  table.style.borderCollapse = "collapse";
+  container.appendChild(table);
+
+  function renderTable() {
+    table.innerHTML = "";
+
+    // 1. Kopfzeile
+    const header = table.insertRow();
+    const firstCell = document.createElement("th");
+    firstCell.innerText = "";
+    header.appendChild(firstCell);
+    spalten.forEach(spalte => {
+      const th = document.createElement("th");
+      th.innerText = spalte;
+      header.appendChild(th);
+    });
+
+    // 2. Inhalt
+    zeilen.forEach((zeile, rowIndex) => {
+      const row = table.insertRow();
+      const cellLabel = row.insertCell();
+      cellLabel.innerText = zeile.label;
+
+      spalten.forEach((spalte, colIndex) => {
+        const cell = row.insertCell();
+        const input = document.createElement("input");
+        input.name = `z${rowIndex}_s${colIndex}`;
+        input.style.width = "120px";
+        input.style.fontWeight = "bold";
+
+        if (zeile.typ === "number") {
+          input.type = "number";
+          input.min = "0";
+          input.value = zeile.werte[colIndex] || 0;
+          input.addEventListener("input", updateGesamtSWS);
+        } else {
+          input.type = "text";
+          input.value = zeile.werte[colIndex] || "";
+        }
+
+        zeile.inputs[colIndex] = input;
+        cell.appendChild(input);
+      });
+
+      // Entfernen-Button
+      const delCell = row.insertCell();
+      const delBtn = document.createElement("button");
+      delBtn.innerText = "🗑️";
+      delBtn.onclick = () => {
+        zeilen.splice(rowIndex, 1);
+        renderTable();
+        updateGesamtSWS();
+      };
+      delCell.appendChild(delBtn);
+    });
+
+    // Gesamtzeile (unten)
+    let gesamtRow = table.querySelector("#gesamtRow");
+    if (!gesamtRow) {
+      gesamtRow = table.insertRow();
+      gesamtRow.id = "gesamtRow";
+      const cell = gesamtRow.insertCell();
+      cell.colSpan = spalten.length + 1;
+      cell.innerHTML = `<strong>Gesamt SWS:</strong> <span id="gesamtSwsWert">0</span>`;
+    }
+  }
+
+  function updateGesamtSWS() {
+    const swsZeile = zeilen.find(z => z.label.toLowerCase().includes("sws"));
+    if (!swsZeile) return;
+
+    const sum = swsZeile.inputs.reduce((acc, input) => acc + (parseInt(input.value) || 0), 0);
+    document.getElementById("gesamtSwsWert").innerText = sum;
+  }
+
+  // Neue Zeile hinzufügen
+  addBtn.addEventListener("click", function () {
+    const label = prompt("Zeilenbeschriftung (z. B. 'davon SWS', 'Raumanforderung', ...):");
+    if (!label) return;
+
+    const typ = confirm("Sollen die Zellen Zahlen (SWS) sein?") ? "number" : "text";
+
+    zeilen.push({
+      label,
+      typ,
+      werte: Array(spalten.length).fill(""),
+      inputs: []
+    });
+
+    renderTable();
+  });
+
+  // Erste Standardzeilen (wie im Bild)
+  zeilen = [
+    { label: "davon SWS", typ: "number", werte: [2, 2, 0], inputs: [] },
+    { label: "Raumanforderung", typ: "text", werte: ["Gu, Li, Tr", "Z423, Z430", ""], inputs: [] },
+    { label: "Technikanforderung (Campus – Bereich)", typ: "text", werte: ["Beamer/WLAN", "", ""], inputs: [] }
+  ];
+
+  renderTable();
+  updateGesamtSWS();
 });
-
-function addGesamtSwsRow() {
-  const tableDiv = document.getElementById("gesamtSwsTabelle");
-
-  if (!document.getElementById("gesamtSwsTable")) {
-    tableDiv.innerHTML = `
-      <table border="1" style="border-collapse:collapse;" id="gesamtSwsTable">
-        <tr>
-          <th rowspan="2">lfd</th>
-          <th rowspan="2">Bezeichnung</th>
-          <th colspan="3">SWS (Einzelstudent)</th>
-          <th rowspan="2">Raumanforderung</th>
-          <th rowspan="2">Technik</th>
-          <th rowspan="2">Campus/Bereich</th>
-          <th rowspan="2">🗑️</th>
-        </tr>
-        <tr>
-          <th>V</th>
-          <th>S</th>
-          <th>P</th>
-        </tr>
-      </table>
-    `;
-  }
-
-  const table = document.getElementById("gesamtSwsTable");
-  const row = table.insertRow(-1);
-
-  row.innerHTML = `
-    <td></td>
-    <td><input name="sws_bezeichnung_" style="width:120px"></td>
-    <td><input name="sws_v_" type="number" min="0" style="width:40px"></td>
-    <td><input name="sws_s_" type="number" min="0" style="width:40px"></td>
-    <td><input name="sws_p_" type="number" min="0" style="width:40px"></td>
-    <td><input name="sws_raum_" type="text" style="width:100px"></td>
-    <td><input name="sws_technik_" type="text" style="width:100px"></td>
-    <td><input name="sws_campus_" type="text" style="width:100px"></td>
-    <td><button type="button" onclick="removeGesamtSwsRow(this)">🗑️</button></td>
-  `;
-
-  renumberGesamtSwsRows();
-}
-
-function removeGesamtSwsRow(btn) {
-  const row = btn.closest('tr');
-  row.remove();
-  renumberGesamtSwsRows();
-}
-
-function renumberGesamtSwsRows() {
-  const table = document.getElementById("gesamtSwsTable");
-  if (!table) return;
-
-  let nummer = 1;
-  for (let i = 2; i < table.rows.length; i++) {
-    const row = table.rows[i];
-    row.cells[0].textContent = nummer;
-    row.querySelector('input[name^="sws_bezeichnung_"]').name = "sws_bezeichnung_" + nummer;
-    row.querySelector('input[name^="sws_v_"]').name = "sws_v_" + nummer;
-    row.querySelector('input[name^="sws_s_"]').name = "sws_s_" + nummer;
-    row.querySelector('input[name^="sws_p_"]').name = "sws_p_" + nummer;
-    row.querySelector('input[name^="sws_raum_"]').name = "sws_raum_" + nummer;
-    row.querySelector('input[name^="sws_technik_"]').name = "sws_technik_" + nummer;
-    row.querySelector('input[name^="sws_campus_"]').name = "sws_campus_" + nummer;
-    nummer++;
-  }
-}

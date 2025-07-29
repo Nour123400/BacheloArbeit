@@ -16,10 +16,28 @@
     <label>Eingang bei DS:</label><br><input name="eingang"><br>
     <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig" disabled><br>
     <label><label>Semester:</label><select name="semester" id="semester"></select><br><script src="semester.js"></script>
-
     <label>Fakultät:</label><select name="fakultaet" id="fakultaet"></select><br><script src="fakultaet.js"></script>
     <label>Studiengang:</label><br><input name="studiengang"><br>
     <label>Fachsemester:</label><br><input name="fachsemester" type="number"><br>
+    <input name="gruppen" type="text" placeholder="z. B. Gruppe 25INB-1, Gruppe 25MIB-1-2"><br>
+    <label>Anzahl der Studierenden in den Gruppen:</label><br><input name="anzahlStudierendeGruppen" type="number" min="0"><br>
+    <label>Modulnummer:</label><br><input name="modulnummer" type="text"><br>
+    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" type="text"><br>
+    <label>Teilmodulnummer:</label><br><input name="teilmodulnummer" id="teilmodulnummer" type="text"><br>
+    <label>Teilmodulbezeichnung:</label><br><input name="teilmodulbezeichnung" id="teilmodulbezeichnung" type="text"><br>
+    <label>Fachart (Pflicht- oder Wahlpflichtmodul):</label><br>
+    <select name="fachart">
+        <option value="">-- bitte wählen --</option>
+        <option value="Pflichtmodul">Pflichtmodul</option>
+       <option value="Wahlpflichtmodul">Wahlpflichtmodul</option>
+    </select><br>
+
+    <label>Gesamt SWS (bezogen auf einen Beispiel-Studenten)</label><br>
+    <button type="button" id="gesamtSwsAddBtn">SWS-Zeile hinzufügen</button>
+    <div id="gesamtSwsTabelle"></div>
+
+<!-- JavaScript separat laden -->
+<script src="gesamt-sws.js"></script>
 
 
     <button type="submit">✅ Speichern</button>

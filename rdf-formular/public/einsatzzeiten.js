@@ -2,6 +2,7 @@ let einsatzzeitZaehler = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("einsatzzeitAddBtn").addEventListener("click", addEinsatzzeitRow);
+  addEinsatzzeitRow(); // <-- damit die erste Zeile direkt sichtbar ist!
 });
 
 function addEinsatzzeitRow() {

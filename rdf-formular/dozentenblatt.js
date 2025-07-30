@@ -26,22 +26,24 @@ function saveDozentenblatt(data) {
 
   // Sammelt alle vorhandenen einsatz_* Einträge (egal wie nummeriert)
   const einsaetze = Object.keys(data)
-    .filter(key => key.startsWith('einsatz_fakstg_') && data[key] !== "")
+    .filter(key => key.startsWith('einsatz_fakultaet_') && data[key] !== "")
     .map(key => {
-      const nr = key.replace('einsatz_fakstg_', '');
+      const nr = key.replace('einsatz_fakultaet_', '');
       return {
         nr,
-        fakstg: data[`einsatz_fakstg_${nr}`],
-        fsgruppen: data[`einsatz_fsgruppen_${nr}`],
-        modul: data[`einsatz_modul_${nr}`],
+        fakultaet: data[`einsatz_fakultaet_${nr}`],
+        stg: data[`einsatz_stg_${nr}`],
+        fs: data[`einsatz_fs_${nr}`],
+        gruppe: data[`einsatz_gruppe_${nr}`],
+        modulnr: data[`einsatz_modulnr_${nr}`],
+        modulname: data[`einsatz_modulname_${nr}`],
         sws_v: data[`einsatz_sws_v_${nr}`] || 0,
         sws_s: data[`einsatz_sws_s_${nr}`] || 0,
         sws_p: data[`einsatz_sws_p_${nr}`] || 0,
-
         digital: data[`einsatz_digital_${nr}`],
         bemerkung: data[`einsatz_bemerkung_${nr}`]
       };
-    })
+   })
     .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
 
   let einsatzTriples = '';
@@ -51,24 +53,28 @@ function saveDozentenblatt(data) {
     const eid = `${id}_einsatz${eintrag.nr}`;
     einsatzRefs.push(`:Einsatz_${eid}`);
     einsatzTriples += `
-:Einsatz_${eid} a ex:Einsatz ;
-  ex:lfd "${index + 1}" ;
-  ex:fakStg "${eintrag.fakstg || ""}" ;
-  ex:fsGruppen "${eintrag.fsgruppen || ""}" ;
-  ex:modul "${eintrag.modul || ""}" ;
-  ex:swsV ${eintrag.sws_v || 0} ;
-  ex:swsS ${eintrag.sws_s || 0} ;
-  ex:swsP ${eintrag.sws_p || 0} ;
-  ex:digital "${eintrag.digital || ""}" ;
-  ex:bemerkung "${eintrag.bemerkung || ""}" ;
-  ex:zugeordnetZu :Dozentenblatt_${id} .\n`;
+    :Einsatz_${eid} a ex:Einsatz ;
+    ex:lfd "${index + 1}" ;
+    ex:fakultaet "${eintrag.fakultaet || ""}" ;
+    ex:stg "${eintrag.stg || ""}" ;
+    ex:fs "${eintrag.fs || ""}" ;
+    ex:gruppe "${eintrag.gruppe || ""}" ;
+    ex:modulnr "${eintrag.modulnr || ""}" ;
+    ex:modulname "${eintrag.modulname || ""}" ;
+    ex:swsV ${eintrag.sws_v || 0} ;
+    ex:swsS ${eintrag.sws_s || 0} ;
+    ex:swsP ${eintrag.sws_p || 0} ;
+    ex:digital "${eintrag.digital || ""}" ;
+    ex:bemerkung "${eintrag.bemerkung || ""}" ;
+    ex:zugeordnetZu :Dozentenblatt_${id} .\n`;
   });
   if (einsatzRefs.length > 0) {
-    turtle += ` ;
+   turtle += ` ;
   ex:einsatz ${einsatzRefs.join(', ')}`;
   }
   turtle += " .\n";
   turtle = turtle + einsatzTriples;
+
 
   // Hinweise sammeln (analog zu einsaetze)
   const hinweise = Object.keys(data)

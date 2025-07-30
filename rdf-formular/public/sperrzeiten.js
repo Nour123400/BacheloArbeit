@@ -2,7 +2,9 @@ let sperrzeitZaehler = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("sperrzeitAddBtn").addEventListener("click", addSperrzeitRow);
+  addSperrzeitRow(); // <-- erste Zeile direkt beim Laden anzeigen
 });
+
 
 function addSperrzeitRow() {
   const tableDiv = document.getElementById("sperrzeitTabelle");

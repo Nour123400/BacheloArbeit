@@ -1,0 +1,29 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Zuarbeitsblatt_1753859689832 a ex:Zuarbeitsblatt ;
+  ex:abgabeterminDS ""^^xsd:date ;
+  ex:eingangDS "" ;
+  ex:semester "Sommersemester 2025" ;
+  ex:fakultaet "" ;
+  ex:studiengang "" ;
+  ex:fachsemester 0 ;
+  ex:gruppen "" ;
+  ex:anzahlStudierendeGruppen 0 ;
+  ex:modulnummer "" ;
+  ex:modulbezeichnung "" ;
+  ex:teilmodulnummer "" ;
+  ex:teilmodulbezeichnung "" ;
+  ex:fachart "" ;
+  ex:swsV 2 ;
+  ex:swsS 2 ;
+  ex:swsP 0 ;
+  ex:raumV "Gu, Li, Tr" ;
+  ex:raumS "Z423, Z430" ;
+  ex:raumP "" ;
+  ex:technikV "Beamer/WLAN" ;
+  ex:technikS "" ;
+  ex:technikP ""
+.

@@ -125,6 +125,34 @@ praktikums.forEach((eintrag, index) => {
 
 turtle += praktikumsTriples;
 
+// ... nach deinen bisherigen Tripelblöcken:
+
+// Planungswünsche
+const planungswuensche = [];
+for (let i = 1; i <= 6; i++) {
+  if (data[`planung_wunsch_${i}`]) {
+    planungswuensche.push(i);
+  }
+}
+if (planungswuensche.length > 0) {
+  planungswuensche.forEach(i => {
+    turtle += `:Zuarbeitsblatt_${id} ex:planungswunsch "${i}" .\n`;
+  });
+}
+if (data['planung_wunsch_andere']) {
+  turtle += `:Zuarbeitsblatt_${id} ex:planungswunsch_anderes "${data['planung_wunsch_andere']}" .\n`;
+}
+
+// Kalenderfelder (KW und Texte)
+for (const key in data) {
+  if (key.startsWith('kw_') && data[key]) {
+    turtle += `:Zuarbeitsblatt_${id} ex:${key} "true" .\n`;
+  }
+  if (key.startsWith('kwtxt_') && data[key]) {
+    turtle += `:Zuarbeitsblatt_${id} ex:${key} "${data[key]}" .\n`;
+  }
+}
+
 
   // ========== Datei schreiben ==========
   const dirPath = path.join(__dirname, 'data');

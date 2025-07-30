@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', function () {
       modules = json;
       filtered = [...modules];
       showModuleList();
-      document.getElementById('downloadBtn').style.display = 'inline-block';
     })
     .catch(err => {
       alert("Konnte Module nicht laden:\n" + err);
@@ -69,6 +68,7 @@ function saveModule() {
   if (selectedIdx == null) return;
   const form = document.getElementById('editForm');
   const mod = filtered[selectedIdx];
+  
   mod.Modulnummer = form.Modulnummer.value;
   mod.Modulbezeichnung = form.Modulbezeichnung.value;
   mod.Fakultät = form.Fakultät.value;
@@ -97,22 +97,34 @@ function saveModule() {
   // Sync in der Hauptliste
   const origIdx = modules.findIndex(m => m.Modulnummer === mod.Modulnummer);
   if (origIdx >= 0) modules[origIdx] = {...mod};
-  showModuleList();
-  document.getElementById('moduleForm').style.display = 'none';
-  selectedIdx = null;
+  // --- ab hier das neue Verhalten: per POST an den Server! ---
+  fetch('/api/module', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(modules)
+  })
+  .then(res => res.json())
+  .then(resp => {
+    if (resp.success) {
+      showModuleList();
+      document.getElementById('moduleForm').style.display = 'none';
+      selectedIdx = null;
+      alert('Änderung gespeichert!');
+    } else {
+      alert('Speichern fehlgeschlagen: ' + resp.error);
+    }
+  })
+  .catch(err => {
+    alert('Fehler beim Speichern:\n' + err);
+  });
 }
+
 
 function cancelEdit() {
   document.getElementById('moduleForm').style.display = 'none';
   selectedIdx = null;
 }
 
-function downloadJSON() {
-  const blob = new Blob([JSON.stringify(modules, null, 2)], {type: "application/json"});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = "module_bearbeitet.json";
-  a.click();
-  URL.revokeObjectURL(url);
-}
+

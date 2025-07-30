@@ -1,15 +1,15 @@
 [
   {
     "Modulnummer": "C004",
-    "Modulbezeichnung": "",
+    "Modulbezeichnung": "Mikroprogrammierung und Mikroprozessoren",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
-    "Fachsemester": "4-6",
+    "Fachsemester": "4",
     "Dauer": "1 Semester",
     "Turnus": "Sommersemester",
     "Modulverantwortliche": {
-      "Anrede": "Prof. Dr.",
-      "Vorname": "rer. nat. habil. Michael",
+      "Anrede": "Prof. Dr. rer. nat. habil.",
+      "Vorname": "Michael",
       "Nachname": "Frank"
     },
     "Workload": 150,

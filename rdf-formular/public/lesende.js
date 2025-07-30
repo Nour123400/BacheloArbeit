@@ -2,6 +2,7 @@ let lesendeZaehler = 0;
 
 document.addEventListener("DOMContentLoaded", function() {
   document.getElementById("lesendeAddBtn").addEventListener("click", addLesendeRow);
+  addLesendeRow(); // <-- Fügt sofort die erste Zeile hinzu!
 });
 
 function addLesendeRow() {
@@ -14,7 +15,7 @@ function addLesendeRow() {
           <th>Fakultät – Bereich / Titel, Name</th>
           <th>Seminargruppe</th>
           <th>Erläuterung</th>
-          <th>🗑️</th>
+          <th> </th>
         </tr>
       </table>
     `;
@@ -33,7 +34,9 @@ function addLesendeRow() {
 }
 
 function removeLesendeRow(btn) {
+  const table = document.getElementById("lesendeTable");
+  if (table.rows.length <= 2) return; // 1 Header + 1 Datenzeile => nicht löschen!
   const row = btn.closest('tr');
   row.parentNode.removeChild(row);
-  // Tabelle bleibt erhalten, auch wenn leer
 }
+

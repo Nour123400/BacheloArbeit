@@ -1,6 +1,7 @@
 [
   {
     "Modulnummer": "C004",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -31,6 +32,7 @@
   },
   {
     "Modulnummer": "C073",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -57,6 +59,7 @@
   },
   {
     "Modulnummer": "C102",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -113,6 +116,7 @@
   },
   {
     "Modulnummer": "C104",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -143,6 +147,7 @@
   },
   {
     "Modulnummer": "C105",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -169,6 +174,7 @@
   },
   {
     "Modulnummer": "C106",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -199,6 +205,7 @@
   },
   {
     "Modulnummer": "C107",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -225,6 +232,7 @@
   },
   {
     "Modulnummer": "C108",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -255,6 +263,7 @@
   },
   {
     "Modulnummer": "C109",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -281,6 +290,7 @@
   },
   {
     "Modulnummer": "C110",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -311,6 +321,7 @@
   },
   {
     "Modulnummer": "C111",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -337,6 +348,7 @@
   },
   {
     "Modulnummer": "C112",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -367,6 +379,7 @@
   },
   {
     "Modulnummer": "C113",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -393,6 +406,7 @@
   },
   {
     "Modulnummer": "C114",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -423,6 +437,7 @@
   },
   {
     "Modulnummer": "C115",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -449,6 +464,7 @@
   },
   {
     "Modulnummer": "C116",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -479,6 +495,7 @@
   },
   {
     "Modulnummer": "C117",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -505,6 +522,7 @@
   },
   {
     "Modulnummer": "C118",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -535,6 +553,7 @@
   },
   {
     "Modulnummer": "C119",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -561,6 +580,7 @@
   },
   {
     "Modulnummer": "C120",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -591,6 +611,7 @@
   },
   {
     "Modulnummer": "C121",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -617,6 +638,7 @@
   },
   {
     "Modulnummer": "C122",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -647,6 +669,7 @@
   },
   {
     "Modulnummer": "C123",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -673,6 +696,7 @@
   },
   {
     "Modulnummer": "C124",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -703,6 +727,7 @@
   },
   {
     "Modulnummer": "C125",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -729,6 +754,7 @@
   },
   {
     "Modulnummer": "C126",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -759,6 +785,7 @@
   },
   {
     "Modulnummer": "C127",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -785,6 +812,7 @@
   },
   {
     "Modulnummer": "C128",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -815,6 +843,7 @@
   },
   {
     "Modulnummer": "C129",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -841,6 +870,7 @@
   },
   {
     "Modulnummer": "C130",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -871,6 +901,7 @@
   },
   {
     "Modulnummer": "C131",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -897,6 +928,7 @@
   },
   {
     "Modulnummer": "C132",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -927,6 +959,7 @@
   },
   {
     "Modulnummer": "C133",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -953,6 +986,7 @@
   },
   {
     "Modulnummer": "C134",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -983,6 +1017,7 @@
   },
   {
     "Modulnummer": "C135",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1009,6 +1044,7 @@
   },
   {
     "Modulnummer": "C136",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1039,6 +1075,7 @@
   },
   {
     "Modulnummer": "C137",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1065,6 +1102,7 @@
   },
   {
     "Modulnummer": "C138",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1095,6 +1133,7 @@
   },
   {
     "Modulnummer": "C139",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1121,6 +1160,7 @@
   },
   {
     "Modulnummer": "C140",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1151,6 +1191,7 @@
   },
   {
     "Modulnummer": "C141",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1177,6 +1218,7 @@
   },
   {
     "Modulnummer": "C142",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1207,6 +1249,7 @@
   },
   {
     "Modulnummer": "C143",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1233,6 +1276,7 @@
   },
   {
     "Modulnummer": "C144",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1263,6 +1307,7 @@
   },
   {
     "Modulnummer": "C145",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1289,6 +1334,7 @@
   },
   {
     "Modulnummer": "C146",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1319,6 +1365,7 @@
   },
   {
     "Modulnummer": "C147",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1345,6 +1392,7 @@
   },
   {
     "Modulnummer": "C148",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1375,6 +1423,7 @@
   },
   {
     "Modulnummer": "C149",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1401,6 +1450,7 @@
   },
   {
     "Modulnummer": "C150",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1431,6 +1481,7 @@
   },
   {
     "Modulnummer": "C151",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",
@@ -1457,6 +1508,7 @@
   },
   {
     "Modulnummer": "C152",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "4-6",
@@ -1487,6 +1539,7 @@
   },
   {
     "Modulnummer": "C153",
+    "Modulbezeichnung": "",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
     "Fachsemester": "2",

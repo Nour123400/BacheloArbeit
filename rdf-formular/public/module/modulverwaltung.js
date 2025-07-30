@@ -22,10 +22,11 @@ window.addEventListener('DOMContentLoaded', function () {
 
 document.getElementById('searchInput').addEventListener('input', function () {
   const q = this.value.toLowerCase();
-  filtered = modules.filter(m =>
-    (m.Modulnummer && m.Modulnummer.toLowerCase().includes(q)) ||
-    (m.Fakultät && m.Fakultät.toLowerCase().includes(q))
-  );
+filtered = modules.filter(m =>
+  (m.Modulnummer && m.Modulnummer.toLowerCase().includes(q)) ||
+  (m.Modulbezeichnung && m.Modulbezeichnung.toLowerCase().includes(q))
+);
+
   showModuleList();
 });
 
@@ -33,7 +34,7 @@ function showModuleList() {
   const ul = document.createElement('ul');
   filtered.forEach((mod, i) => {
     const li = document.createElement('li');
-    li.textContent = mod.Modulnummer + (mod.Fakultät ? " – " + mod.Fakultät : "");
+    li.textContent = mod.Modulnummer + (mod.Modulbezeichnung ? " – " + mod.Modulbezeichnung : "");
     li.onclick = () => editModule(i);
     if (selectedIdx === i) li.classList.add('active');
     ul.appendChild(li);
@@ -47,6 +48,7 @@ function editModule(i) {
   const mod = filtered[i];
   document.getElementById('moduleForm').style.display = 'block';
   document.getElementById('editForm').Modulnummer.value = mod.Modulnummer || '';
+  document.getElementById('editForm').Modulbezeichnung.value = mod.Modulbezeichnung || '';
   document.getElementById('editForm').Fakultät.value = mod.Fakultät || '';
   document.getElementById('editForm').Niveau.value = mod.Niveau || '';
   document.getElementById('editForm').Fachsemester.value = mod.Fachsemester || '';
@@ -67,7 +69,8 @@ function saveModule() {
   if (selectedIdx == null) return;
   const form = document.getElementById('editForm');
   const mod = filtered[selectedIdx];
-
+  mod.Modulnummer = form.Modulnummer.value;
+  mod.Modulbezeichnung = form.Modulbezeichnung.value;
   mod.Fakultät = form.Fakultät.value;
   mod.Niveau = form.Niveau.value;
   mod.Fachsemester = form.Fachsemester.value;

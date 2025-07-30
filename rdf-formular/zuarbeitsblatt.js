@@ -98,6 +98,34 @@ ${ref} a ex:Lesende ;
 
   turtle += seminarleiterTriples;
 
+  // Praktikumsverantwortliche sammeln
+const praktikums = Object.keys(data)
+  .filter(key => key.startsWith('praktikum_fakultaet_') && data[key] !== "")
+  .map(key => {
+    const nr = key.replace('praktikum_fakultaet_', '');
+    return {
+      nr,
+      fakultaet: data[`praktikum_fakultaet_${nr}`],
+      gruppe: data[`praktikum_gruppe_${nr}`],
+      erklaerung: data[`praktikum_erklaerung_${nr}`]
+    };
+  })
+  .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+let praktikumsTriples = '';
+praktikums.forEach((eintrag, index) => {
+  praktikumsTriples += `
+:Praktikum_${id}_${index+1} a ex:Praktikumsverantwortlicher ;
+  ex:fakultaet "${eintrag.fakultaet}" ;
+  ex:gruppe "${eintrag.gruppe}" ;
+  ex:erklaerung "${eintrag.erklaerung}" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_${id} .
+  `;
+});
+
+turtle += praktikumsTriples;
+
+
   // ========== Datei schreiben ==========
   const dirPath = path.join(__dirname, 'data');
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });

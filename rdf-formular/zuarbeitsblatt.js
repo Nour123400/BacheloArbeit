@@ -33,10 +33,45 @@ function saveZuarbeitsblatt(data) {
   ex:raumP "${data.raum_p || ""}" ;
   ex:technikV "${data.technik_v || ""}" ;
   ex:technikS "${data.technik_s || ""}" ;
-  ex:technikP "${data.technik_p || ""}"
-.`;
+  ex:technikP "${data.technik_p || ""}" .
+`;
 
-  // ========== 2. Datei schreiben ==========
+
+  // --- Lesende-Zeilen sammeln und als Tripel ergänzen ---
+  const lesende = Object.keys(data)
+    .filter(key => key.startsWith('lesende_fakultaet_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('lesende_fakultaet_', '');
+      return {
+        nr,
+        fakultaet: data[`lesende_fakultaet_${nr}`],
+        gruppe: data[`lesende_gruppe_${nr}`],
+        erklaerung: data[`lesende_erklaerung_${nr}`]
+      };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let lesendeTriples = '';
+  let lesendeRefs = [];
+  lesende.forEach((eintrag, index) => {
+    const ref = `:Lesende_${id}_${index+1}`;
+    lesendeRefs.push(ref);
+    lesendeTriples += `
+${ref} a ex:Lesende ;
+  ex:fakultaet "${eintrag.fakultaet}" ;
+  ex:gruppe "${eintrag.gruppe}" ;
+  ex:erklaerung "${eintrag.erklaerung}" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_${id} .
+`;
+  });
+
+  // Optional: Die Lesende-Zeilen als Property im Blatt referenzieren
+  if (lesendeRefs.length > 0) {
+    turtle += `\n:Zuarbeitsblatt_${id} ex:lesende ${lesendeRefs.join(", ")} .\n`;
+  }
+  turtle += lesendeTriples;
+
+  // ========== Datei schreiben ==========
   const dirPath = path.join(__dirname, 'data');
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
 

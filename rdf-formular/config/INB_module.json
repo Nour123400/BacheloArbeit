@@ -1,0 +1,1514 @@
+[
+  {
+    "Modulnummer": "C004",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C073",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C102",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C103",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C104",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C105",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C106",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C107",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C108",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C109",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C110",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C111",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C112",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C113",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C114",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C115",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C116",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C117",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C118",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C119",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C120",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C121",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C122",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C123",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C124",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C125",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C126",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C127",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C128",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C129",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C130",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C131",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C132",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C133",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C134",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C135",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C136",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C137",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C138",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C139",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C140",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C141",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C142",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C143",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C144",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C145",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C146",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C147",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C148",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C149",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C150",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C151",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C152",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "4-6",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. habil. Michael",
+      "Nachname": "Frank"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 2,
+      "SWS_S": 0,
+      "SWS_P": 2,
+      "SWS_gesamt": 4
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      },
+      {
+        "Gruppe": "Medieninformatik Bachelor",
+        "Typ": "Wahlpflichtmodul"
+      }
+    ]
+  },
+  {
+    "Modulnummer": "C153",
+    "Fakultät": "FIM-INF",
+    "Niveau": "Bachelor",
+    "Fachsemester": "2",
+    "Dauer": "1 Semester",
+    "Turnus": "Sommersemester",
+    "Modulverantwortliche": {
+      "Anrede": "Prof. Dr.",
+      "Vorname": "rer. nat. Mario",
+      "Nachname": "Hlawitschka"
+    },
+    "Workload": 150,
+    "Lehrveranstaltungen": {
+      "SWS_V": 1,
+      "SWS_S": 0,
+      "SWS_P": 1,
+      "SWS_gesamt": 2
+    },
+    "Verwendbarkeit": [
+      {
+        "Gruppe": "Informatik Bachelor",
+        "Typ": "Pflichtmodul"
+      }
+    ]
+  }
+]

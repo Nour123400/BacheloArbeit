@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zuarbeitsformular</title>
+  <style>
+    body { font-family: sans-serif; }
+    label { font-weight: bold; }
+    input, select, textarea { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <h1>📝 Zuarbeitsformular (Lehrveranstaltung)</h1>
+  <form method="POST" action="/submit?type=zuarbeit">
+    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
+    <label>Eingang bei DS:</label><br><input name="eingang"><br>
+    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig" disabled><br>
+    <label><label>Semester:</label><select name="semester" id="semester"></select><br><script src="semester.js"></script>
+    <label>Fakultät:</label><select name="fakultaet" id="fakultaet"></select><br><script src="fakultaet.js"></script>
+    <label>Studiengang:</label><br><input name="studiengang"><br>
+    <label>Fachsemester:</label><br><input name="fachsemester" type="number"><br>
+    <input name="gruppen" type="text" placeholder="z. B. Gruppe 25INB-1, Gruppe 25MIB-1-2"><br>
+    <label>Anzahl der Studierenden in den Gruppen:</label><br><input name="anzahlStudierendeGruppen" type="number" min="0"><br>
+    <label>Modulnummer:</label><br><input name="modulnummer" type="text"><br>
+    <label>Modulbezeichnung:</label><br><input name="modulbezeichnung" type="text"><br>
+    <label>Teilmodulnummer:</label><br><input name="teilmodulnummer" id="teilmodulnummer" type="text"><br>
+    <label>Teilmodulbezeichnung:</label><br><input name="teilmodulbezeichnung" id="teilmodulbezeichnung" type="text"><br>
+    <label>Fachart (Pflicht- oder Wahlpflichtmodul):</label><br>
+    <select name="fachart">
+        <option value="">-- bitte wählen --</option>
+        <option value="Pflichtmodul">Pflichtmodul</option>
+       <option value="Wahlpflichtmodul">Wahlpflichtmodul</option>
+    </select><br>
+
+    <div id="gesamtSwsTabelle"></div>
+    <script src="gesamtSwsTabelle.js"></script>
+    
+    <p>
+    <strong>Hinweis:</strong> Die Buchung von Technik für den Campusbereich ist nur eine Voranmeldung. Die Nutzungsmodalitäten
+    sind vom Lehrenden mit DT abzusprechen.
+    </p>
+    <p>
+        <strong>Hinweis:</strong> 1 SWS = 1 WS (Wochenstunde: 45 min) in jeder Woche des Semesters; geplant werden nur Einheiten:
+        1 Einheit = 2 WS = 90 min
+
+    </p><br>
+
+    <p>
+
+      <h2>Lesende:</h2> 
+    </p>
+    <button type="button" id="lesendeAddBtn">Zeile hinzufügen</button>
+    <div id="lesendeTabelle"></div>
+    <script src="lesende.js"></script>
+    <br>
+    <p>
+        Geben Sie bitte an, welche Gruppen gemeinsam an einer Vorlesung teilnehmen oder ob für jede Gruppe einzeln gelesen wird.<br>
+        Bei mehreren Lesenden bitte die Art der Teilung erläutern:
+    </p>
+    <ul>
+        <li>
+            <strong>Inhaltliche Teilung</strong> – Die Lesenden übernehmen nacheinander ein bestimmtes Gebiet des Lehrstoffes. Ordnen Sie bitte die entsprechenden Kalenderwochen zu.
+        </li>
+        <li>
+            <strong>Quantitative Teilung</strong> – Jeder Lesende übernimmt eine oder mehrere Seminargruppen, es kann auch parallel geplant werden.
+        </li>
+    </ul>
+    <br>
+    <h2>Seminarleiter:</h2>
+    <button type="button" id="seminarleiterAddBtn">➕ Zeile hinzufügen</button>
+    <div id="seminarleiterTabelle"></div>
+    <script src="seminarleiter.js"></script>
+    <p>
+        Bitte geben Sie an, ob die Seminare mit den einzelnen Seminargruppen, in mehreren Gruppen gemeinsam als Hörsaalseminar oder in anderen Varianten durchgeführt werden.
+    </p>
+    <br>
+    
+    <h2>Praktikumsverantwortliche:</h2>
+    <button type="button" id="praktikumAddBtn">Zeile hinzufügen</button>
+    <div id="praktikumTabelle"></div>
+    <script src="praktikumsverantwortliche.js"></script>
+
+
+    <h2>Wünsche zur Planung dieser Lehrveranstaltung:</h2>
+    <div id="planungWuensche">
+     <label><input type="checkbox" name="planung_wunsch_1" checked> gleichmäßige Verteilung von Vorlesungen und Seminaren auf gerade und ungerade Wochen</label><br>
+     <label><input type="checkbox" name="planung_wunsch_2"> Vorlesungen in der einen und Seminare in der anderen Woche</label><br>
+      <label><input type="checkbox" name="planung_wunsch_3"> Blockplanung (2 Einheiten hintereinander) von Vorlesungen, Seminaren oder Praktika einer Seminargruppe</label><br>
+     <label><input type="checkbox" name="planung_wunsch_4"> <b>keine</b> Blockplanung in <b>einer</b> Seminargruppe</label><br>
+     <label><input type="checkbox" name="planung_wunsch_5"> Vorlesung <b>zwingend</b> vor Seminar</label><br>
+     <label><input type="checkbox" name="planung_wunsch_6"> <input name="planung_wunsch_andere" placeholder="anderer Wunsch" style="width:250px"></label>
+    </div>
+
+    <br><hr>
+
+    <h3>Konkrete Kalenderwochen (ankreuzen oder beschriften):</h3>
+    <button type="button" id="planungsKalenderAddBtn">+ Kalender-Zeile hinzufügen</button>
+    <div id="planungsKalender"></div>
+    <script src="planungsKalender.js"></script>
+
+
+    <button type="submit">✅ Speichern</button>
+  </form>
+  <a href="/">Zurück zur Auswahl</a>
+  <script>
+   // function ladeModulDaten() {
+      const nummer = document.getElementById("modulnummer").value;
+      if (!nummer) return;
+      fetch(`/modul/${nummer}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
+          document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
+          document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
+          document.getElementsByName("dozent")[0].value = data.dozent || "";
+        });
+    }
+  </script>
+</body>
+</html>

@@ -11,18 +11,24 @@ const PORT = 3000;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
-// Modul-Daten bereitstellen (Dropdown & Autovervollständigung)
-app.get('/modul/:modulnummer', (req, res) => {
-  const modulnummer = req.params.modulnummer;
-  const configPath = path.join(__dirname, 'config', 'module_config.json');
-  const configData = JSON.parse(fs.readFileSync(configPath, 'utf8'));
-  const modul = configData[modulnummer];
-  if (modul) {
-    res.json(modul);
-  } else {
-    res.status(404).json({ error: 'Modul nicht gefunden' });
-  }
+// Module als ganzes Array zurückgeben (API!)
+app.get('/api/module', (req, res) => {
+  const configPath = path.join(__dirname, 'config', 'INB_module.json');
+  fs.readFile(configPath, 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json(JSON.parse(data));
+  });
 });
+
+// Optional: Änderungen speichern (API)
+app.post('/api/module', express.json(), (req, res) => {
+  const configPath = path.join(__dirname, 'config', 'INB_module.json');
+  fs.writeFile(configPath, JSON.stringify(req.body, null, 2), err => {
+    if (err) return res.status(500).json({ error: err.message });
+    res.json({ success: true });
+  });
+});
+
 
 // Formular speichern: Typ entscheidet, welche Funktion!
 app.post('/submit', (req, res) => {

@@ -1,0 +1,15 @@
+body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7fa; }
+h1 { margin-bottom: 0.4em; }
+.search-row { margin: 1em 0; }
+.module-list { max-height: 300px; overflow-y: auto; border: 1px solid #ccc; background: #fff; margin-bottom: 2em; }
+.module-list ul { list-style: none; padding: 0; margin: 0; }
+.module-list li { padding: 0.6em 1em; cursor: pointer; border-bottom: 1px solid #eee; }
+.module-list li:hover, .module-list li.active { background: #e8f0ff; }
+.form-section { background: #fff; border: 1px solid #ccc; padding: 2em; border-radius: 8px; box-shadow: 0 1px 4px #0001; }
+label { display: block; margin-top: 1em; }
+input, select { width: 100%; padding: 0.4em; margin-top: 0.2em; }
+.flex { display: flex; gap: 1em; }
+.flex label { flex: 1; }
+.actions { margin-top: 2em; }
+.actions button { padding: 0.7em 1.3em; font-size: 1em; margin-right: 1em; }
+.small { font-size: 0.9em; color: #666; }

@@ -15,7 +15,7 @@ function addLesendeRow() {
           <th>Fakultät – Bereich / Titel, Name</th>
           <th>Seminargruppe</th>
           <th>Erläuterung</th>
-          <th> </th>
+          <th>🗑️</th>
         </tr>
       </table>
     `;
@@ -33,10 +33,12 @@ function addLesendeRow() {
   `;
 }
 
-function removeLesendeRow(btn) {
-  const table = document.getElementById("lesendeTable");
-  if (table.rows.length <= 2) return; // 1 Header + 1 Datenzeile => nicht löschen!
-  const row = btn.closest('tr');
-  row.parentNode.removeChild(row);
+function removeSeminarleiterRow(btn) {
+  const table = document.getElementById("seminarleiterTable");
+  // Prüfe, wie viele Datenzeilen es gibt (nicht die Kopfzeile)
+  if (table.rows.length > 2) { // 1 Kopfzeile + min. 1 Datenzeile
+    const row = btn.closest('tr');
+    row.parentNode.removeChild(row);
+  }
 }
 

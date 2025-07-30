@@ -71,6 +71,33 @@ ${ref} a ex:Lesende ;
   }
   turtle += lesendeTriples;
 
+    // Seminarleiter (wie bei den anderen Tabellen dynamisch)
+  const seminarleiter = Object.keys(data)
+    .filter(key => key.startsWith('seminarleiter_fakultaet_') && data[key] !== "")
+    .map(key => {
+      const nr = key.replace('seminarleiter_fakultaet_', '');
+      return {
+        nr,
+        fakultaet: data[`seminarleiter_fakultaet_${nr}`],
+        gruppe: data[`seminarleiter_gruppe_${nr}`],
+        erklaerung: data[`seminarleiter_erklaerung_${nr}`]
+      };
+    })
+    .sort((a, b) => parseInt(a.nr) - parseInt(b.nr));
+
+  let seminarleiterTriples = '';
+  seminarleiter.forEach((eintrag, index) => {
+    seminarleiterTriples += `
+:Seminarleiter_${id}_${index+1} a ex:Seminarleiter ;
+  ex:fakultaet "${eintrag.fakultaet}" ;
+  ex:gruppe "${eintrag.gruppe}" ;
+  ex:erklaerung "${eintrag.erklaerung}" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_${id} .
+  `;
+  });
+
+  turtle += seminarleiterTriples;
+
   // ========== Datei schreiben ==========
   const dirPath = path.join(__dirname, 'data');
   if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });

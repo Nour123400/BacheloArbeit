@@ -1,6 +1,6 @@
 let modules = [];
 let filtered = [];
-let selectedIdx = null;
+let selectedModulnummer = null; // eindeutige Auswahl
 
 window.addEventListener('DOMContentLoaded', function () {
   fetch('/api/module')
@@ -18,33 +18,31 @@ window.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-
 document.getElementById('searchInput').addEventListener('input', function () {
   const q = this.value.toLowerCase();
-filtered = modules.filter(m =>
-  (m.Modulnummer && m.Modulnummer.toLowerCase().includes(q)) ||
-  (m.Modulbezeichnung && m.Modulbezeichnung.toLowerCase().includes(q))
-);
-
+  filtered = modules.filter(m =>
+    (m.Modulnummer && m.Modulnummer.toLowerCase().includes(q)) ||
+    (m.Modulbezeichnung && m.Modulbezeichnung.toLowerCase().includes(q))
+  );
   showModuleList();
 });
 
 function showModuleList() {
   const ul = document.createElement('ul');
-  filtered.forEach((mod, i) => {
+  filtered.forEach((mod) => {
     const li = document.createElement('li');
     li.textContent = mod.Modulnummer + (mod.Modulbezeichnung ? " – " + mod.Modulbezeichnung : "");
-    li.onclick = () => editModule(i);
-    if (selectedIdx === i) li.classList.add('active');
+    li.onclick = () => editModule(mod.Modulnummer); // eindeutig per Nummer
+    if (selectedModulnummer === mod.Modulnummer) li.classList.add('active');
     ul.appendChild(li);
   });
   document.getElementById('moduleList').innerHTML = '';
   document.getElementById('moduleList').appendChild(ul);
 }
 
-function editModule(i) {
-  selectedIdx = i;
-  const mod = filtered[i];
+function editModule(modulnummer) {
+  selectedModulnummer = modulnummer;
+  const mod = filtered.find(m => m.Modulnummer === modulnummer);
   document.getElementById('moduleForm').style.display = 'block';
   document.getElementById('editForm').Modulnummer.value = mod.Modulnummer || '';
   document.getElementById('editForm').Modulbezeichnung.value = mod.Modulbezeichnung || '';
@@ -62,13 +60,13 @@ function editModule(i) {
   document.getElementById('editForm').SWS_P.value = mod.Lehrveranstaltungen?.SWS_P || 0;
   document.getElementById('editForm').SWS_gesamt.value = mod.Lehrveranstaltungen?.SWS_gesamt || 0;
   document.getElementById('editForm').Verwendbarkeit.value = JSON.stringify(mod.Verwendbarkeit, null, 2);
+  showModuleList(); // Markierung immer aktuell!
 }
 
 function saveModule() {
-  if (selectedIdx == null) return;
+  if (!selectedModulnummer) return;
   const form = document.getElementById('editForm');
-  const mod = filtered[selectedIdx];
-  
+  const mod = modules.find(m => m.Modulnummer === selectedModulnummer);
   mod.Modulnummer = form.Modulnummer.value;
   mod.Modulbezeichnung = form.Modulbezeichnung.value;
   mod.Fakultät = form.Fakultät.value;
@@ -94,37 +92,33 @@ function saveModule() {
     alert("Verwendbarkeit muss ein gültiges JSON sein!");
     return;
   }
-  // Sync in der Hauptliste
-  const origIdx = modules.findIndex(m => m.Modulnummer === mod.Modulnummer);
-  if (origIdx >= 0) modules[origIdx] = {...mod};
-  // --- ab hier das neue Verhalten: per POST an den Server! ---
+  // Auch in filtered updaten, falls gesucht wurde:
+  const fIdx = filtered.findIndex(m => m.Modulnummer === mod.Modulnummer);
+  if (fIdx >= 0) filtered[fIdx] = { ...mod };
+  // Änderungen auf Server speichern:
   fetch('/api/module', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(modules)
   })
-  .then(res => res.json())
-  .then(resp => {
-    if (resp.success) {
-      showModuleList();
-      document.getElementById('moduleForm').style.display = 'none';
-      selectedIdx = null;
-      alert('Änderung gespeichert!');
-    } else {
-      alert('Speichern fehlgeschlagen: ' + resp.error);
-    }
-  })
-  .catch(err => {
-    alert('Fehler beim Speichern:\n' + err);
-  });
+    .then(res => res.json())
+    .then(resp => {
+      if (resp.success) {
+        showModuleList();
+        document.getElementById('moduleForm').style.display = 'none';
+        selectedModulnummer = null;
+        alert('Änderung gespeichert!');
+      } else {
+        alert('Speichern fehlgeschlagen: ' + resp.error);
+      }
+    })
+    .catch(err => {
+      alert('Fehler beim Speichern:\n' + err);
+    });
 }
-
 
 function cancelEdit() {
   document.getElementById('moduleForm').style.display = 'none';
-  selectedIdx = null;
+  selectedModulnummer = null;
+  showModuleList(); // Markierung entfernen
 }
-
-

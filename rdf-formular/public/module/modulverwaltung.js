@@ -48,33 +48,110 @@ function editModule(modulnummer) {
   form.Modulnummer.value = mod.Modulnummer || '';
   form.Modulbezeichnung.value = mod.Modulbezeichnung || '';
   form.Fakultät.value = mod.Fakultät || '';
-  form.Niveau.value = mod.Niveau || '';
-  form.Fachsemester.value = mod.Fachsemester || '';
-  form.Dauer.value = mod.Dauer || '';
-  form.Turnus.value = mod.Turnus || '';
+  form.Niveau.value = mod.Niveau || 'Bachelor';
+  form.Fachsemester.value = mod.Fachsemester || '1';
+  form.Dauer.value = mod.Dauer || '1 Semester';
+  form.Turnus.value = mod.Turnus || 'Wintersemester';
   form.Anrede.value = mod.Modulverantwortliche?.Anrede || '';
   form.Vorname.value = mod.Modulverantwortliche?.Vorname || '';
   form.Nachname.value = mod.Modulverantwortliche?.Nachname || '';
   form.Workload.value = mod.Workload || '';
-  form.SWS_V.value = mod.Lehrveranstaltungen?.SWS_V || 0;
-  form.SWS_S.value = mod.Lehrveranstaltungen?.SWS_S || 0;
-  form.SWS_P.value = mod.Lehrveranstaltungen?.SWS_P || 0;
-  form.SWS_gesamt.value = mod.Lehrveranstaltungen?.SWS_gesamt || 0;
-  // Neue Felder:
-  form.Modultyp.value = mod.Modultyp || '';
+  form.SWS_V.value = mod.Lehrveranstaltungen?.SWS_V || '';
+  form.SWS_S.value = mod.Lehrveranstaltungen?.SWS_S || '';
+  form.SWS_P.value = mod.Lehrveranstaltungen?.SWS_P || '';
+  form.SWS_gesamt.value = mod.Lehrveranstaltungen?.SWS_gesamt || '';
+  form.Modultyp.value = mod.Modultyp || 'PF';
   form.Aufteilung.value = mod.Lehrveranstaltungen?.Aufteilung ? JSON.stringify(mod.Lehrveranstaltungen.Aufteilung, null, 2) : '';
   form.Charakter.value = mod.CharakterLehrveranstaltung ? JSON.stringify(mod.CharakterLehrveranstaltung, null, 2) : '';
   form.ZusammenMit.value = (mod.ZusammenMit || []).join(', ');
   form.Teilnehmerzahlen.value = mod.Teilnehmerzahlen ? JSON.stringify(mod.Teilnehmerzahlen, null, 2) : '';
   form.Verwendbarkeit.value = mod.Verwendbarkeit ? JSON.stringify(mod.Verwendbarkeit, null, 2) : '';
+  document.querySelector('#moduleForm h2').textContent = 'Modul bearbeiten';
+  showModuleList();
+}
+
+function addModule() {
+  selectedModulnummer = null;
+  const form = document.getElementById('editForm');
+  document.getElementById('moduleForm').style.display = 'block';
+
+  // Werte wie gefordert vorbelegen
+  form.Modulnummer.value = '';
+  form.Modulnummer.placeholder = 'z.B. C114';
+
+  form.Modulbezeichnung.value = '';
+  form.Modulbezeichnung.placeholder = 'z.B. Modellierung';
+
+  form.Fakultät.value = 'FIM-INF';
+  form.Fakultät.placeholder = '';
+
+  form.Niveau.value = 'Bachelor';
+
+  form.Fachsemester.value = '1';
+  form.Fachsemester.placeholder = '';
+
+  form.Dauer.value = '1 Semester';
+  form.Dauer.placeholder = '';
+
+  form.Turnus.value = 'Wintersemester';
+
+  form.Anrede.value = '';
+  form.Anrede.placeholder = 'z.B. Fr. Prof.';
+
+  form.Vorname.value = '';
+  form.Vorname.placeholder = 'z.B. Sibylle';
+
+  form.Nachname.value = '';
+  form.Nachname.placeholder = 'z.B. Schwarz';
+
+  form.Workload.value = '';
+  form.Workload.placeholder = 'z.B. 150';
+
+  form.SWS_V.value = '';
+  form.SWS_V.placeholder = 'z.B. 4';
+  form.SWS_S.value = '';
+  form.SWS_S.placeholder = 'z.B. 2';
+  form.SWS_P.value = '';
+  form.SWS_P.placeholder = 'z.B. 0';
+  form.SWS_gesamt.value = '';
+  form.SWS_gesamt.placeholder = 'z.B. 6';
+
+  form.Modultyp.value = 'PF';
+
+  form.Aufteilung.value = '';
+  form.Aufteilung.placeholder = '[{ "Typ":"Vorlesung", "Dozent":"Fr. Prof. Schwarz", "Gruppen":"25INB-1+2+3", "Gruppenanzahl":1 }]';
+
+  form.Charakter.value = JSON.stringify({ "Durchführung": "Präsenz", "Sprache": "Deutsch" }, null, 2);
+  form.Charakter.placeholder = '';
+
+  form.ZusammenMit.value = 'INB, MIB';
+  form.ZusammenMit.placeholder = '';
+
+  form.Teilnehmerzahlen.value = '';
+  form.Teilnehmerzahlen.placeholder = '{"Gesamt":180,"INB_Seminare":{"Gruppen":3,"TeilnehmerProGruppe":40}}';
+
+  form.Verwendbarkeit.value = '';
+  form.Verwendbarkeit.placeholder = '{"Studiengang":"INB"}';
+
+  document.querySelector('#moduleForm h2').textContent = 'Neues Modul anlegen';
   showModuleList();
 }
 
 function saveModule() {
-  if (!selectedModulnummer) return;
   const form = document.getElementById('editForm');
-  const mod = modules.find(m => m.Modulnummer === selectedModulnummer);
-  mod.Modulnummer = form.Modulnummer.value;
+  const modulnummer = form.Modulnummer.value.trim();
+  if (!modulnummer) {
+    alert("Modulnummer darf nicht leer sein!");
+    return;
+  }
+  let mod = modules.find(m => m.Modulnummer === modulnummer);
+  let isNew = !mod;
+
+  if (isNew) {
+    mod = {};
+  }
+
+  mod.Modulnummer = modulnummer;
   mod.Modulbezeichnung = form.Modulbezeichnung.value;
   mod.Fakultät = form.Fakultät.value;
   mod.Niveau = form.Niveau.value;
@@ -93,7 +170,6 @@ function saveModule() {
     "SWS_P": Number(form.SWS_P.value),
     "SWS_gesamt": Number(form.SWS_gesamt.value)
   };
-  // Neue Felder:
   mod.Modultyp = form.Modultyp.value || '';
   try {
     mod.Lehrveranstaltungen.Aufteilung = JSON.parse(form.Aufteilung.value || '[]');
@@ -120,10 +196,17 @@ function saveModule() {
     alert("Verwendbarkeit muss ein gültiges JSON sein!");
     return;
   }
-  // Auch in filtered updaten, falls gesucht wurde:
-  const fIdx = filtered.findIndex(m => m.Modulnummer === mod.Modulnummer);
-  if (fIdx >= 0) filtered[fIdx] = { ...mod };
-  // Änderungen auf Server speichern:
+
+  if (isNew) {
+    modules.push(mod);
+    filtered = [...modules];
+  } else {
+    const idx = modules.findIndex(m => m.Modulnummer === modulnummer);
+    if (idx >= 0) modules[idx] = mod;
+    const fIdx = filtered.findIndex(m => m.Modulnummer === modulnummer);
+    if (fIdx >= 0) filtered[fIdx] = { ...mod };
+  }
+
   fetch('/api/module', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -135,7 +218,7 @@ function saveModule() {
         showModuleList();
         document.getElementById('moduleForm').style.display = 'none';
         selectedModulnummer = null;
-        alert('Änderung gespeichert!');
+        alert(isNew ? 'Modul hinzugefügt!' : 'Änderung gespeichert!');
       } else {
         alert('Speichern fehlgeschlagen: ' + resp.error);
       }

@@ -11,9 +11,16 @@
     <span class="small">Datenquelle: <b>INB_module.json</b> (wird automatisch geladen)</span>
   </div>
 
+  <div class="actions">
+   <button type="button" onclick="addModule()">+ Modul hinzufügen</button>
+  </div>
+
+
   <div class="search-row">
     <input type="text" id="searchInput" placeholder="Suche nach Modulnummer oder Bezeichnung..." />
   </div>
+
+  
   
   <div class="module-list" id="moduleList"></div>
   
@@ -34,7 +41,11 @@
       </label>
       <label>
         Niveau
-        <input name="Niveau" />
+        <select name="Niveau">
+          <option value="Bachelor">Bachelor</option>
+           <option value="Master">Master</option>
+        </select>
+
       </label>
       <label>
         Fachsemester
@@ -46,7 +57,11 @@
       </label>
       <label>
         Turnus
-        <input name="Turnus" />
+        <select name="Turnus">
+          <option value="Wintersemester">Wintersemester</option>
+          <option value="Sommersemester">Sommersemester</option>
+        </select>
+
       </label>
       <div class="flex">
         <label>
@@ -86,7 +101,11 @@
       </div>
       <label>
         Modultyp (PF/WPF)
-        <input name="Modultyp" />
+        <select name="Modultyp">
+         <option value="PF">PF</option>
+          <option value="WPF">WPF</option>
+        </select>
+
       </label>
       <label>
         Lehrkraft & Gruppeneinteilung (JSON, Array)

@@ -1,7 +1,6 @@
 [
-
   {
-    "Modulnummer": "C004",
+    "Modulnummer": "C006",
     "Modulbezeichnung": "Mikroprogrammierung und Mikroprozessoren",
     "Fakultät": "FIM-INF",
     "Niveau": "Bachelor",
@@ -40,10 +39,10 @@
         }
       ]
     },
-    "Modultyp": "PF",  
+    "Modultyp": "PF",
     "CharakterLehrveranstaltung": {
-      "Durchführung": "Präsenz", 
-      "Sprache": "Deutsch" 
+      "Durchführung": "Präsenz",
+      "Sprache": "Deutsch"
     },
     "ZusammenMit": [
       "INB",
@@ -60,7 +59,7 @@
         "TeilnehmerProGruppe": 30,
         "Gesamt": 60
       }
-    }
+    },
+    "Verwendbarkeit": {}
   }
-
 ]

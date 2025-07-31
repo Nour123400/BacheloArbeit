@@ -1,6 +1,6 @@
 let modules = [];
 let filtered = [];
-let selectedModulnummer = null; // eindeutige Auswahl
+let selectedModulnummer = null;
 
 window.addEventListener('DOMContentLoaded', function () {
   fetch('/api/module')
@@ -32,7 +32,7 @@ function showModuleList() {
   filtered.forEach((mod) => {
     const li = document.createElement('li');
     li.textContent = mod.Modulnummer + (mod.Modulbezeichnung ? " – " + mod.Modulbezeichnung : "");
-    li.onclick = () => editModule(mod.Modulnummer); // eindeutig per Nummer
+    li.onclick = () => editModule(mod.Modulnummer);
     if (selectedModulnummer === mod.Modulnummer) li.classList.add('active');
     ul.appendChild(li);
   });
@@ -43,24 +43,31 @@ function showModuleList() {
 function editModule(modulnummer) {
   selectedModulnummer = modulnummer;
   const mod = filtered.find(m => m.Modulnummer === modulnummer);
+  const form = document.getElementById('editForm');
   document.getElementById('moduleForm').style.display = 'block';
-  document.getElementById('editForm').Modulnummer.value = mod.Modulnummer || '';
-  document.getElementById('editForm').Modulbezeichnung.value = mod.Modulbezeichnung || '';
-  document.getElementById('editForm').Fakultät.value = mod.Fakultät || '';
-  document.getElementById('editForm').Niveau.value = mod.Niveau || '';
-  document.getElementById('editForm').Fachsemester.value = mod.Fachsemester || '';
-  document.getElementById('editForm').Dauer.value = mod.Dauer || '';
-  document.getElementById('editForm').Turnus.value = mod.Turnus || '';
-  document.getElementById('editForm').Anrede.value = mod.Modulverantwortliche?.Anrede || '';
-  document.getElementById('editForm').Vorname.value = mod.Modulverantwortliche?.Vorname || '';
-  document.getElementById('editForm').Nachname.value = mod.Modulverantwortliche?.Nachname || '';
-  document.getElementById('editForm').Workload.value = mod.Workload || '';
-  document.getElementById('editForm').SWS_V.value = mod.Lehrveranstaltungen?.SWS_V || 0;
-  document.getElementById('editForm').SWS_S.value = mod.Lehrveranstaltungen?.SWS_S || 0;
-  document.getElementById('editForm').SWS_P.value = mod.Lehrveranstaltungen?.SWS_P || 0;
-  document.getElementById('editForm').SWS_gesamt.value = mod.Lehrveranstaltungen?.SWS_gesamt || 0;
-  document.getElementById('editForm').Verwendbarkeit.value = JSON.stringify(mod.Verwendbarkeit, null, 2);
-  showModuleList(); // Markierung immer aktuell!
+  form.Modulnummer.value = mod.Modulnummer || '';
+  form.Modulbezeichnung.value = mod.Modulbezeichnung || '';
+  form.Fakultät.value = mod.Fakultät || '';
+  form.Niveau.value = mod.Niveau || '';
+  form.Fachsemester.value = mod.Fachsemester || '';
+  form.Dauer.value = mod.Dauer || '';
+  form.Turnus.value = mod.Turnus || '';
+  form.Anrede.value = mod.Modulverantwortliche?.Anrede || '';
+  form.Vorname.value = mod.Modulverantwortliche?.Vorname || '';
+  form.Nachname.value = mod.Modulverantwortliche?.Nachname || '';
+  form.Workload.value = mod.Workload || '';
+  form.SWS_V.value = mod.Lehrveranstaltungen?.SWS_V || 0;
+  form.SWS_S.value = mod.Lehrveranstaltungen?.SWS_S || 0;
+  form.SWS_P.value = mod.Lehrveranstaltungen?.SWS_P || 0;
+  form.SWS_gesamt.value = mod.Lehrveranstaltungen?.SWS_gesamt || 0;
+  // Neue Felder:
+  form.Modultyp.value = mod.Modultyp || '';
+  form.Aufteilung.value = mod.Lehrveranstaltungen?.Aufteilung ? JSON.stringify(mod.Lehrveranstaltungen.Aufteilung, null, 2) : '';
+  form.Charakter.value = mod.CharakterLehrveranstaltung ? JSON.stringify(mod.CharakterLehrveranstaltung, null, 2) : '';
+  form.ZusammenMit.value = (mod.ZusammenMit || []).join(', ');
+  form.Teilnehmerzahlen.value = mod.Teilnehmerzahlen ? JSON.stringify(mod.Teilnehmerzahlen, null, 2) : '';
+  form.Verwendbarkeit.value = mod.Verwendbarkeit ? JSON.stringify(mod.Verwendbarkeit, null, 2) : '';
+  showModuleList();
 }
 
 function saveModule() {
@@ -86,8 +93,29 @@ function saveModule() {
     "SWS_P": Number(form.SWS_P.value),
     "SWS_gesamt": Number(form.SWS_gesamt.value)
   };
+  // Neue Felder:
+  mod.Modultyp = form.Modultyp.value || '';
   try {
-    mod.Verwendbarkeit = JSON.parse(form.Verwendbarkeit.value);
+    mod.Lehrveranstaltungen.Aufteilung = JSON.parse(form.Aufteilung.value || '[]');
+  } catch {
+    alert("Lehrkraft & Gruppeneinteilung muss ein gültiges JSON sein!");
+    return;
+  }
+  try {
+    mod.CharakterLehrveranstaltung = JSON.parse(form.Charakter.value || '{}');
+  } catch {
+    alert("Charakter der Lehrveranstaltung muss ein gültiges JSON sein!");
+    return;
+  }
+  mod.ZusammenMit = form.ZusammenMit.value.split(',').map(s => s.trim()).filter(Boolean);
+  try {
+    mod.Teilnehmerzahlen = JSON.parse(form.Teilnehmerzahlen.value || '{}');
+  } catch {
+    alert("Teilnehmerzahlen muss ein gültiges JSON sein!");
+    return;
+  }
+  try {
+    mod.Verwendbarkeit = JSON.parse(form.Verwendbarkeit.value || '{}');
   } catch {
     alert("Verwendbarkeit muss ein gültiges JSON sein!");
     return;
@@ -120,5 +148,5 @@ function saveModule() {
 function cancelEdit() {
   document.getElementById('moduleForm').style.display = 'none';
   selectedModulnummer = null;
-  showModuleList(); // Markierung entfernen
+  showModuleList();
 }

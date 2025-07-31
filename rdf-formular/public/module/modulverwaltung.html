@@ -22,14 +22,12 @@
     <form id="editForm">
       <label>
         Modulnummer
-        <input name="Modulnummer"  />
+        <input name="Modulnummer" />
       </label>
-     
       <label>
          Modulbezeichnung
         <input name="Modulbezeichnung" />
       </label>
-
       <label>
         Fakultät
         <input name="Fakultät" />
@@ -86,6 +84,26 @@
           <input name="SWS_gesamt" type="number" />
         </label>
       </div>
+      <label>
+        Modultyp (PF/WPF)
+        <input name="Modultyp" />
+      </label>
+      <label>
+        Lehrkraft & Gruppeneinteilung (JSON, Array)
+        <textarea name="Aufteilung" rows="3" placeholder='z.B. [{"Typ":"Vorlesung","Dozent":"Fr. Prof. Schwarz",...}]'></textarea>
+      </label>
+      <label>
+        Charakter der Lehrveranstaltung (JSON, Objekt)
+        <textarea name="Charakter" rows="2" placeholder='z.B. {"Durchführung":"Präsenz","Sprache":"Deutsch"}'></textarea>
+      </label>
+      <label>
+        LV zusammen mit (Kommasepariert)
+        <input name="ZusammenMit" placeholder="INB, MIB" />
+      </label>
+      <label>
+        Teilnehmerzahlen (JSON, Objekt)
+        <textarea name="Teilnehmerzahlen" rows="3" placeholder='z.B. {"Gesamt":180,...}'></textarea>
+      </label>
       <label>
         Verwendbarkeit (JSON bearbeiten)
         <textarea name="Verwendbarkeit" rows="3"></textarea>

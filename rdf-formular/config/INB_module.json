@@ -1,37 +1,5 @@
 [
-  {
-    "Modulnummer": "C004",
-    "Modulbezeichnung": "Mikroprogrammierung und Mikroprozessoren",
-    "Fakultät": "FIM-INF",
-    "Niveau": "Bachelor",
-    "Fachsemester": "4",
-    "Dauer": "1 Semester",
-    "Turnus": "Sommersemester",
-    "Modulverantwortliche": {
-      "Anrede": "Prof. Dr. rer. nat. habil.",
-      "Vorname": "Michael",
-      "Nachname": "Frank"
-    },
-    "Workload": 150,
-    "Lehrveranstaltungen": {
-      "SWS_V": 2,
-      "SWS_S": 0,
-      "SWS_P": 2,
-      "SWS_gesamt": 4
-    },
-    "Verwendbarkeit": [
-      {
-        "Gruppe": "Informatik Bachelor",
-        "Typ": "Wahlpflichtmodul"
-      },
-      {
-        "Gruppe": "Medieninformatik Bachelor",
-        "Typ": "Wahlpflichtmodul"
-      }
-    ]
-  },
 
-  
   {
     "Modulnummer": "C004",
     "Modulbezeichnung": "Mikroprogrammierung und Mikroprozessoren",
@@ -50,17 +18,49 @@
       "SWS_V": 2,
       "SWS_S": 0,
       "SWS_P": 2,
-      "SWS_gesamt": 4
+      "SWS_gesamt": 4,
+      "Aufteilung": [
+        {
+          "Typ": "Vorlesung",
+          "Dozent": "Fr. Prof. Schwarz",
+          "Gruppen": "25INB-1+2+3",
+          "Gruppenanzahl": 1
+        },
+        {
+          "Typ": "Seminar",
+          "Dozent": "Fr. Prof. Schwarz",
+          "Gruppen": "25INB-1+2+3",
+          "Gruppenanzahl": 3
+        },
+        {
+          "Typ": "Seminar",
+          "Dozent": "Hr. Höppner",
+          "Gruppen": "25MIB-1+2",
+          "Gruppenanzahl": 2
+        }
+      ]
     },
-    "Verwendbarkeit": [
-      {
-        "Gruppe": "Informatik Bachelor",
-        "Typ": "Wahlpflichtmodul"
+    "Modultyp": "PF",  
+    "CharakterLehrveranstaltung": {
+      "Durchführung": "Präsenz", 
+      "Sprache": "Deutsch" 
+    },
+    "ZusammenMit": [
+      "INB",
+      "MIB"
+    ],
+    "Teilnehmerzahlen": {
+      "Gesamt": 180,
+      "INB_Seminare": {
+        "Gruppen": 3,
+        "TeilnehmerProGruppe": 40
       },
-      {
-        "Gruppe": "Medieninformatik Bachelor",
-        "Typ": "Wahlpflichtmodul"
+      "MIB_Seminare": {
+        "Gruppen": 2,
+        "TeilnehmerProGruppe": 30,
+        "Gesamt": 60
       }
-    ]
+    }
   }
+
 ]

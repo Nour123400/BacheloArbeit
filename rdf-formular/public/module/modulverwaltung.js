@@ -99,10 +99,10 @@ function addModule() {
   form.Anrede.placeholder = 'z.B. Fr. Prof.';
 
   form.Vorname.value = '';
-  form.Vorname.placeholder = 'z.B. Sibylle';
+  form.Vorname.placeholder = 'z.B. Thomas';
 
   form.Nachname.value = '';
-  form.Nachname.placeholder = 'z.B. Schwarz';
+  form.Nachname.placeholder = 'z.B. Riechert';
 
   form.Workload.value = '';
   form.Workload.placeholder = 'z.B. 150';

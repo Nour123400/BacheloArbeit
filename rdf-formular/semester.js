@@ -3,15 +3,15 @@ function getCurrentSemester() {
   const month = now.getMonth() + 1;
   const year = now.getFullYear();
   if (month >= 4 && month <= 9) {
-    return `Sommersemester ${year}`;
+    return `Wintersemester ${year}`;
   } else if (month >= 10) {
     const wsJahr1 = year;
     const wsJahr2 = (year + 1).toString().slice(-2);
-    return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+    return `Sommersemester ${wsJahr1}/${wsJahr2}`;
   } else {
     const wsJahr1 = year - 1;
     const wsJahr2 = year.toString().slice(-2);
-    return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+    return `Sommersemester ${wsJahr1}/${wsJahr2}`;
   }
 }
 

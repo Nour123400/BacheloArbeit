@@ -3,20 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <title>Dozentenblatt</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 </head>
 <body>
   <h1>📄 Dozentenblatt</h1>
+
   <form method="POST" action="/submit?type=dozent">
-    <label>Abgabetermin DS:</label><br><input name="abgabetermin" type="date"><br>
-    <label>Eingang bei DS:</label><br><input name="eingang"><br>
-    <label>Hochschule:</label><br><input name="hochschule" value="HTWK Leipzig" disabled><br>
-    <label>Semester:</label><select name="semester" id="semester"></select><br><script src="semester.js"></script>
-    <label>Titel:</label><select name="titel" id="titel"></select><br><script src="titel.js"></script>
-    <label>Vorname:</label><br><input name="vorname"><br>
-    <label>Name:</label><br><input name="name"><br>
-    <label>E-Mail:</label><br><input name="email"><br>
-    <label>Telefon:</label><br><input name="telefon"><br>
-    <label>Fakultät:</label><select name="fakultaet" id="fakultaet"></select><br><script src="fakultaet.js"></script>
+    <label>Abgabetermin DS:</label><br>
+    <input name="abgabetermin" type="date"><br>
+
+    <label>Eingang bei DS:</label><br>
+    <input name="eingang"><br>
+
+    <label>Hochschule:</label><br>
+    <input name="hochschule" value="HTWK Leipzig" disabled><br>
+
+    <label>Semester:</label>
+    <select name="semester" id="semester"></select><br>
+
+    <label>Titel:</label>
+    <select name="titel" id="titel"></select><br>
+
+    <label>Vorname:</label><br>
+    <input name="vorname"><br>
+
+    <label>Name:</label><br>
+    <input name="name"><br>
+
+    <label>E-Mail:</label><br>
+    <input name="email"><br>
+
+    <label>Telefon:</label><br>
+    <input name="telefon"><br>
+
+    <label>Fakultät:</label>
+    <select name="fakultaet" id="fakultaet"></select><br>
+
     <label>Arbeitszeit:</label>
     <select name="arbeitszeit">
       <option value="Vollzeit">Vollzeit</option>
@@ -27,106 +49,537 @@
     <label>Bitte geben Sie in der Tabelle Ihre Einsätze (auch Bedienfunktionen) an! Durchzuführende Lehrveranstaltungen</label><br>
     <div id="einsatzTabelle"></div>
     <button type="button" id="einsatzAddBtn">Einsatz hinzufügen</button>
-    <script src="einsaetze.js"></script>
 
     <h3>Hinweise & Mitteilungen</h3>
     <div id="hinweisTabelle"></div>
     <button type="button" id="hinweisAddBtn">Zeile hinzufügen</button>
-    <script src="hinweise.js"></script>
-
 
     <h3>Regelmäßig mögliche Einsatzzeiten für <u>externe</u> Dozenten sind:</h3>
     <div id="einsatzzeitTabelle"></div>
     <button type="button" id="einsatzzeitAddBtn">Zeile hinzufügen</button>
-    <script src="einsatzzeiten.js"></script>
-
-
 
     <h3>Notwendige regelmäßige Sperrzeiten für <u>interne</u> Dozenten sind:</h3>
     <div id="sperrzeitTabelle"></div>
     <button type="button" id="sperrzeitAddBtn">Zeile hinzufügen</button>
-    <script src="sperrzeiten.js"></script>
 
     <h3>Nach Möglichkeit ist folgender Dozenten-/Forschungstag einzuplanen: <small>(nur bei <b>Vollzeit</b>!)</small></h3>
     <div id="dfTagTabelle"></div>
-    <script src="dozentforschungstag.js"></script>
     <small>Hinweis: D = Dozententag; F = Forschungstag &rarr; jeweils nur <b>einmal</b> auswählen!</small>
 
+    <!--
+    (Optional) Zusatzinfos & Hinweise – auskommentiert belassen
+    -->
 
-
-<!--
-
-    <h2>Informationen zur SWS-Planung & Lehrorganisation</h2>
-
-    <h3>Reale SWS = Tatsächlich zu realisierende SWS</h3>
-    <p><strong>Beispiele:</strong></p>
-    <ul>
-        <li>2 SWS Seminar für 5 SG BIB, einzeln durchgeführt, ergibt <strong>10 zu realisierende SWS</strong></li>
-        <li>2 SWS Vorlesung für 5 SG BIB, in 2 Blöcken (3 + 2 SG), ergibt <strong>4 zu realisierende SWS</strong></li>
-    </ul>
-
-    <p><strong>Hinweis:</strong> Zu jedem aufgeführten Modul/Teilmodul ist ein Zuarbeitsbogen auszufüllen.<br>
-    Sind mehrere Dozenten beteiligt, bitte einen gemeinsamen Zuarbeitsbogen ausfüllen!</p>
-
-    <h3>Hinweise zum Stundenplan</h3>
-    <ul>
-        <li><strong>Wahlobligatorische Veranstaltungen</strong> werden in der ersten Planungsrunde geplant, wenn die Teilnehmerzahl vorliegt und größer als 9 ist.</li>
-        <li>Fakultative und übrige wahlobligatorische Veranstaltungen werden nach Fertigstellung der Pläne in Absprache mit der Fakultät eingefügt.</li>
-        <li>Da Doppelplanung der Dozenten nicht möglich ist, bitte immer die <strong>tatsächlich durchführende Lehrkraft</strong> benennen (z.B. Seminarleiter, Praktikumsbetreuer).</li>
-    </ul>
-
-    <h4>Beteiligte Fachbereiche (ankreuzen):</h4>
-    <table>
-        <tr>
-            <th>FAS</th>
-            <th>FB</th>
-            <th>FDIT</th>
-            <th>FIM</th>
-            <th>FING</th>
-            <th>FWW</th>
-            <th>HSZ</th>
-            <th>MNZ</th>
-            <th>Gast</th>
-            <th>HonProf</th>
-        </tr>
-        <tr>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[X]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-            <td>[ ]</td>
-        </tr>
-    </table>
-
-    <h2>Lehrformen</h2>
-    <ul>
-        <li><strong>Präsenz</strong> (mit digitalen Anteilen, wenn didaktisch sinnvoll)</li>
-        <li><strong>Regelfall:</strong> Präsenz (Empfehlung: virtuelle/hybride Teilnahme ermöglichen)</li>
-        <li>Digital synchron (Wegezeiten für Studierende beachten)</li>
-        <li>Digital asynchron</li>
-    </ul>
-    <p><strong>Wichtig:</strong> Der digitale Lehranteil darf pro Modul und Semester <strong>max. 50%</strong> ausmachen. Digitale Lehre bedarf der Genehmigung des Dekans und eines Lehrkonzeptes. Weitere Mindeststandards siehe Hinweise der HTWK Leipzig (Kap. 4.1). Jede digitale Lehre steht unter Vorbehalt der Stunden- und Raumplanung.</p>
-
-    <h2>Planung von Dozenten-/Forschungstagen</h2>
-    <ul>
-        <li>Nach Möglichkeit gewünschten Dozenten-/Forschungstag <strong>(nur bei Vollzeit)</strong> einplanen.</li>
-        <li>Als Anlage 1 zum Dozentenblatt in der Fakultät einreichen. Nach Prüfung zentrale Übermittlung an DS.</li>
-    </ul>
-
-    <h2>Notwendige Sperrzeiten</h2>
-    <ul>
-        <li><strong>Nur bei Gästen und Teilzeit!</strong> Notwendige Sperrzeiten als Anlage 1 zum Dozentenblatt in der Fakultät einreichen.</li>
-        <li>Nach Prüfung zentrale Übermittlung an DS.</li>
-    </ul>
--->
+    <br><br>
     <button type="submit">✅ Speichern</button>
   </form>
-  <a href="/">Zurück zur Auswahl</a>
 
+  <p><a href="/">Zurück zur Auswahl</a></p>
+
+  <!-- =========================
+       Inline-JavaScript
+       ========================= -->
+
+  <!-- semester.js -->
+  <script>
+    function getCurrentSemester() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const year = now.getFullYear();
+      if (month >= 4 && month <= 9) {
+        return `Sommersemester ${year}`;
+      } else if (month >= 10) {
+        const wsJahr1 = year;
+        const wsJahr2 = (year + 1).toString().slice(-2);
+        return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+      } else {
+        const wsJahr1 = year - 1;
+        const wsJahr2 = year.toString().slice(-2);
+        return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+      }
+    }
+
+    function fillSemesterList(selectId = 'semester', yearsBack = 5, yearsForward = 10) {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const startYear = currentYear - yearsBack;
+      const endYear = currentYear + yearsForward;
+      const semesterList = [];
+
+      for (let y = startYear; y <= endYear; y++) {
+        semesterList.push(`Sommersemester ${y}`);
+        const wsJahr2 = (y + 1).toString().slice(-2);
+        semesterList.push(`Wintersemester ${y}/${wsJahr2}`);
+      }
+
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      const currentSemester = getCurrentSemester();
+      semesterList.forEach(sem => {
+        const opt = document.createElement('option');
+        opt.value = sem;
+        opt.textContent = sem;
+        if (sem === currentSemester) opt.selected = true;
+        select.appendChild(opt);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => fillSemesterList());
+  </script>
+
+  <!-- titel.js -->
+  <script>
+    const titelListe = [
+      "", "Prof.", "Prof. Dr.", "Prof. Dr. med.", "Prof. Dr. med. dent.", "Prof. Dr. rer. nat.",
+      "Prof. Dr. rer. pol.", "Prof. Dr. rer. oec.", "Prof. Dr. rer. soc.", "Prof. Dr.-Ing.",
+      "Prof. Dr. jur.", "Prof. Dr. phil.", "Prof. Dr. habil.", "Prof. Dr. oec.", "Prof. Dr. agr.",
+      "Prof. Dr. theol.", "Prof. Dr. vet. med.", "Prof. Dr. rer. agr.", "Prof. Dr. rer. medic.",
+      "Prof. Dipl.-Ing.", "Prof. Mag.", "Prof. Mag. rer. nat.", "Priv.-Doz. Dr.",
+      "Priv.-Doz. Dr. habil.", "Dr.", "Dr. h.c.", "Dr. med.", "Dr. med. dent.", "Dr. med. vet.",
+      "Dr. rer. nat.", "Dr. rer. pol.", "Dr. rer. oec.", "Dr. rer. soc.", "Dr. rer. agr.",
+      "Dr. jur.", "Dr. phil.", "Dr.-Ing.", "Dr. theol.", "Dr. oec.", "Dr. agr.", "Dr. habil.",
+      "Dipl.-Ing.", "Dipl.-Wirt.-Ing.", "Dipl.-Kfm.", "Dipl.-Soz.-Päd.", "Dipl.-Psych.",
+      "Dipl.-Volksw.", "Dipl.-Betriebsw.", "Dipl.-Biol.", "Mag.", "Mag. rer. nat.", "Mag. theol.",
+      "B. Sc.", "B. A.", "M. Sc.", "M. A.", "M. Eng.", "M. Ed.", "M. Med.", "MBA", "LL.B.", "LL.M.",
+      "Ass. jur.", "Ass. iur.", "Staatsexamen", "B. Eng.", "M. Arch.", "B. Ed.", "Dipl.-Päd.",
+      "Dr. rer. medic.", "Ph.D.", "D.Phil.", "MD", "D.Sc.", "D.Litt.", "D.Eng.", "Dr. sc. agr.",
+      "Dr. sc. hum.", "Dr. sc. nat."
+    ];
+
+    function fillTitelList(selectId = "titel", list = titelListe) {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      select.innerHTML = "";
+      list.forEach(titel => {
+        const opt = document.createElement('option');
+        opt.value = titel;
+        opt.textContent = titel;
+        select.appendChild(opt);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => fillTitelList());
+  </script>
+
+  <!-- fakultaet.js -->
+  <script>
+    const fakultaetListe = [
+      "",
+      "FAS",
+      "FB",
+      "FDIT",
+      "FIM",
+      "FING",
+      "FWW",
+      "HSZ",
+      "MNZ",
+      "Gast",
+      "HonProf"
+    ];
+
+    function fillFakultaetList(selectId = "fakultaet", list = fakultaetListe) {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      select.innerHTML = "";
+      list.forEach(fak => {
+        const opt = document.createElement("option");
+        opt.value = fak;
+        opt.textContent = fak;
+        select.appendChild(opt);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => fillFakultaetList());
+  </script>
+
+  <!-- einsaetze.js -->
+  <script>
+    let einsatzZaehler = 0;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("einsatzAddBtn").addEventListener("click", addEinsatzRow);
+      addEinsatzRow();
+    });
+
+    function addEinsatzRow() {
+      const tableDiv = document.getElementById("einsatzTabelle");
+
+      if (!document.getElementById("einsatzTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;" id="einsatzTable">
+            <tr>
+              <th rowspan="2">lfd</th>
+              <th rowspan="2">Fakultät</th>
+              <th rowspan="2">Stg.</th>
+              <th rowspan="2">FS</th>
+              <th rowspan="2">Gruppe</th>
+              <th rowspan="2">Modulnr.</th>
+              <th rowspan="2">Modulname</th>
+              <th colspan="3">Reale SWS (Präsenz)</th>
+              <th rowspan="2">digital</th>
+              <th rowspan="2">Bemerkung</th>
+              <th rowspan="2">Löschen</th>
+            </tr>
+            <tr>
+              <th>V</th>
+              <th>S</th>
+              <th>P</th>
+            </tr>
+          </table>
+        `;
+      }
+
+      const table = document.getElementById("einsatzTable");
+      const row = table.insertRow(-1);
+
+      row.innerHTML = `
+        <td></td>
+        <td><input name="einsatz_fakultaet_" style="width:80px"></td>
+        <td><input name="einsatz_stg_" style="width:60px"></td>
+        <td><input name="einsatz_fs_" style="width:35px"></td>
+        <td><input name="einsatz_gruppe_" style="width:70px"></td>
+        <td><input name="einsatz_modulnr_" style="width:70px"></td>
+        <td><input name="einsatz_modulname_" style="width:120px"></td>
+        <td><input name="einsatz_sws_v_" type="number" min="0" style="width:40px"></td>
+        <td><input name="einsatz_sws_s_" type="number" min="0" style="width:40px"></td>
+        <td><input name="einsatz_sws_p_" type="number" min="0" style="width:40px"></td>
+        <td>
+          <select name="einsatz_digital_">
+            <option value=""></option>
+            <option value="ja">ja</option>
+            <option value="nein">nein</option>
+          </select>
+        </td>
+        <td><input name="einsatz_bemerkung_" style="width:100px"></td>
+        <td><button type="button" onclick="removeEinsatzRow(this)">🗑️</button></td>
+      `;
+      renumberEinsatzRows();
+    }
+
+    function removeEinsatzRow(btn) {
+      const table = document.getElementById("einsatzTable");
+      if (table.rows.length <= 3) return; // 2 Header + 1 Datenzeile
+      const row = btn.closest('tr');
+      row.parentNode.removeChild(row);
+      renumberEinsatzRows();
+    }
+
+    function renumberEinsatzRows() {
+      const table = document.getElementById("einsatzTable");
+      if (!table) return;
+
+      let nummer = 1;
+      for (let i = 2; i < table.rows.length; i++) {
+        const row = table.rows[i];
+        row.cells[0].textContent = nummer;
+        row.querySelector('input[name^="einsatz_fakultaet_"]').name = "einsatz_fakultaet_" + nummer;
+        row.querySelector('input[name^="einsatz_stg_"]').name = "einsatz_stg_" + nummer;
+        row.querySelector('input[name^="einsatz_fs_"]').name = "einsatz_fs_" + nummer;
+        row.querySelector('input[name^="einsatz_gruppe_"]').name = "einsatz_gruppe_" + nummer;
+        row.querySelector('input[name^="einsatz_modulnr_"]').name = "einsatz_modulnr_" + nummer;
+        row.querySelector('input[name^="einsatz_modulname_"]').name = "einsatz_modulname_" + nummer;
+        row.querySelector('input[name^="einsatz_sws_v_"]').name = "einsatz_sws_v_" + nummer;
+        row.querySelector('input[name^="einsatz_sws_s_"]').name = "einsatz_sws_s_" + nummer;
+        row.querySelector('input[name^="einsatz_sws_p_"]').name = "einsatz_sws_p_" + nummer;
+        row.querySelector('select[name^="einsatz_digital_"]').name = "einsatz_digital_" + nummer;
+        row.querySelector('input[name^="einsatz_bemerkung_"]').name = "einsatz_bemerkung_" + nummer;
+        nummer++;
+      }
+    }
+  </script>
+
+  <!-- hinweise.js -->
+  <script>
+    let hinweisZaehler = 0;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("hinweisAddBtn").addEventListener("click", addHinweisRow);
+      addHinweisRow();
+    });
+
+    function addHinweisRow() {
+      const tableDiv = document.getElementById("hinweisTabelle");
+
+      if (!document.getElementById("hinweisTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%" id="hinweisTable">
+            <tr>
+              <th>Bei Bedarf vom Dozenten auszufüllen</th>
+              <th>Nur vom Dekanat / Studienamt auszufüllen!</th>
+              <th></th>
+            </tr>
+            <tr>
+              <td><strong>Wichtige Hinweise zur Semesterplanung:</strong><br>Keine Sperrzeiten!!!</td>
+              <td><strong>Hinweise bei Rückgabe an den Dozenten:</strong></td>
+              <td></td>
+            </tr>
+          </table>
+        `;
+      }
+
+      hinweisZaehler++;
+      const table = document.getElementById("hinweisTable");
+      const row = table.insertRow(-1);
+
+      let dozentPlaceholder = "";
+      if (hinweisZaehler === 1) {
+        dozentPlaceholder = "z.B.: kein Dozententag, dafür Gleichverteilung der LV";
+      }
+
+      row.innerHTML = `
+        <td><input name="hinweis_dozent_${hinweisZaehler}" style="width:98%" placeholder="${dozentPlaceholder}"></td>
+        <td><input name="hinweis_dekanat_${hinweisZaehler}" style="width:98%"></td>
+        <td><button type="button" onclick="removeHinweisRow(this)">🗑️</button></td>
+      `;
+    }
+
+    function removeHinweisRow(btn) {
+      const row = btn.closest('tr');
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+  <!-- einsatzzeiten.js -->
+  <script>
+    let einsatzzeitZaehler = 0;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("einsatzzeitAddBtn").addEventListener("click", addEinsatzzeitRow);
+      addEinsatzzeitRow();
+    });
+
+    function addEinsatzzeitRow() {
+      const tableDiv = document.getElementById("einsatzzeitTabelle");
+
+      if (!document.getElementById("einsatzzeitTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%;" id="einsatzzeitTable">
+            <tr>
+              <th colspan="4">Zeitangabe</th>
+              <th rowspan="2">Anmerkung</th>
+              <th rowspan="2"></th>
+            </tr>
+            <tr>
+              <th>Wochen<br><span style="font-weight:normal;">aw/gw/uw</span></th>
+              <th>Wochentag<br><span style="font-weight:normal;">Mo/Di/Mi/Do/Fr</span></th>
+              <th>Von</th>
+              <th>Bis</th>
+            </tr>
+          </table>
+        `;
+      }
+
+      einsatzzeitZaehler++;
+      const table = document.getElementById("einsatzzeitTable");
+      const row = table.insertRow(-1);
+
+      row.innerHTML = `
+        <td>
+          <select name="einsatzzeit_wochen_${einsatzzeitZaehler}">
+            <option value="">– wählen –</option>
+            <option value="aw">aw</option>
+            <option value="gw">gw</option>
+            <option value="uw">uw</option>
+          </select>
+        </td>
+        <td>
+          <select name="einsatzzeit_wochentag_${einsatzzeitZaehler}">
+            <option value="">– wählen –</option>
+            <option value="Mo">Mo</option>
+            <option value="Di">Di</option>
+            <option value="Mi">Mi</option>
+            <option value="Do">Do</option>
+            <option value="Fr">Fr</option>
+          </select>
+        </td>
+        <td>
+          <select name="einsatzzeit_von_${einsatzzeitZaehler}">
+            ${zeitOptionen()}
+          </select>
+        </td>
+        <td>
+          <select name="einsatzzeit_bis_${einsatzzeitZaehler}">
+            ${zeitOptionen()}
+          </select>
+        </td>
+        <td>
+          <input name="einsatzzeit_anmerkung_${einsatzzeitZaehler}" style="width:98%">
+        </td>
+        <td>
+          <button type="button" onclick="removeEinsatzzeitRow(this)">🗑️</button>
+        </td>
+      `;
+    }
+
+    function zeitOptionen() {
+      let html = `<option value="">– wählen –</option>`;
+      for (let h = 7; h <= 20; h++) {
+        for (let m of [0, 15, 30, 45]) {
+          const hh = String(h).padStart(2, '0');
+          const mm = String(m).padStart(2, '0');
+          html += `<option value="${hh}:${mm}">${hh}:${mm}</option>`;
+        }
+      }
+      return html;
+    }
+
+    function removeEinsatzzeitRow(btn) {
+      const row = btn.closest('tr');
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+  <!-- sperrzeiten.js -->
+  <script>
+    let sperrzeitZaehler = 0;
+
+    document.addEventListener("DOMContentLoaded", function() {
+      document.getElementById("sperrzeitAddBtn").addEventListener("click", addSperrzeitRow);
+      addSperrzeitRow();
+    });
+
+    function addSperrzeitRow() {
+      const tableDiv = document.getElementById("sperrzeitTabelle");
+
+      if (!document.getElementById("sperrzeitTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%;" id="sperrzeitTable">
+            <tr>
+              <th colspan="3">Zeitangabe</th>
+              <th rowspan="2">Begründung</th>
+              <th rowspan="2"></th>
+            </tr>
+            <tr>
+              <th>Wochen<br><span style="font-weight:normal;">aw/gw/uw</span></th>
+              <th>Wochentag<br><span style="font-weight:normal;">Mo/Di/Mi/Do/Fr</span></th>
+              <th>Uhrzeit<br><span style="font-weight:normal;">Bis/Ab</span></th>
+            </tr>
+          </table>
+        `;
+      }
+
+      sperrzeitZaehler++;
+      const table = document.getElementById("sperrzeitTable");
+      const row = table.insertRow(-1);
+
+      row.innerHTML = `
+        <td>
+          <select name="sperrzeit_wochen_${sperrzeitZaehler}">
+            <option value="">– wählen –</option>
+            <option value="aw">aw</option>
+            <option value="gw">gw</option>
+            <option value="uw">uw</option>
+          </select>
+        </td>
+        <td>
+          <select name="sperrzeit_wochentag_${sperrzeitZaehler}">
+            <option value="">– wählen –</option>
+            <option value="Mo">Mo</option>
+            <option value="Di">Di</option>
+            <option value="Mi">Mi</option>
+            <option value="Do">Do</option>
+            <option value="Fr">Fr</option>
+          </select>
+        </td>
+        <td>
+          <select name="sperrzeit_bisab_${sperrzeitZaehler}">
+            <option value="">– wählen –</option>
+            <option value="Bis 07:00">Bis 07:00</option>
+            <option value="Bis 08:00">Bis 08:00</option>
+            <option value="Bis 09:00">Bis 09:00</option>
+            <option value="Ab 15:00">Ab 15:00</option>
+            <option value="Ab 16:00">Ab 16:00</option>
+            <option value="Ab 17:00">Ab 17:00</option>
+          </select>
+        </td>
+        <td>
+          <input name="sperrzeit_begruendung_${sperrzeitZaehler}" style="width:98%">
+        </td>
+        <td>
+          <button type="button" onclick="removeSperrzeitRow(this)">🗑️</button>
+        </td>
+      `;
+    }
+
+    function removeSperrzeitRow(btn) {
+      const row = btn.closest('tr');
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+  <!-- dozentforschungstag.js -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      erstelleDFTagTabelle();
+    });
+
+    function erstelleDFTagTabelle() {
+      const tableDiv = document.getElementById("dfTagTabelle");
+      tableDiv.innerHTML = `
+        <table border="1" style="border-collapse:collapse; text-align:center; width:100%;">
+          <tr>
+            <th>Tag ist egal</th>
+            <th>Montag</th>
+            <th>Dienstag</th>
+            <th>Mittwoch</th>
+            <th>Donnerstag</th>
+            <th>Freitag</th>
+          </tr>
+          <tr>
+            <td>
+              <label><input type="checkbox" name="df_tag_egal_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_tag_egal_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_mo_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_mo_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_di_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_di_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_mi_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_mi_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_do_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_do_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_fr_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_fr_F" value="F"> F</label>
+            </td>
+          </tr>
+          <tr style="background:#f8fff8;">
+            <td>
+              <label><input type="checkbox" name="df_not_egal_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_egal_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_not_mo_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_mo_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_not_di_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_di_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_not_mi_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_mi_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_not_do_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_do_F" value="F"> F</label>
+            </td>
+            <td>
+              <label><input type="checkbox" name="df_not_fr_D" value="D"> D</label>
+              <label><input type="checkbox" name="df_not_fr_F" value="F"> F</label>
+            </td>
+          </tr>
+        </table>
+      `;
+    }
+  </script>
 </body>
 </html>

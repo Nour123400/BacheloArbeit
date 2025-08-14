@@ -818,6 +818,12 @@
 
       // Semester passend zum Turnus wählen
       if (mod?.Turnus) setSemesterFromTurnus(mod.Turnus);
+      // globale Felder (nur wenn leer) aus Modulverantwortliche + Fakultät
+      const mv = mod?.Modulverantwortliche || {};
+      setIfEmpty(document.querySelector('input[name="vorname"]'), mv.Vorname);
+      setIfEmpty(document.querySelector('input[name="name"]'), mv.Nachname);
+      if (mv && mv.Anrede) setTitelFromAnrede(mv.Anrede);
+      setFakultaetIfEmpty(mod.Fakultät || '');
 
       alert('Moduldaten übernommen.');
     }
@@ -881,6 +887,57 @@
       }
     }
 
+    // --- Titel-Autofill aus JSON.Anrede ---
+    function normalizeTitle(s){
+      s = (s || '').toLowerCase();
+      // Tabs/Zeilenumbrüche entfernen und Whitespace normalisieren
+      s = s.replace(/\t/g, ' ').replace(/\n/g, ' ');
+      s = s.replace(/\s+/g, ' ');
+      return s.trim();
+    }
+    function stripTokens(s){
+      const stop = ['fr.', 'fr', 'frau', 'hr.', 'hr', 'herr', 'he', 'che'];
+      const parts = normalizeTitle(s).split(' ').filter(p => !stop.includes(p));
+      return parts.join(' ');
+    }
+    function slugTitle(s){
+      s = normalizeTitle(s);
+      const PUNCT = [".", ",", ";", ":", "(", ")", "[", "]", "/", "'", "’", "-", "–", "—"];
+      PUNCT.forEach(ch => { s = s.split(ch).join(' '); });
+      s = s.split(' ').filter(Boolean).join(' ');
+      return s.split(' ').join('');
+    }
+    function matchTitelFromAnrede(anrede){
+      const normA = stripTokens(anrede);
+      const aSlug = slugTitle(normA);
+      let best = '';
+      let bestLen = 0;
+      (titelListe || []).forEach(t => {
+        if (!t) return;
+        const tSlug = slugTitle(t);
+        if (!tSlug) return;
+        if (aSlug.includes(tSlug) && tSlug.length > bestLen){
+          best = t; bestLen = tSlug.length;
+        }
+      });
+      return best;
+    }
+    function ensureTitelOption(value){
+      const sel = document.getElementById('titel');
+      if (!sel || !value) return;
+      if (![...sel.options].some(o => o.value === value)){
+        const opt = document.createElement('option'); opt.value = value; opt.textContent = value; sel.appendChild(opt);
+      }
+    }
+    function setTitelFromAnrede(anrede){
+      const sel = document.getElementById('titel');
+      if (!sel || !anrede) return;
+      const match = matchTitelFromAnrede(anrede);
+      const chosen = match || anrede.trim();
+      ensureTitelOption(chosen);
+      sel.value = chosen; // Titel direkt übernehmen
+    }
+
     function fillRowFromModule(row, mod){
       function q(s){ return row.querySelector(s); }
       setIfEmpty(q('input[name^="einsatz_fakultaet_"]'), mod.Fakultät || '');
@@ -904,6 +961,7 @@
       var mv = (mod && mod.Modulverantwortliche) ? mod.Modulverantwortliche : {};
       setIfEmpty(document.querySelector('input[name="vorname"]'), mv.Vorname);
       setIfEmpty(document.querySelector('input[name="name"]'), mv.Nachname);
+      if (mv && mv.Anrede) setTitelFromAnrede(mv.Anrede);
     }
 
     // Delegiertes Change-Event: jedes Modulnr-Select triggert Autofill

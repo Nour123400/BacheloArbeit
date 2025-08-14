@@ -2,76 +2,132 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Dozentenblatt</title>
+  <title>Dozentenblatt – Modul-Autofill</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Arial, sans-serif; }
+    fieldset { border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin-bottom: 16px; }
+    legend { padding: 0 6px; font-weight: 600; }
+    .stack { display: grid; gap: 6px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    label { font-weight: 600; }
+    table { width: 100%; }
+    th, td { padding: 4px; }
+    .muted { color: #666; font-size: 12px; }
+    .btn { padding: 6px 10px; border-radius: 6px; border: 1px solid #ccc; background: #f7f7f7; cursor: pointer; }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: #0ea5e9; border-color: #0284c7; color: #fff; }
+    #modulSelect { width: 100%; height: 12rem; }
+    #moduleFilter { width: 100%; }
+  </style>
 </head>
 <body>
   <h1>📄 Dozentenblatt</h1>
 
-  <form method="POST" action="/submit?type=dozent">
-    <label>Abgabetermin DS:</label><br>
-    <input name="abgabetermin" type="date"><br>
+  <form method="POST" action="/submit?type=dozent" class="stack">
 
-    <label>Eingang bei DS:</label><br>
-    <input name="eingang"><br>
+    <!-- =========================
+         Modul-Auswahl (aus JSON)
+         ========================= -->
+    <fieldset>
+      <legend>Stammdaten</legend>
+      <div class="row">
+        <div class="stack">
+          <label>Abgabetermin DS:</label>
+          <input name="abgabetermin" type="date">
+        </div>
+        <div class="stack">
+          <label>Eingang bei DS:</label>
+          <input name="eingang">
+        </div>
+      </div>
 
-    <label>Hochschule:</label><br>
-    <input name="hochschule" value="HTWK Leipzig" disabled><br>
+      <div class="row">
+        <div class="stack">
+          <label>Hochschule:</label>
+          <input name="hochschule" value="HTWK Leipzig" disabled>
+        </div>
+        <div class="stack">
+          <label>Semester:</label>
+          <select name="semester" id="semester"></select>
+        </div>
+      </div>
 
-    <label>Semester:</label>
-    <select name="semester" id="semester"></select><br>
+      <div class="row">
+        <div class="stack">
+          <label>Titel:</label>
+          <select name="titel" id="titel"></select>
+        </div>
+        <div class="stack">
+          <label>Fakultät:</label>
+          <select name="fakultaet" id="fakultaet"></select>
+        </div>
+      </div>
 
-    <label>Titel:</label>
-    <select name="titel" id="titel"></select><br>
+      <div class="row">
+        <div class="stack">
+          <label>Vorname:</label>
+          <input name="vorname">
+        </div>
+        <div class="stack">
+          <label>Name:</label>
+          <input name="name">
+        </div>
+      </div>
 
-    <label>Vorname:</label><br>
-    <input name="vorname"><br>
+      <div class="row">
+        <div class="stack">
+          <label>E-Mail:</label>
+          <input name="email">
+        </div>
+        <div class="stack">
+          <label>Telefon:</label>
+          <input name="telefon">
+        </div>
+      </div>
 
-    <label>Name:</label><br>
-    <input name="name"><br>
+      <div class="stack">
+        <label>Arbeitszeit:</label>
+        <select name="arbeitszeit">
+          <option value="Vollzeit">Vollzeit</option>
+          <option value="Teilzeit">Teilzeit</option>
+          <option value="Gast">Gast</option>
+        </select>
+      </div>
+    </fieldset>
 
-    <label>E-Mail:</label><br>
-    <input name="email"><br>
+    <fieldset>
+      <legend>Durchzuführende Lehrveranstaltungen</legend>
+      <p class="muted">Hinweis: Wähle in der Spalte <b>Modulnr.</b> ein Modul aus – die restlichen Felder werden automatisch vorgeschlagen.</p>
+      <div id="einsatzTabelle"></div>
+      <button type="button" id="einsatzAddBtn" class="btn">Einsatz hinzufügen</button>
+    </fieldset>
 
-    <label>Telefon:</label><br>
-    <input name="telefon"><br>
+    <fieldset>
+      <legend>Hinweise & Mitteilungen</legend>
+      <div id="hinweisTabelle"></div>
+      <button type="button" id="hinweisAddBtn" class="btn">Zeile hinzufügen</button>
+    </fieldset>
 
-    <label>Fakultät:</label>
-    <select name="fakultaet" id="fakultaet"></select><br>
+    <fieldset>
+      <legend>Regelmäßig mögliche Einsatzzeiten für <u>externe</u> Dozenten</legend>
+      <div id="einsatzzeitTabelle"></div>
+      <button type="button" id="einsatzzeitAddBtn" class="btn">Zeile hinzufügen</button>
+    </fieldset>
 
-    <label>Arbeitszeit:</label>
-    <select name="arbeitszeit">
-      <option value="Vollzeit">Vollzeit</option>
-      <option value="Teilzeit">Teilzeit</option>
-      <option value="Gast">Gast</option>
-    </select><br>
+    <fieldset>
+      <legend>Notwendige regelmäßige Sperrzeiten für <u>interne</u> Dozenten</legend>
+      <div id="sperrzeitTabelle"></div>
+      <button type="button" id="sperrzeitAddBtn" class="btn">Zeile hinzufügen</button>
+    </fieldset>
 
-    <label>Bitte geben Sie in der Tabelle Ihre Einsätze (auch Bedienfunktionen) an! Durchzuführende Lehrveranstaltungen</label><br>
-    <div id="einsatzTabelle"></div>
-    <button type="button" id="einsatzAddBtn">Einsatz hinzufügen</button>
+    <fieldset>
+      <legend>Dozenten-/Forschungstag (nur bei Vollzeit)</legend>
+      <div id="dfTagTabelle"></div>
+      <small>Hinweis: D = Dozententag; F = Forschungstag → jeweils nur <b>einmal</b> auswählen!</small>
+    </fieldset>
 
-    <h3>Hinweise & Mitteilungen</h3>
-    <div id="hinweisTabelle"></div>
-    <button type="button" id="hinweisAddBtn">Zeile hinzufügen</button>
-
-    <h3>Regelmäßig mögliche Einsatzzeiten für <u>externe</u> Dozenten sind:</h3>
-    <div id="einsatzzeitTabelle"></div>
-    <button type="button" id="einsatzzeitAddBtn">Zeile hinzufügen</button>
-
-    <h3>Notwendige regelmäßige Sperrzeiten für <u>interne</u> Dozenten sind:</h3>
-    <div id="sperrzeitTabelle"></div>
-    <button type="button" id="sperrzeitAddBtn">Zeile hinzufügen</button>
-
-    <h3>Nach Möglichkeit ist folgender Dozenten-/Forschungstag einzuplanen: <small>(nur bei <b>Vollzeit</b>!)</small></h3>
-    <div id="dfTagTabelle"></div>
-    <small>Hinweis: D = Dozententag; F = Forschungstag &rarr; jeweils nur <b>einmal</b> auswählen!</small>
-
-    <!--
-    (Optional) Zusatzinfos & Hinweise – auskommentiert belassen
-    -->
-
-    <br><br>
-    <button type="submit">✅ Speichern</button>
+    <button type="submit" class="btn btn-primary">✅ Speichern</button>
   </form>
 
   <p><a href="/">Zurück zur Auswahl</a></p>
@@ -122,6 +178,22 @@
         if (sem === currentSemester) opt.selected = true;
         select.appendChild(opt);
       });
+    }
+
+    function setSemesterFromTurnus(turnus) {
+      if (!turnus) return;
+      const s = document.getElementById('semester');
+      if (!s) return;
+      const now = new Date();
+      let target = '';
+      if (turnus.toLowerCase().startsWith('winter')) {
+        const y = (now.getMonth()+1 >= 10) ? now.getFullYear() : now.getFullYear()-1;
+        target = `Wintersemester ${y}/${(y+1).toString().slice(-2)}`;
+      } else if (turnus.toLowerCase().startsWith('sommer')) {
+        target = `Sommersemester ${now.getFullYear()}`;
+      }
+      const opt = Array.from(s.options).find(o => o.textContent === target);
+      if (opt) s.value = opt.value;
     }
 
     document.addEventListener('DOMContentLoaded', () => fillSemesterList());
@@ -192,16 +264,27 @@
     document.addEventListener("DOMContentLoaded", () => fillFakultaetList());
   </script>
 
-  <!-- einsaetze.js -->
+  <!-- einsaetze.js (mit Autofill-Unterstützung) -->
   <script>
     let einsatzZaehler = 0;
 
     document.addEventListener("DOMContentLoaded", function() {
-      document.getElementById("einsatzAddBtn").addEventListener("click", addEinsatzRow);
-      addEinsatzRow();
+      document.getElementById("einsatzAddBtn").addEventListener("click", () => addEinsatzRow());
+      addEinsatzRow(); // eine leere Start-Zeile
     });
 
-    function addEinsatzRow() {
+    function ensureEinsatzTable() {
+      if (!document.getElementById("einsatzTable")) addEinsatzRow();
+    }
+
+    function clearEinsatzTable() {
+      const table = document.getElementById("einsatzTable");
+      if (!table) return;
+      while (table.rows.length > 2) table.deleteRow(-1); // 2 Kopfzeilen behalten
+      renumberEinsatzRows();
+    }
+
+    function addEinsatzRow(preset = {}) {
       const tableDiv = document.getElementById("einsatzTabelle");
 
       if (!document.getElementById("einsatzTable")) {
@@ -238,11 +321,15 @@
         <td><input name="einsatz_stg_" style="width:60px"></td>
         <td><input name="einsatz_fs_" style="width:35px"></td>
         <td><input name="einsatz_gruppe_" style="width:70px"></td>
-        <td><input name="einsatz_modulnr_" style="width:70px"></td>
-        <td><input name="einsatz_modulname_" style="width:120px"></td>
-        <td><input name="einsatz_sws_v_" type="number" min="0" style="width:40px"></td>
-        <td><input name="einsatz_sws_s_" type="number" min="0" style="width:40px"></td>
-        <td><input name="einsatz_sws_p_" type="number" min="0" style="width:40px"></td>
+        <td>
+          <select name="einsatz_modulnr_" class="modulnr-select" style="width:120px">
+            <option value="">– wählen –</option>
+          </select>
+        </td>
+        <td><input name="einsatz_modulname_" style="width:220px"></td>
+        <td><input name="einsatz_sws_v_" type="number" min="0" step="0.5" style="width:50px"></td>
+        <td><input name="einsatz_sws_s_" type="number" min="0" step="0.5" style="width:50px"></td>
+        <td><input name="einsatz_sws_p_" type="number" min="0" step="0.5" style="width:50px"></td>
         <td>
           <select name="einsatz_digital_">
             <option value=""></option>
@@ -250,14 +337,37 @@
             <option value="nein">nein</option>
           </select>
         </td>
-        <td><input name="einsatz_bemerkung_" style="width:100px"></td>
-        <td><button type="button" onclick="removeEinsatzRow(this)">🗑️</button></td>
+        <td><input name="einsatz_bemerkung_" style="width:220px"></td>
+        <td><button type="button" class="btn" onclick="removeEinsatzRow(this)">🗑️</button></td>
       `;
+
+      // Voreinträge übernehmen
+      const $ = sel => row.querySelector(sel);
+      if (preset.fakultaet !== undefined) $('input[name^="einsatz_fakultaet_"]').value = preset.fakultaet;
+      if (preset.stg !== undefined)       $('input[name^="einsatz_stg_"]').value       = preset.stg;
+      if (preset.fs !== undefined)        $('input[name^="einsatz_fs_"]').value        = preset.fs;
+      if (preset.gruppe !== undefined)    $('input[name^="einsatz_gruppe_"]').value    = preset.gruppe;
+            if (preset.modulname !== undefined) $('input[name^="einsatz_modulname_"]').value = preset.modulname;
+      if (preset.sws_v !== undefined)     $('input[name^="einsatz_sws_v_"]').value     = preset.sws_v;
+      if (preset.sws_s !== undefined)     $('input[name^="einsatz_sws_s_"]').value     = preset.sws_s;
+      if (preset.sws_p !== undefined)     $('input[name^="einsatz_sws_p_"]').value     = preset.sws_p;
+      if (preset.digital !== undefined)   {
+        const digSel = $('select[name^="einsatz_digital_"]');
+        digSel.value = (preset.digital === true || preset.digital === 'ja') ? 'ja'
+                     : (preset.digital === false || preset.digital === 'nein') ? 'nein' : '';
+      }
+      if (preset.bemerkung !== undefined) $('input[name^="einsatz_bemerkung_"]').value = preset.bemerkung;
+
+      // Modulnr.-Select befüllen + ggf. vorbelegen
+      const selMod = row.querySelector('.modulnr-select');
+      if (selMod) populateModulnrSelect(selMod, preset.modulnr);
+
       renumberEinsatzRows();
     }
 
     function removeEinsatzRow(btn) {
       const table = document.getElementById("einsatzTable");
+      if (!table) return;
       if (table.rows.length <= 3) return; // 2 Header + 1 Datenzeile
       const row = btn.closest('tr');
       row.parentNode.removeChild(row);
@@ -276,7 +386,7 @@
         row.querySelector('input[name^="einsatz_stg_"]').name = "einsatz_stg_" + nummer;
         row.querySelector('input[name^="einsatz_fs_"]').name = "einsatz_fs_" + nummer;
         row.querySelector('input[name^="einsatz_gruppe_"]').name = "einsatz_gruppe_" + nummer;
-        row.querySelector('input[name^="einsatz_modulnr_"]').name = "einsatz_modulnr_" + nummer;
+        row.querySelector('[name^="einsatz_modulnr_"]').name = "einsatz_modulnr_" + nummer;
         row.querySelector('input[name^="einsatz_modulname_"]').name = "einsatz_modulname_" + nummer;
         row.querySelector('input[name^="einsatz_sws_v_"]').name = "einsatz_sws_v_" + nummer;
         row.querySelector('input[name^="einsatz_sws_s_"]').name = "einsatz_sws_s_" + nummer;
@@ -329,7 +439,7 @@
       row.innerHTML = `
         <td><input name="hinweis_dozent_${hinweisZaehler}" style="width:98%" placeholder="${dozentPlaceholder}"></td>
         <td><input name="hinweis_dekanat_${hinweisZaehler}" style="width:98%"></td>
-        <td><button type="button" onclick="removeHinweisRow(this)">🗑️</button></td>
+        <td><button type="button" class="btn" onclick="removeHinweisRow(this)">🗑️</button></td>
       `;
     }
 
@@ -406,7 +516,7 @@
           <input name="einsatzzeit_anmerkung_${einsatzzeitZaehler}" style="width:98%">
         </td>
         <td>
-          <button type="button" onclick="removeEinsatzzeitRow(this)">🗑️</button>
+          <button type="button" class="btn" onclick="removeEinsatzzeitRow(this)">🗑️</button>
         </td>
       `;
     }
@@ -496,7 +606,7 @@
           <input name="sperrzeit_begruendung_${sperrzeitZaehler}" style="width:98%">
         </td>
         <td>
-          <button type="button" onclick="removeSperrzeitRow(this)">🗑️</button>
+          <button type="button" class="btn" onclick="removeSperrzeitRow(this)">🗑️</button>
         </td>
       `;
     }
@@ -580,6 +690,235 @@
         </table>
       `;
     }
+  </script>
+
+  <!-- =========================
+       Modul-JSON laden & Autofill-Logik
+       ========================= -->
+  <script>
+    let MODULES = [];
+    const modulesById = {};
+
+    function nf(x){ const n = Number(x); return Number.isFinite(n) ? Math.max(0, n) : ''; }
+    function inferDigital(mod){
+      const d = (mod?.CharakterLehrveranstaltung?.Durchführung || '').toLowerCase();
+      if (!d) return '';
+      if (d.includes('präsenz') || d.includes('praesenz')) return 'nein';
+      if (d.includes('online') || d.includes('digital')) return 'ja';
+      return '';
+    }
+    function inferStudiengang(mod, auf){
+      const g = (auf && typeof auf.Gruppen === 'string') ? auf.Gruppen : '';
+      if (g.includes('INB')) return 'INB';
+      if (g.includes('MIB')) return 'MIB';
+      if (Array.isArray(mod?.ZusammenMit) && mod.ZusammenMit.length) return mod.ZusammenMit.join('+');
+      return '';
+    }
+
+    function fillModuleSelect(list){
+      const sel = document.getElementById('modulSelect');
+      sel.innerHTML = '';
+      list.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.Modulnummer;
+        const fs = m.Fachsemester ? `, FS ${m.Fachsemester}` : '';
+        const turn = m.Turnus ? `, ${m.Turnus}` : '';
+        opt.textContent = `${m.Modulnummer} — ${m.Modulbezeichnung}${fs}${turn}`;
+        const searchBlob = [m.Modulnummer, m.Modulbezeichnung, (m.ZusammenMit||[]).join(' '), m?.Modulverantwortliche?.Vorname, m?.Modulverantwortliche?.Nachname].filter(Boolean).join(' ').toLowerCase();
+        opt.dataset.search = searchBlob;
+        sel.appendChild(opt);
+      });
+      // Doppelklick übernimmt direkt
+      sel.addEventListener('dblclick', () => applySelectedModule());
+    }
+
+    async function loadModules(){
+      try {
+        // 1) Primär: vom Backend holen (deine Datei nutzt /api/module)
+        const res = await fetch('/api/module', { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        MODULES = await res.json();
+      } catch (apiErr) {
+        try {
+          // 2) Fallback: eingebettetes JSON im Dokument
+          const embedded = document.getElementById('moduleJson');
+          if (embedded) {
+            MODULES = JSON.parse(embedded.textContent);
+          } else {
+            // 3) Fallback: statische Datei /modules.json
+            const res2 = await fetch('/modules.json');
+            if (!res2.ok) throw new Error('HTTP '+res2.status);
+            MODULES = await res2.json();
+          }
+        } catch (fallbackErr) {
+          console.error('Module konnten nicht geladen werden:', apiErr, fallbackErr);
+          MODULES = [];
+        }
+      }
+
+      MODULES.forEach(m => { modulesById[m.Modulnummer] = m; });
+
+      // Fakultätsliste mit JSON-Werten anreichern
+      const extraFaks = Array.from(new Set(MODULES.map(m => m.Fakultät).filter(Boolean)));
+      extraFaks.forEach(f => { if (!fakultaetListe.includes(f)) fakultaetListe.push(f); });
+      fillFakultaetList();
+
+      if (document.getElementById('modulSelect')) fillModuleSelect(MODULES);
+
+      populateAllModulnrSelects();
+    }
+
+    function applySelectedModule(){
+      const sel = document.getElementById('modulSelect');
+      const id = sel.value;
+      if (!id) return;
+      const mod = modulesById[id];
+      if (!mod) return;
+      applyModule(mod);
+    }
+
+    function applyModule(mod){
+      ensureEinsatzTable();
+      clearEinsatzTable();
+
+      // Zusammenfassungs-Zeile
+      addEinsatzRow({
+        fakultaet: mod.Fakultät || '',
+        stg: (Array.isArray(mod.ZusammenMit) && mod.ZusammenMit.length) ? mod.ZusammenMit.join('+') : '',
+        fs: mod.Fachsemester || '',
+        gruppe: '',
+        modulnr: mod.Modulnummer,
+        modulname: mod.Modulbezeichnung,
+        sws_v: nf(mod?.Lehrveranstaltungen?.SWS_V),
+        sws_s: nf(mod?.Lehrveranstaltungen?.SWS_S),
+        sws_p: nf(mod?.Lehrveranstaltungen?.SWS_P),
+        digital: inferDigital(mod),
+        bemerkung: [mod.Turnus, mod.Niveau].filter(Boolean).join(' • ')
+      });
+
+      // Detail-Zeilen aus Aufteilung (falls vorhanden)
+      const auf = mod?.Lehrveranstaltungen?.Aufteilung;
+      if (Array.isArray(auf) && auf.length){
+        auf.forEach(a => {
+          addEinsatzRow({
+            fakultaet: mod.Fakultät || '',
+            stg: inferStudiengang(mod, a),
+            fs: mod.Fachsemester || '',
+            gruppe: a.Gruppen || '',
+            modulnr: mod.Modulnummer,
+            modulname: `${mod.Modulbezeichnung} — ${a.Typ || ''}`.trim(),
+            sws_v: a?.Typ?.toLowerCase().startsWith('vorlesung') ? nf(a.SWS) : '',
+            sws_s: a?.Typ?.toLowerCase().startsWith('seminar')   ? nf(a.SWS) : '',
+            sws_p: a?.Typ?.toLowerCase().startsWith('praktikum') ? nf(a.SWS) : '',
+            digital: inferDigital(mod),
+            bemerkung: [a.Dozent, a.Gruppenanzahl ? `Gruppen: ${a.Gruppenanzahl}` : ''].filter(Boolean).join(' • ')
+          });
+        });
+      }
+
+      // Semester passend zum Turnus wählen
+      if (mod?.Turnus) setSemesterFromTurnus(mod.Turnus);
+
+      alert('Moduldaten übernommen.');
+    }
+
+    // Filter-UI
+    document.addEventListener('DOMContentLoaded', () => {
+      const filter = document.getElementById('moduleFilter');
+      const sel = document.getElementById('modulSelect');
+      const applyBtn = document.getElementById('applyModuleBtn');
+      if (filter && sel) {
+        filter.addEventListener('input', () => {
+          const q = filter.value.trim().toLowerCase();
+          Array.from(sel.options).forEach(opt => {
+            opt.hidden = q && !opt.dataset.search.includes(q);
+          });
+        });
+        sel.addEventListener('dblclick', () => applySelectedModule());
+      }
+      if (applyBtn) applyBtn.addEventListener('click', applySelectedModule);
+    });
+
+    // Start: Module laden
+    document.addEventListener('DOMContentLoaded', loadModules);
+  </script>
+
+  <!-- Optional: Wenn du die JSON lokal einbetten willst, füge sie so ein (ansonsten entfernen):
+  <script type="application/json" id="moduleJson">[ /* … deine Module … */ ]</script>
+  -->
+  <script>
+    // Modulnr.-Selects befüllen + Row-Autofill
+    function populateModulnrSelect(sel, preset) {
+      if (!sel) return;
+      const current = sel.value;
+      sel.innerHTML = '<option value="">– wählen –</option>';
+      (Array.isArray(MODULES) ? MODULES : []).forEach(function(m){
+        var opt = document.createElement('option');
+        opt.value = m.Modulnummer;
+        opt.textContent = m.Modulnummer + ' — ' + m.Modulbezeichnung;
+        sel.appendChild(opt);
+      });
+      if (preset) sel.value = preset; else if (current) sel.value = current;
+    }
+
+    function populateAllModulnrSelects(){
+      document.querySelectorAll('.modulnr-select').forEach(function(sel){
+        populateModulnrSelect(sel);
+      });
+    }
+
+    function setIfEmpty(input, value){
+      if (input && !input.value && value != null) input.value = value;
+    }
+    function setFakultaetIfEmpty(value){
+      var sel = document.getElementById('fakultaet');
+      if (!sel || !value) return;
+      if (!sel.value){
+        if (!Array.from(sel.options).some(function(o){ return o.value === value; })){
+          var o = document.createElement('option'); o.value = value; o.textContent = value; sel.appendChild(o);
+        }
+        sel.value = value;
+      }
+    }
+
+    function fillRowFromModule(row, mod){
+      function q(s){ return row.querySelector(s); }
+      setIfEmpty(q('input[name^="einsatz_fakultaet_"]'), mod.Fakultät || '');
+      setIfEmpty(q('input[name^="einsatz_stg_"]'), (Array.isArray(mod.ZusammenMit) && mod.ZusammenMit.length) ? mod.ZusammenMit.join('+') : '');
+      setIfEmpty(q('input[name^="einsatz_fs_"]'), mod.Fachsemester || '');
+      setIfEmpty(q('input[name^="einsatz_gruppe_"]'), '');
+      setIfEmpty(q('input[name^="einsatz_modulname_"]'), mod.Modulbezeichnung || '');
+      setIfEmpty(q('input[name^="einsatz_sws_v_"]'), (mod && mod.Lehrveranstaltungen && mod.Lehrveranstaltungen.SWS_V != null) ? mod.Lehrveranstaltungen.SWS_V : '');
+      setIfEmpty(q('input[name^="einsatz_sws_s_"]'), (mod && mod.Lehrveranstaltungen && mod.Lehrveranstaltungen.SWS_S != null) ? mod.Lehrveranstaltungen.SWS_S : '');
+      setIfEmpty(q('input[name^="einsatz_sws_p_"]'), (mod && mod.Lehrveranstaltungen && mod.Lehrveranstaltungen.SWS_P != null) ? mod.Lehrveranstaltungen.SWS_P : '');
+      var digSel = q('select[name^="einsatz_digital_"]');
+      if (digSel && !digSel.value){
+        var d = (mod && mod.CharakterLehrveranstaltung && mod.CharakterLehrveranstaltung.Durchführung ? mod.CharakterLehrveranstaltung.Durchführung : '').toLowerCase();
+        digSel.value = (d.indexOf('online') >= 0 || d.indexOf('digital') >= 0) ? 'ja' : ((d.indexOf('präsenz') >= 0 || d.indexOf('praesenz') >= 0) ? 'nein' : '');
+      }
+      setIfEmpty(q('input[name^="einsatz_bemerkung_"]'), [mod.Turnus, mod.Niveau].filter(Boolean).join(' • '));
+
+      // globale Felder sanft vorbelegen (nur wenn leer)
+      setFakultaetIfEmpty(mod.Fakultät || '');
+      if (mod && mod.Turnus) setSemesterFromTurnus(mod.Turnus);
+      var mv = (mod && mod.Modulverantwortliche) ? mod.Modulverantwortliche : {};
+      setIfEmpty(document.querySelector('input[name="vorname"]'), mv.Vorname);
+      setIfEmpty(document.querySelector('input[name="name"]'), mv.Nachname);
+    }
+
+    // Delegiertes Change-Event: jedes Modulnr-Select triggert Autofill
+    document.addEventListener('change', function(e){
+      if (e.target && e.target.classList && e.target.classList.contains('modulnr-select')){
+        var mod = modulesById[e.target.value];
+        var row = e.target.closest('tr');
+        if (mod && row) fillRowFromModule(row, mod);
+      }
+    });
+
+    // Nach DOM + nach Laden der Module die Selects füllen
+    document.addEventListener('DOMContentLoaded', function(){
+      populateAllModulnrSelects();
+    });
   </script>
 </body>
 </html>

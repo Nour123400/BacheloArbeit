@@ -650,8 +650,13 @@
       }
 
       const fa = document.getElementById('fachart');
-      if (fa && mod?.Fachart && !fa.value) {
-        if ([...fa.options].some(o => o.value === mod.Fachart)) fa.value = mod.Fachart;
+      if (fa) {
+        const mt = (mod?.Modultyp || '').toString().trim().toUpperCase();
+        if (mt === 'PF')      fa.value = 'Pflichtmodul';
+        else if (mt === 'WPF') fa.value = 'Wahlpflichtmodul';
+        else if (!fa.value && mod?.Fachart && [...fa.options].some(o => o.value === mod.Fachart)) {
+          fa.value = mod.Fachart; // Fallback, falls JSON statt Modultyp ein Klartextfeld hat
+        }
       }
 
       const lv = mod?.Lehrveranstaltungen || {};
@@ -699,6 +704,12 @@
         if (!res.ok) return;
         const data = await res.json();
         document.getElementById("modulbezeichnung").value = data.modulbezeichnung || data.Modulbezeichnung || "";
+        const fa = document.getElementById('fachart');
+        if (fa) {
+          const mt = (data.Modultyp || '').toString().trim().toUpperCase();
+          if (mt === 'PF')      fa.value = 'Pflichtmodul';
+          else if (mt === 'WPF') fa.value = 'Wahlpflichtmodul';
+        }
       } catch (e) {
         console.warn("Konnte Moduldaten nicht laden:", e);
       }

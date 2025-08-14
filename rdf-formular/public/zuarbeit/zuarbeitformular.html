@@ -27,6 +27,10 @@
     .btn:active { transform: translateY(1px); }
     .btn-primary { background: #0563bb; color: #fff; border-color: #0563bb; }
     .hint { background: #f7fbff; border: 1px solid #cfe8ff; padding: 10px; border-radius: 8px; }
+
+    /* Ergänzung: Modul-Browser wie in Datei 1 */
+    #modulSelect { width: 100%; height: 12rem; }
+    #moduleFilter { width: 100%; }
   </style>
 </head>
 <body>
@@ -73,6 +77,18 @@
 
     <fieldset>
       <legend>Modul / Lehrveranstaltung</legend>
+
+      <!-- NEU: Modul-Browser (Filter + Liste + Button) -->
+      <div class="row" style="margin-bottom:10px;">
+        <div class="col-12">
+          <label for="modulSelect">Modul aus Liste auswählen:</label>
+          <input id="moduleFilter" type="text" placeholder="Filtern nach Modulnr., Name, Verantwortliche …">
+          <select id="modulSelect" size="10"></select>
+        </div>
+      </div>
+        </div>
+      </div>
+
       <div class="row">
         <div class="col-4">
           <label for="modulnummer">Modulnummer:</label>
@@ -507,28 +523,190 @@
     }
     window.removePlanungsKalenderRow = removePlanungsKalenderRow;
 
-    // -------- Modul-Autofill (aus Ihrem Inline-Snippet, Felder ergänzt) --------
-    async function ladeModulDaten() {
-      const nummer = document.getElementById("modulnummer").value;
+    // ===== Module-Browser + Autofill (wie in Datei 1) =====
+    let MODULES = [];
+    const modulesById = {};
+
+    function nf(x){ const n = Number(x); return Number.isFinite(n) ? Math.max(0, n) : ''; }
+
+    function setSemesterFromTurnus(turnus) {
+      if (!turnus) return;
+      const s = document.getElementById('semester');
+      if (!s) return;
+      const now = new Date();
+      let target = '';
+      if (turnus.toLowerCase().startsWith('winter')) {
+        const y = (now.getMonth()+1 >= 10) ? now.getFullYear() : now.getFullYear()-1;
+        target = `Wintersemester ${y}/${(y+1).toString().slice(-2)}`;
+      } else if (turnus.toLowerCase().startsWith('sommer')) {
+        target = `Sommersemester ${now.getFullYear()}`;
+      }
+      const opt = Array.from(s.options).find(o => o.textContent === target);
+      if (opt) s.value = opt.value;
+    }
+
+    function inferStudiengang(mod, auf){
+      const g = (auf && typeof auf.Gruppen === 'string') ? auf.Gruppen : '';
+      if (g.includes('INB')) return 'INB';
+      if (g.includes('MIB')) return 'MIB';
+      if (Array.isArray(mod?.ZusammenMit) && mod.ZusammenMit.length) return mod.ZusammenMit.join('+');
+      return '';
+    }
+
+    function setIfEmpty(el, val){ if (el && !el.value && val != null) el.value = val; }
+    function setFakultaetSmart(value){
+      const sel = document.getElementById('fakultaet');
+      if (!sel || !value) return;
+      if (![...sel.options].some(o => o.value === value)) {
+        const opt = document.createElement('option'); opt.value = value; opt.textContent = value; sel.appendChild(opt);
+      }
+      if (!sel.value || sel.value === 'FIM-INF') sel.value = value;
+    }
+    function setSwsValues(v,s,p){
+      const iv = document.querySelector('[name="sws_v"]');
+      const is = document.querySelector('[name="sws_s"]');
+      const ip = document.querySelector('[name="sws_p"]');
+      if (iv){ iv.value = v || 0; iv.dispatchEvent(new Event('input', {bubbles:true})); }
+      if (is){ is.value = s || 0; is.dispatchEvent(new Event('input', {bubbles:true})); }
+      if (ip){ ip.value = p || 0; ip.dispatchEvent(new Event('input', {bubbles:true})); }
+      const span = document.getElementById('gesamtSwsWert');
+      if (span){
+        const vv = parseInt(iv?.value||0)||0, ss = parseInt(is?.value||0)||0, pp = parseInt(ip?.value||0)||0;
+        span.textContent = vv + ss + pp;
+      }
+    }
+
+    function fillModuleSelect(list){
+      const sel = document.getElementById('modulSelect');
+      if (!sel) return;
+      sel.innerHTML = '';
+      list.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.Modulnummer;
+        opt.textContent = m.Modulnummer + ' — ' + m.Modulbezeichnung;
+        const searchBlob = [
+          m.Modulnummer,
+          m.Modulbezeichnung,
+          (m.ZusammenMit||[]).join(' '),
+          m?.Modulverantwortliche?.Vorname,
+          m?.Modulverantwortliche?.Nachname
+        ].filter(Boolean).join(' ').toLowerCase();
+        opt.dataset.search = searchBlob;
+        sel.appendChild(opt);
+      });
+    }
+
+    async function loadModules(){
+      try {
+        const res = await fetch('/api/module', { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        MODULES = await res.json();
+      } catch (apiErr) {
+        try {
+          const embedded = document.getElementById('moduleJson');
+          if (embedded) {
+            MODULES = JSON.parse(embedded.textContent);
+          } else {
+            const res2 = await fetch('/modules.json');
+            if (!res2.ok) throw new Error('HTTP '+res2.status);
+            MODULES = await res2.json();
+          }
+        } catch (fallbackErr) {
+          console.error('Module konnten nicht geladen werden:', apiErr, fallbackErr);
+          MODULES = [];
+        }
+      }
+
+      MODULES.forEach(m => { modulesById[m.Modulnummer] = m; });
+
+      const extraFaks = Array.from(new Set(MODULES.map(m => m.Fakultät).filter(Boolean)));
+      extraFaks.forEach(f => { if (!fakultaetListe.includes(f)) fakultaetListe.push(f); });
+      fillFakultaetList();
+
+      fillModuleSelect(MODULES);
+    }
+
+    function applyModuleToForm(mod){
+      const modulnummer = document.getElementById('modulnummer');
+      const modulbez   = document.getElementById('modulbezeichnung');
+      if (modulnummer) modulnummer.value = mod.Modulnummer || '';
+      if (modulbez)    modulbez.value    = mod.Modulbezeichnung || '';
+
+      if (mod?.Turnus) setSemesterFromTurnus(mod.Turnus);
+      setFakultaetSmart(mod.Fakultät || '');
+
+      const sg = document.getElementById('studiengang');
+      if (sg) setIfEmpty(sg, (Array.isArray(mod.ZusammenMit) && mod.ZusammenMit.length) ? mod.ZusammenMit.join('+') : '');
+
+      const fs = document.getElementById('fachsemester');
+      if (fs) setIfEmpty(fs, mod.Fachsemester || '');
+
+      const gruppenInput = document.getElementById('gruppen');
+      const auf = mod?.Lehrveranstaltungen?.Aufteilung;
+      if (gruppenInput && Array.isArray(auf) && auf.length){
+        const groups = auf.map(a => a.Gruppen).filter(Boolean);
+        if (!gruppenInput.value && groups.length) gruppenInput.value = groups.join(', ');
+        if (sg && !sg.value) sg.value = inferStudiengang(mod, auf[0]);
+      }
+
+      const fa = document.getElementById('fachart');
+      if (fa && mod?.Fachart && !fa.value) {
+        if ([...fa.options].some(o => o.value === mod.Fachart)) fa.value = mod.Fachart;
+      }
+
+      const lv = mod?.Lehrveranstaltungen || {};
+      setSwsValues(nf(lv.SWS_V), nf(lv.SWS_S), nf(lv.SWS_P));
+    }
+
+    function applySelectedModule(){
+      const sel = document.getElementById('modulSelect');
+      if (!sel || !sel.value) return;
+      const mod = modulesById[sel.value];
+      if (mod) applyModuleToForm(mod);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sel = document.getElementById('modulSelect');
+      const filter = document.getElementById('moduleFilter');
+
+      if (filter && sel){
+        filter.addEventListener('input', () => {
+          const q = filter.value.trim().toLowerCase();
+          Array.from(sel.options).forEach(opt => {
+            opt.hidden = q && !(opt.dataset.search || '').includes(q);
+          });
+        });
+      }
+      if (sel) sel.addEventListener('change', applySelectedModule);
+
+      const mn = document.getElementById('modulnummer');
+      if (mn) mn.addEventListener('change', async () => {
+        const id = mn.value.trim();
+        if (modulesById[id]) {
+          applyModuleToForm(modulesById[id]);
+        } else {
+          await ladeModulDaten_viaEndpoint(id); // Fallback
+        }
+      });
+
+      loadModules();
+    });
+
+    async function ladeModulDaten_viaEndpoint(nummer){
       if (!nummer) return;
       try {
         const res = await fetch(`/modul/${encodeURIComponent(nummer)}`);
         if (!res.ok) return;
         const data = await res.json();
-        document.getElementById("modulbezeichnung").value = data.modulbezeichnung || "";
-        // Optional: falls Sie weitere Felder ergänzen möchten (nicht sichtbar):
-        // document.getElementById("lvnummer").value = data.lehrveranstaltungsnummer || "";
-        // document.getElementById("lvname").value = data.lehrveranstaltungsbezeichnung || "";
-        // document.getElementsByName("dozent")[0].value = data.dozent || "";
+        document.getElementById("modulbezeichnung").value = data.modulbezeichnung || data.Modulbezeichnung || "";
       } catch (e) {
         console.warn("Konnte Moduldaten nicht laden:", e);
       }
     }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      const mn = document.getElementById('modulnummer');
-      if (mn) mn.addEventListener('change', ladeModulDaten);
-    });
   </script>
+
+  <!-- Optionaler Offline-Fallback wie in Datei 1:
+  <script type="application/json" id="moduleJson">[ /* … deine Module … */ ]</script>
+  -->
 </body>
 </html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>Modulverwaltung</title>
+  <link rel="stylesheet" href="modulverwaltung.css" />
+</head>
+<body>
+  <h1>Module bearbeiten</h1>
+  <div class="search-row">
+    <span class="small">Datenquelle: <b>INB_module.json</b> (wird automatisch geladen)</span>
+  </div>
+
+  <div class="actions">
+   <button type="button" onclick="addModule()">+ Modul hinzufügen</button>
+  </div>
+
+
+  <div class="search-row">
+    <input type="text" id="searchInput" placeholder="Suche nach Modulnummer oder Bezeichnung..." />
+  </div>
+
+  
+  
+  <div class="module-list" id="moduleList"></div>
+  
+  <div class="form-section" id="moduleForm" style="display:none">
+    <h2>Modul bearbeiten</h2>
+    <form id="editForm">
+      <label>
+        Modulnummer
+        <input name="Modulnummer" />
+      </label>
+      <label>
+         Modulbezeichnung
+        <input name="Modulbezeichnung" />
+      </label>
+      <label>
+        Fakultät
+        <input name="Fakultät" />
+      </label>
+      <label>
+        Niveau
+        <select name="Niveau">
+          <option value="Bachelor">Bachelor</option>
+           <option value="Master">Master</option>
+        </select>
+
+      </label>
+      <label>
+        Fachsemester
+        <input name="Fachsemester" />
+      </label>
+      <label>
+        Dauer
+        <input name="Dauer" />
+      </label>
+      <label>
+        Turnus
+        <select name="Turnus">
+          <option value="Wintersemester">Wintersemester</option>
+          <option value="Sommersemester">Sommersemester</option>
+        </select>
+
+      </label>
+      <div class="flex">
+        <label>
+          Anrede
+          <input name="Anrede" />
+        </label>
+        <label>
+          Vorname
+          <input name="Vorname" />
+        </label>
+        <label>
+          Nachname
+          <input name="Nachname" />
+        </label>
+      </div>
+      <label>
+        Workload (Stunden)
+        <input name="Workload" type="number" />
+      </label>
+      <div class="flex">
+        <label>
+          SWS Vorlesung
+          <input name="SWS_V" type="number" />
+        </label>
+        <label>
+          SWS Seminar
+          <input name="SWS_S" type="number" />
+        </label>
+        <label>
+          SWS Praktikum
+          <input name="SWS_P" type="number" />
+        </label>
+        <label>
+          SWS gesamt
+          <input name="SWS_gesamt" type="number" />
+        </label>
+      </div>
+      <label>
+        Modultyp (PF/WPF)
+        <select name="Modultyp">
+         <option value="PF">PF</option>
+          <option value="WPF">WPF</option>
+        </select>
+
+      </label>
+      <label>
+        Lehrkraft & Gruppeneinteilung (JSON, Array)
+        <textarea name="Aufteilung" rows="3" placeholder='z.B. [{"Typ":"Vorlesung","Dozent":"Fr. Prof. Schwarz",...}]'></textarea>
+      </label>
+      <label>
+        Charakter der Lehrveranstaltung (JSON, Objekt)
+        <textarea name="Charakter" rows="2" placeholder='z.B. {"Durchführung":"Präsenz","Sprache":"Deutsch"}'></textarea>
+      </label>
+      <label>
+        LV zusammen mit (Kommasepariert)
+        <input name="ZusammenMit" placeholder="INB, MIB" />
+      </label>
+      <label>
+        Teilnehmerzahlen (JSON, Objekt)
+        <textarea name="Teilnehmerzahlen" rows="3" placeholder='z.B. {"Gesamt":180,...}'></textarea>
+      </label>
+      <label>
+        Verwendbarkeit (JSON bearbeiten)
+        <textarea name="Verwendbarkeit" rows="3"></textarea>
+      </label>
+      <div class="actions">
+        <button type="button" onclick="saveModule()">Speichern</button>
+        <button type="button" onclick="cancelEdit()">Abbrechen</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="modulverwaltung.js"></script>
+</body>
+</html>

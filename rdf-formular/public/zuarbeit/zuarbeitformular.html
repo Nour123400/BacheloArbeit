@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zuarbeitsformular</title>
+  <style>
+    :root { --gap: 10px; }
+    * { box-sizing: border-box; }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; margin: 18px; }
+    h1 { margin-top: 0; }
+    label { font-weight: 600; display: inline-block; margin: 6px 0 3px; }
+    input, select, textarea { margin-bottom: 8px; padding: 6px 8px; }
+    input[type="number"] { width: 120px; }
+    input[readonly] { background: #f7f7f7; }
+    .row { display: grid; grid-template-columns: repeat(12, 1fr); gap: var(--gap); align-items: start; }
+    .col-3 { grid-column: span 3; }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    fieldset { border: 1px solid #ddd; border-radius: 8px; padding: 12px; margin-bottom: 18px; }
+    legend { font-weight: 700; padding: 0 6px; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border: 1px solid #ccc; padding: 6px; text-align: left; vertical-align: top; }
+    th { background: #f1f1f1; }
+    .btn { padding: 6px 10px; border: 1px solid #999; background: #fafafa; border-radius: 6px; cursor: pointer; }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary { background: #0563bb; color: #fff; border-color: #0563bb; }
+    .hint { background: #f7fbff; border: 1px solid #cfe8ff; padding: 10px; border-radius: 8px; }
+
+    /* Ergänzung: Modul-Browser wie in Datei 1 */
+    #modulSelect { width: 100%; height: 12rem; }
+    #moduleFilter { width: 100%; }
+  </style>
+</head>
+<body>
+  <h1>📝 Zuarbeitsformular (Lehrveranstaltung)</h1>
+
+  <form method="POST" action="/submit?type=zuarbeit">
+    <fieldset>
+      <legend>Allgemeine Angaben</legend>
+      <div class="row">
+        <div class="col-3">
+          <label for="abgabetermin">Abgabetermin DS:</label>
+          <input id="abgabetermin" name="abgabetermin" type="date" />
+        </div>
+        <div class="col-3">
+          <label for="eingang">Eingang bei DS:</label>
+          <input id="eingang" name="eingang" type="date" />
+        </div>
+        <div class="col-6">
+          <label for="hochschule">Hochschule:</label>
+          <input id="hochschule" name="hochschule" value="HTWK Leipzig" readonly />
+        </div>
+        <div class="col-6">
+          <label for="semester">Semester:</label>
+          <select name="semester" id="semester"></select>
+        </div>
+        <div class="col-6">
+          <label for="fakultaet">Fakultät:</label>
+          <select name="fakultaet" id="fakultaet"></select>
+        </div>
+        <div class="col-6">
+          <label for="studiengang">Studiengang:</label>
+          <input id="studiengang" name="studiengang" value="INB+MIB" />
+        </div>
+        <div class="col-3">
+          <label for="fachsemester">Fachsemester:</label>
+          <input id="fachsemester" name="fachsemester" type="number" min="0" />
+        </div>
+        <div class="col-9">
+          <label for="gruppen">Gruppen:</label>
+          <input id="gruppen" name="gruppen" type="text" placeholder="z. B. Gruppe 25INB-1, Gruppe 25MIB-1-2" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Modul / Lehrveranstaltung</legend>
+
+      <!-- NEU: Modul-Browser (Filter + Liste + Button) -->
+      <div class="row" style="margin-bottom:10px;">
+        <div class="col-12">
+          <label for="modulSelect">Modul aus Liste auswählen:</label>
+          <input id="moduleFilter" type="text" placeholder="Filtern nach Modulnr., Name, Verantwortliche …">
+          <select id="modulSelect" size="10"></select>
+        </div>
+      </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <label for="modulnummer">Modulnummer:</label>
+          <input id="modulnummer" name="modulnummer" type="text" />
+        </div>
+        <div class="col-8">
+          <label for="modulbezeichnung">Modulbezeichnung:</label>
+          <input id="modulbezeichnung" name="modulbezeichnung" type="text" />
+        </div>
+        <div class="col-4">
+          <label for="teilmodulnummer">Teilmodulnummer:</label>
+          <input id="teilmodulnummer" name="teilmodulnummer" type="text" />
+        </div>
+        <div class="col-8">
+          <label for="teilmodulbezeichnung">Teilmodulbezeichnung:</label>
+          <input id="teilmodulbezeichnung" name="teilmodulbezeichnung" type="text" />
+        </div>
+        <div class="col-6">
+          <label for="fachart">Fachart (Pflicht- oder Wahlpflichtmodul):</label>
+          <select name="fachart" id="fachart">
+            <option value="">-- bitte wählen --</option>
+            <option value="Pflichtmodul">Pflichtmodul</option>
+            <option value="Wahlpflichtmodul">Wahlpflichtmodul</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="gesamtSwsTabelle" class="col-12" style="margin-top:12px;"></div>
+
+      <p class="hint" style="margin-top:12px;">
+        <strong>Hinweis:</strong> Die Buchung von Technik für den Campusbereich ist nur eine Voranmeldung. Die Nutzungsmodalitäten sind vom Lehrenden mit DT abzusprechen.
+      </p>
+      <p class="hint">
+        <strong>Hinweis:</strong> 1 SWS = 1 WS (Wochenstunde: 45 min) in jeder Woche des Semesters; geplant werden nur Einheiten: 1 Einheit = 2 WS = 90 min
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Lesende</legend>
+      <button type="button" class="btn" id="lesendeAddBtn">➕ Zeile hinzufügen</button>
+      <div id="lesendeTabelle" style="margin-top:8px;"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Seminarleiter</legend>
+      <button type="button" class="btn" id="seminarleiterAddBtn">➕ Zeile hinzufügen</button>
+      <div id="seminarleiterTabelle" style="margin-top:8px;"></div>
+      <p style="margin-top:8px;">
+        Bitte geben Sie an, ob die Seminare mit den einzelnen Seminargruppen, in mehreren Gruppen gemeinsam als Hörsaalseminar oder in anderen Varianten durchgeführt werden.
+      </p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Praktikumsverantwortliche</legend>
+      <button type="button" class="btn" id="praktikumAddBtn">➕ Zeile hinzufügen</button>
+      <div id="praktikumTabelle" style="margin-top:8px;"></div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Wünsche zur Planung dieser Lehrveranstaltung</legend>
+      <div id="planungWuensche">
+        <label><input type="checkbox" name="planung_wunsch_1" checked> gleichmäßige Verteilung von Vorlesungen und Seminaren auf gerade und ungerade Wochen</label><br>
+        <label><input type="checkbox" name="planung_wunsch_2"> Vorlesungen in der einen und Seminare in der anderen Woche</label><br>
+        <label><input type="checkbox" name="planung_wunsch_3"> Blockplanung (2 Einheiten hintereinander) von Vorlesungen, Seminaren oder Praktika einer Seminargruppe</label><br>
+        <label><input type="checkbox" name="planung_wunsch_4"> <b>keine</b> Blockplanung in <b>einer</b> Seminargruppe</label><br>
+        <label><input type="checkbox" name="planung_wunsch_5"> Vorlesung <b>zwingend</b> vor Seminar</label><br>
+        <label><input name="planung_wunsch_andere" placeholder="anderer Wunsch" style="width:250px"></label>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Konkrete Kalenderwochen</legend>
+      <p>Ankreuzen oder beschriften:</p>
+      <button type="button" class="btn" id="planungsKalenderAddBtn">➕ Kalender-Zeile hinzufügen</button>
+      <div id="planungsKalender" style="margin-top:8px;"></div>
+    </fieldset>
+
+    <div class="row" style="margin-top:16px;">
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">✅ Speichern</button>
+      </div>
+    </div>
+  </form>
+
+  <p style="margin-top:12px;"><a href="/">Zurück zur Auswahl</a></p>
+
+  <!-- =============== Inline Scripts (vereint) =============== -->
+  <script>
+    // -------- semester.js --------
+    function getCurrentSemester() {
+      const now = new Date();
+      const month = now.getMonth() + 1;
+      const year = now.getFullYear();
+      if (month >= 4 && month <= 9) {
+        return `Sommersemester ${year}`;
+      } else if (month >= 10) {
+        const wsJahr1 = year;
+        const wsJahr2 = (year + 1).toString().slice(-2);
+        return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+      } else {
+        const wsJahr1 = year - 1;
+        const wsJahr2 = year.toString().slice(-2);
+        return `Wintersemester ${wsJahr1}/${wsJahr2}`;
+      }
+    }
+
+    function fillSemesterList(selectId = 'semester', yearsBack = 5, yearsForward = 10) {
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const startYear = currentYear - yearsBack;
+      const endYear = currentYear + yearsForward;
+      const semesterList = [];
+
+      for (let y = startYear; y <= endYear; y++) {
+        semesterList.push(`Sommersemester ${y}`);
+        const wsJahr2 = (y + 1).toString().slice(-2);
+        semesterList.push(`Wintersemester ${y}/${wsJahr2}`);
+      }
+
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      const currentSemester = getCurrentSemester();
+      semesterList.forEach(sem => {
+        const opt = document.createElement('option');
+        opt.value = sem;
+        opt.textContent = sem;
+        if (sem === currentSemester) opt.selected = true;
+        select.appendChild(opt);
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => fillSemesterList());
+
+    // -------- fakultaet.js --------
+    const fakultaetListe = [
+      "",
+      "FAS",
+      "FB",
+      "FDIT",
+      "FIM-INF",
+      "FING",
+      "FWW",
+      "HSZ",
+      "MNZ",
+      "Gast",
+      "HonProf"
+    ];
+
+    function fillFakultaetList(selectId = "fakultaet", list = fakultaetListe) {
+      const select = document.getElementById(selectId);
+      if (!select) return;
+      select.innerHTML = "";
+      list.forEach(fak => {
+        const opt = document.createElement("option");
+        opt.value = fak;
+        opt.textContent = fak;
+        if (fak === "FIM-INF") {
+          opt.selected = true; // Vorauswahl
+        }
+        select.appendChild(opt);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => fillFakultaetList());
+
+    // -------- gesamtSwsTabelle.js --------
+    document.addEventListener("DOMContentLoaded", function () {
+      const container = document.getElementById("gesamtSwsTabelle");
+      const spalten = ["Vorlesung", "Seminar", "Praktikum"];
+      const zeilen = [
+        { label: "davon SWS", typ: "number", namen: ["sws_v", "sws_s", "sws_p"], werte: [2, 2, 0] },
+        { label: "Raumanforderung", typ: "text", namen: ["raum_v", "raum_s", "raum_p"], werte: ["Gu, Li, Tr", "Z423, Z430", ""] },
+        { label: "Technikanforderung (Campus – Bereich)", typ: "text", namen: ["technik_v", "technik_s", "technik_p"], werte: ["Beamer/WLAN", "", ""] }
+      ];
+
+      const table = document.createElement("table");
+      table.id = "gesamtSwsTable";
+
+      // Kopfzeile
+      const headerRow = table.insertRow();
+      const headerCell = document.createElement("td");
+      headerCell.colSpan = 4;
+      headerCell.innerHTML = `<strong>Gesamt SWS (bezogen auf einen Beispiel-Studenten):</strong> <span id="gesamtSwsWert">0</span>`;
+      headerRow.appendChild(headerCell);
+
+      // Spaltenüberschriften
+      const spaltenRow = table.insertRow();
+      spaltenRow.insertCell(); // leer
+      spalten.forEach(s => {
+        const th = document.createElement("th");
+        th.textContent = s;
+        spaltenRow.appendChild(th);
+      });
+
+      // Inhalte
+      zeilen.forEach((zeile) => {
+        const row = table.insertRow();
+        const labelCell = row.insertCell();
+        labelCell.textContent = zeile.label;
+
+        zeile.namen.forEach((feldName, sIndex) => {
+          const cell = row.insertCell();
+          const input = document.createElement("input");
+          input.name = feldName;
+          input.style.width = "120px";
+          input.style.fontWeight = "bold";
+          input.value = zeile.werte[sIndex];
+          input.type = zeile.typ === "number" ? "number" : "text";
+          if (zeile.typ === "number") {
+            input.min = 0;
+            input.addEventListener("input", updateGesamtSws);
+          }
+          cell.appendChild(input);
+        });
+      });
+
+      container.appendChild(table);
+      updateGesamtSws();
+
+      function updateGesamtSws() {
+        const v = parseInt(document.querySelector('[name="sws_v"]').value) || 0;
+        const s = parseInt(document.querySelector('[name="sws_s"]').value) || 0;
+        const p = parseInt(document.querySelector('[name="sws_p"]').value) || 0;
+        document.getElementById("gesamtSwsWert").textContent = v + s + p;
+      }
+    });
+
+    // -------- lesende.js (korrigiert) --------
+    let lesendeZaehler = 0;
+    document.addEventListener("DOMContentLoaded", function() {
+      const btn = document.getElementById("lesendeAddBtn");
+      if (btn) btn.addEventListener("click", addLesendeRow);
+      addLesendeRow(); // Erste Zeile automatisch
+    });
+
+    function addLesendeRow() {
+      const tableDiv = document.getElementById("lesendeTabelle");
+      if (!document.getElementById("lesendeTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%;" id="lesendeTable">
+            <tr>
+              <th>Fakultät – Bereich / Titel, Name</th>
+              <th>Seminargruppe</th>
+              <th>Erläuterung</th>
+              <th>🗑️</th>
+            </tr>
+          </table>
+        `;
+      }
+      lesendeZaehler++;
+      const table = document.getElementById("lesendeTable");
+      const row = table.insertRow(-1);
+      row.innerHTML = `
+        <td><input name="lesende_fakultaet_${lesendeZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="lesende_gruppe_${lesendeZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="lesende_erklaerung_${lesendeZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><button type="button" class="btn" onclick="removeLesendeRow(this)">🗑️</button></td>
+      `;
+    }
+
+    function removeLesendeRow(btn) {
+      const table = document.getElementById("lesendeTable");
+      if (!table) return;
+      // mind. 1 Datenzeile behalten (1 Header + 1 Datenzeile = 2 rows)
+      if (table.rows.length > 2) {
+        const row = btn.closest('tr');
+        row.parentNode.removeChild(row);
+      }
+    }
+    window.removeLesendeRow = removeLesendeRow;
+
+    // -------- seminarleiter.js --------
+    let seminarleiterZaehler = 0;
+    document.addEventListener("DOMContentLoaded", function() {
+      const btn = document.getElementById("seminarleiterAddBtn");
+      if (btn) btn.addEventListener("click", addSeminarleiterRow);
+      addSeminarleiterRow();
+    });
+
+    function addSeminarleiterRow() {
+      const tableDiv = document.getElementById("seminarleiterTabelle");
+      if (!document.getElementById("seminarleiterTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%;" id="seminarleiterTable">
+            <tr>
+              <th>Fakultät – Bereich / Titel, Name</th>
+              <th>Seminargruppe</th>
+              <th>Erläuterung</th>
+              <th>🗑️</th>
+            </tr>
+          </table>
+        `;
+      }
+      seminarleiterZaehler++;
+      const table = document.getElementById("seminarleiterTable");
+      const row = table.insertRow(-1);
+      row.innerHTML = `
+        <td><input name="seminarleiter_fakultaet_${seminarleiterZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="seminarleiter_gruppe_${seminarleiterZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="seminarleiter_erklaerung_${seminarleiterZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><button type="button" class="btn" onclick="removeSeminarleiterRow(this)">🗑️</button></td>
+      `;
+    }
+
+    function removeSeminarleiterRow(btn) {
+      const table = document.getElementById("seminarleiterTable");
+      if (table && table.rows.length > 2) {
+        const row = btn.closest('tr');
+        row.parentNode.removeChild(row);
+      }
+    }
+    window.removeSeminarleiterRow = removeSeminarleiterRow;
+
+    // -------- praktikumsverantwortliche.js --------
+    let praktikumZaehler = 0;
+    document.addEventListener("DOMContentLoaded", function() {
+      const btn = document.getElementById("praktikumAddBtn");
+      if (btn) btn.addEventListener("click", addPraktikumRow);
+      addPraktikumRow();
+    });
+
+    function addPraktikumRow() {
+      const tableDiv = document.getElementById("praktikumTabelle");
+      if (!document.getElementById("praktikumTable")) {
+        tableDiv.innerHTML = `
+          <table border="1" style="border-collapse:collapse;width:100%;" id="praktikumTable">
+            <tr>
+              <th>Fakultät – Bereich / Titel, Name</th>
+              <th>Seminargruppe</th>
+              <th>Erläuterung</th>
+              <th>🗑️</th>
+            </tr>
+          </table>
+        `;
+      }
+      praktikumZaehler++;
+      const table = document.getElementById("praktikumTable");
+      const row = table.insertRow(-1);
+      row.innerHTML = `
+        <td><input name="praktikum_fakultaet_${praktikumZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="praktikum_gruppe_${praktikumZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><input name="praktikum_erklaerung_${praktikumZaehler}" style="width:99%;font-weight:bold" /></td>
+        <td><button type="button" class="btn" onclick="removePraktikumRow(this)">🗑️</button></td>
+      `;
+    }
+
+    function removePraktikumRow(btn) {
+      const table = document.getElementById("praktikumTable");
+      if (table && table.rows.length > 2) {
+        const row = btn.closest('tr');
+        row.parentNode.removeChild(row);
+      }
+    }
+    window.removePraktikumRow = removePraktikumRow;
+
+    // -------- planungsKalender.js --------
+    let planungsKalenderZaehler = 0;
+    document.addEventListener("DOMContentLoaded", function () {
+      const btn = document.getElementById("planungsKalenderAddBtn");
+      if (btn) btn.addEventListener("click", addPlanungsKalenderRow);
+      addPlanungsKalenderRow(); // Immer mit einer Zeile starten
+    });
+
+    function addPlanungsKalenderRow() {
+      const container = document.getElementById("planungsKalender");
+      const wochen = [15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,39];
+
+      let table = document.getElementById("planungsKalenderTable");
+      if (!table) {
+        table = document.createElement("table");
+        table.border = "1";
+        table.style.borderCollapse = "collapse";
+        table.id = "planungsKalenderTable";
+
+        const headRow = table.insertRow();
+        wochen.forEach(w => {
+          const th = document.createElement("th");
+          th.textContent = w;
+          headRow.appendChild(th);
+        });
+        const thName = document.createElement("th");
+        thName.textContent = "Name";
+        headRow.appendChild(thName);
+
+        container.innerHTML = "";
+        container.appendChild(table);
+      }
+
+      planungsKalenderZaehler++;
+      const zeilenId = planungsKalenderZaehler;
+
+      const row1 = table.insertRow(-1);
+      row1.setAttribute("data-id", zeilenId);
+
+      wochen.forEach(w => {
+        const td = row1.insertCell();
+        if (w === 39) {
+          td.rowSpan = 2;
+          td.innerHTML = `<div style="font-size:smaller;">Prüfung</div><input type="checkbox" name="kw_pruefung_${zeilenId}">`;
+          td.style.minWidth = "50px";
+        } else {
+          td.innerHTML = `<input type="checkbox" name="kw_${w}_${zeilenId}">`;
+        }
+      });
+
+      const nameTd = row1.insertCell();
+      nameTd.rowSpan = 2;
+      nameTd.innerHTML = `
+        <input name="planungs_name_${zeilenId}" style="width:90px" placeholder="Name" />
+        <button type="button" class="btn" onclick="removePlanungsKalenderRow(this)">🗑️</button>
+      `;
+
+      const row2 = table.insertRow(-1);
+      row2.setAttribute("data-id", zeilenId);
+      wochen.forEach(w => {
+        if (w === 39) return; // schon oben
+        const td = row2.insertCell();
+        td.innerHTML = `<input type="text" name="kwtxt_${w}_${zeilenId}" style="width:32px;" placeholder="KW" title="Kurztext für KW ${w}">`;
+      });
+    }
+
+    function removePlanungsKalenderRow(btn) {
+      const tr = btn.closest('tr');
+      const table = document.getElementById("planungsKalenderTable");
+      if (!table) return;
+      const datensatzRows = Array.from(table.querySelectorAll('tr[data-id]'));
+      const uniqueIds = [...new Set(datensatzRows.map(r => r.getAttribute('data-id')))]
+      if (uniqueIds.length <= 1) return; // Nie die letzte entfernen!
+      const zeilenId = tr.getAttribute('data-id');
+      datensatzRows.filter(r => r.getAttribute('data-id') === zeilenId)
+        .forEach(row => row.parentNode.removeChild(row));
+    }
+    window.removePlanungsKalenderRow = removePlanungsKalenderRow;
+
+    // ===== Module-Browser + Autofill (wie in Datei 1) =====
+    let MODULES = [];
+    const modulesById = {};
+
+    function nf(x){ const n = Number(x); return Number.isFinite(n) ? Math.max(0, n) : ''; }
+
+    function setSemesterFromTurnus(turnus) {
+      if (!turnus) return;
+      const s = document.getElementById('semester');
+      if (!s) return;
+      const now = new Date();
+      let target = '';
+      if (turnus.toLowerCase().startsWith('winter')) {
+        const y = (now.getMonth()+1 >= 10) ? now.getFullYear() : now.getFullYear()-1;
+        target = `Wintersemester ${y}/${(y+1).toString().slice(-2)}`;
+      } else if (turnus.toLowerCase().startsWith('sommer')) {
+        target = `Sommersemester ${now.getFullYear()}`;
+      }
+      const opt = Array.from(s.options).find(o => o.textContent === target);
+      if (opt) s.value = opt.value;
+    }
+
+    function inferStudiengang(mod, auf){
+      const g = (auf && typeof auf.Gruppen === 'string') ? auf.Gruppen : '';
+      if (g.includes('INB')) return 'INB';
+      if (g.includes('MIB')) return 'MIB';
+      if (Array.isArray(mod?.ZusammenMit) && mod.ZusammenMit.length) return mod.ZusammenMit.join('+');
+      return '';
+    }
+
+    function setIfEmpty(el, val){ if (el && !el.value && val != null) el.value = val; }
+    function setFakultaetSmart(value){
+      const sel = document.getElementById('fakultaet');
+      if (!sel || !value) return;
+      if (![...sel.options].some(o => o.value === value)) {
+        const opt = document.createElement('option'); opt.value = value; opt.textContent = value; sel.appendChild(opt);
+      }
+      if (!sel.value || sel.value === 'FIM-INF') sel.value = value;
+    }
+    function setSwsValues(v,s,p){
+      const iv = document.querySelector('[name="sws_v"]');
+      const is = document.querySelector('[name="sws_s"]');
+      const ip = document.querySelector('[name="sws_p"]');
+      if (iv){ iv.value = v || 0; iv.dispatchEvent(new Event('input', {bubbles:true})); }
+      if (is){ is.value = s || 0; is.dispatchEvent(new Event('input', {bubbles:true})); }
+      if (ip){ ip.value = p || 0; ip.dispatchEvent(new Event('input', {bubbles:true})); }
+      const span = document.getElementById('gesamtSwsWert');
+      if (span){
+        const vv = parseInt(iv?.value||0)||0, ss = parseInt(is?.value||0)||0, pp = parseInt(ip?.value||0)||0;
+        span.textContent = vv + ss + pp;
+      }
+    }
+
+    function fillModuleSelect(list){
+      const sel = document.getElementById('modulSelect');
+      if (!sel) return;
+      sel.innerHTML = '';
+      list.forEach(m => {
+        const opt = document.createElement('option');
+        opt.value = m.Modulnummer;
+        opt.textContent = m.Modulnummer + ' — ' + m.Modulbezeichnung;
+        const searchBlob = [
+          m.Modulnummer,
+          m.Modulbezeichnung,
+          (m.ZusammenMit||[]).join(' '),
+          m?.Modulverantwortliche?.Vorname,
+          m?.Modulverantwortliche?.Nachname
+        ].filter(Boolean).join(' ').toLowerCase();
+        opt.dataset.search = searchBlob;
+        sel.appendChild(opt);
+      });
+    }
+
+    async function loadModules(){
+      try {
+        const res = await fetch('/api/module', { headers: { 'Accept': 'application/json' } });
+        if (!res.ok) throw new Error('HTTP '+res.status);
+        MODULES = await res.json();
+      } catch (apiErr) {
+        try {
+          const embedded = document.getElementById('moduleJson');
+          if (embedded) {
+            MODULES = JSON.parse(embedded.textContent);
+          } else {
+            const res2 = await fetch('/modules.json');
+            if (!res2.ok) throw new Error('HTTP '+res2.status);
+            MODULES = await res2.json();
+          }
+        } catch (fallbackErr) {
+          console.error('Module konnten nicht geladen werden:', apiErr, fallbackErr);
+          MODULES = [];
+        }
+      }
+
+      MODULES.forEach(m => { modulesById[m.Modulnummer] = m; });
+
+      const extraFaks = Array.from(new Set(MODULES.map(m => m.Fakultät).filter(Boolean)));
+      extraFaks.forEach(f => { if (!fakultaetListe.includes(f)) fakultaetListe.push(f); });
+      fillFakultaetList();
+
+      fillModuleSelect(MODULES);
+    }
+
+    function applyModuleToForm(mod){
+      const modulnummer = document.getElementById('modulnummer');
+      const modulbez   = document.getElementById('modulbezeichnung');
+      if (modulnummer) modulnummer.value = mod.Modulnummer || '';
+      if (modulbez)    modulbez.value    = mod.Modulbezeichnung || '';
+
+      if (mod?.Turnus) setSemesterFromTurnus(mod.Turnus);
+      setFakultaetSmart(mod.Fakultät || '');
+
+      const sg = document.getElementById('studiengang');
+      if (sg) setIfEmpty(sg, (Array.isArray(mod.ZusammenMit) && mod.ZusammenMit.length) ? mod.ZusammenMit.join('+') : '');
+
+      const fs = document.getElementById('fachsemester');
+      if (fs) setIfEmpty(fs, mod.Fachsemester || '');
+
+      const gruppenInput = document.getElementById('gruppen');
+      const auf = mod?.Lehrveranstaltungen?.Aufteilung;
+      if (gruppenInput && Array.isArray(auf) && auf.length){
+        const groups = auf.map(a => a.Gruppen).filter(Boolean);
+        if (!gruppenInput.value && groups.length) gruppenInput.value = groups.join(', ');
+        if (sg && !sg.value) sg.value = inferStudiengang(mod, auf[0]);
+      }
+
+      const fa = document.getElementById('fachart');
+      if (fa) {
+        const mt = (mod?.Modultyp || '').toString().trim().toUpperCase();
+        if (mt === 'PF')      fa.value = 'Pflichtmodul';
+        else if (mt === 'WPF') fa.value = 'Wahlpflichtmodul';
+        else if (!fa.value && mod?.Fachart && [...fa.options].some(o => o.value === mod.Fachart)) {
+          fa.value = mod.Fachart; // Fallback, falls JSON statt Modultyp ein Klartextfeld hat
+        }
+      }
+
+      const lv = mod?.Lehrveranstaltungen || {};
+      setSwsValues(nf(lv.SWS_V), nf(lv.SWS_S), nf(lv.SWS_P));
+    }
+
+    function applySelectedModule(){
+      const sel = document.getElementById('modulSelect');
+      if (!sel || !sel.value) return;
+      const mod = modulesById[sel.value];
+      if (mod) applyModuleToForm(mod);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const sel = document.getElementById('modulSelect');
+      const filter = document.getElementById('moduleFilter');
+
+      if (filter && sel){
+        filter.addEventListener('input', () => {
+          const q = filter.value.trim().toLowerCase();
+          Array.from(sel.options).forEach(opt => {
+            opt.hidden = q && !(opt.dataset.search || '').includes(q);
+          });
+        });
+      }
+      if (sel) sel.addEventListener('change', applySelectedModule);
+
+      const mn = document.getElementById('modulnummer');
+      if (mn) mn.addEventListener('change', async () => {
+        const id = mn.value.trim();
+        if (modulesById[id]) {
+          applyModuleToForm(modulesById[id]);
+        } else {
+          await ladeModulDaten_viaEndpoint(id); // Fallback
+        }
+      });
+
+      loadModules();
+    });
+
+    async function ladeModulDaten_viaEndpoint(nummer){
+      if (!nummer) return;
+      try {
+        const res = await fetch(`/modul/${encodeURIComponent(nummer)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        document.getElementById("modulbezeichnung").value = data.modulbezeichnung || data.Modulbezeichnung || "";
+        const fa = document.getElementById('fachart');
+        if (fa) {
+          const mt = (data.Modultyp || '').toString().trim().toUpperCase();
+          if (mt === 'PF')      fa.value = 'Pflichtmodul';
+          else if (mt === 'WPF') fa.value = 'Wahlpflichtmodul';
+        }
+      } catch (e) {
+        console.warn("Konnte Moduldaten nicht laden:", e);
+      }
+    }
+  </script>
+
+  <!-- Optionaler Offline-Fallback wie in Datei 1:
+  <script type="application/json" id="moduleJson">[ /* … deine Module … */ ]</script>
+  -->
+</body>
+</html>

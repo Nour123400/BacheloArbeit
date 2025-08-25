@@ -2,34 +2,17 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>RDF Eingabeformular</title>
+  <title>RDF Planung Auswahl</title>
 </head>
 <body>
-  <h1>📄 Lehrveranstaltung erfassen</h1>
-  <form action="/submit" method="POST">
-    <label>Modulnummer:</label><br />
-    <input name="modulnummer" required /><br /><br />
+  <h1>RDF Lehrplanung</h1>
+  <h2>Wähle das Formular:</h2>
+  <ul>
+    <li><a href="dozenten/dozentenformular.html">Dozentenblatt</a></li>
+    <li><a href="zuarbeit/zuarbeitformular.html">Zuarbeitsformular</a></li>
+    <li><a href="module/modulverwaltung.html">Modulverwaltung</a></li>
 
-    <label>Modulbezeichnung:</label><br />
-    <input name="modulbezeichnung" required /><br /><br />
 
-    <label>Lehrveranstaltungsbezeichnung:</label><br />
-    <input name="bezeichnung" required /><br /><br />
-
-    <label>Gesamt SWS:</label><br />
-    <input name="sws" type="number" required /><br /><br />
-
-    <label>Dozent:</label><br />
-    <input name="dozent" required /><br /><br />
-
-    <label>Gruppe:</label><br />
-    <input name="gruppe" required /><br /><br />
-
-    <label>Technikanforderung:</label><br />
-    <input name="technik" /><br /><br />
-
-    <button type="submit">✅ Abschicken</button>
-  </form>
+  </ul>
 </body>
 </html>
-

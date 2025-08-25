@@ -1,0 +1,30 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Zuarbeitsblatt_1756123772645 a ex:Zuarbeitsblatt ;
+  ex:abgabeterminDS ""^^xsd:date ;
+  ex:eingangDS "" ;
+  ex:semester "Sommersemester 2025" ;
+  ex:fakultaet "FIM-INF" ;
+  ex:studiengang "INB+MIB" ;
+  ex:fachsemester 0 ;
+  ex:gruppen "5 Gr. geteilt in a und b, 25INB-1a, parallel 2 Gruppen a und b, 25INB-2a+25INB-3a, 25INB-1b+2b+3a+3b+25MIB-1b+1b+2a inkl. BIN" ;
+  ex:anzahlStudierendeGruppen 0 ;
+  ex:modulnummer "C963" ;
+  ex:modulbezeichnung "Grundlagen der Programmierung" ;
+  ex:teilmodulnummer "" ;
+  ex:teilmodulbezeichnung "" ;
+  ex:fachart "Pflichtmodul" ;
+  ex:swsV 2 ;
+  ex:swsS 0 ;
+  ex:swsP 2 ;
+  ex:raumV "Gu, Li, Tr" ;
+  ex:raumS "Z423, Z430" ;
+  ex:raumP "" ;
+  ex:technikV "Beamer/WLAN" ;
+  ex:technikS "" ;
+  ex:technikP "" .
+:Zuarbeitsblatt_1756123772645 ex:planungswunsch "1" .
+

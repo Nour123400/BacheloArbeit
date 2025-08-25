@@ -1,0 +1,37 @@
+@prefix ex: <http://example.org/htwk#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix : <http://example.org/data/> .
+
+
+:Dozentenblatt_1756123705733 a ex:Dozentenblatt ;
+  ex:abgabeterminDS ""^^xsd:date ;
+  ex:eingangDS "" ;
+  // ex:hochschule "" ;
+  ex:semester "Sommersemester 2025" ;
+  ex:titel "Prof. Dr. rer. nat." ;
+  ex:vorname " Karsten" ;
+  ex:name "Weicker" ;
+  ex:email "" ;
+  ex:telefon "" ;
+  ex:arbeitszeit "Vollzeit" ;
+  ex:fakultaet "FIM-INF" ;
+  ex:einsatz :Einsatz_1756123705733_einsatz1 .
+
+    :Einsatz_1756123705733_einsatz1 a ex:Einsatz ;
+    ex:lfd "1" ;
+    ex:fakultaet "FIM-INF" ;
+    ex:stg "INB+MIB" ;
+    ex:fs "2" ;
+    ex:gruppe "" ;
+    ex:modulnr "C300" ;
+    ex:modulname "Algorithmen und Datenstrukturen" ;
+    ex:swsV 4 ;
+    ex:swsS 2 ;
+    ex:swsP 0 ;
+    ex:digital "nein" ;
+    ex:bemerkung "Sommersemester • Bachelor" ;
+    ex:zugeordnetZu :Dozentenblatt_1756123705733 .
+ .
+ .
+ .
+

@@ -3,34 +3,131 @@
 @prefix : <http://example.org/data/> .
 
 
-:Dozentenblatt_1756123705733 a ex:Dozentenblatt ;
-  ex:abgabeterminDS ""^^xsd:date ;
+:Dozentenblatt_1756228034328 a ex:Dozentenblatt ;
+  ex:abgabeterminDS "2025-08-21"^^xsd:date ;
   ex:eingangDS "" ;
   // ex:hochschule "" ;
-  ex:semester "Sommersemester 2025" ;
+  ex:semester "Wintersemester 2024/25" ;
   ex:titel "Prof. Dr. rer. nat." ;
-  ex:vorname " Karsten" ;
-  ex:name "Weicker" ;
-  ex:email "" ;
-  ex:telefon "" ;
+  ex:vorname "Sibylle" ;
+  ex:name "Schwarz" ;
+  ex:email "dsfgadsgsdfhdfgjgfjtdz" ;
+  ex:telefon "234523453425234" ;
   ex:arbeitszeit "Vollzeit" ;
   ex:fakultaet "FIM-INF" ;
-  ex:einsatz :Einsatz_1756123705733_einsatz1 .
+  ex:einsatz :Einsatz_1756228034328_einsatz1, :Einsatz_1756228034328_einsatz2 .
 
-    :Einsatz_1756123705733_einsatz1 a ex:Einsatz ;
+    :Einsatz_1756228034328_einsatz1 a ex:Einsatz ;
     ex:lfd "1" ;
     ex:fakultaet "FIM-INF" ;
     ex:stg "INB+MIB" ;
-    ex:fs "2" ;
+    ex:fs "1" ;
     ex:gruppe "" ;
-    ex:modulnr "C300" ;
-    ex:modulname "Algorithmen und Datenstrukturen" ;
+    ex:modulnr "C114" ;
+    ex:modulname "Modellierung" ;
     ex:swsV 4 ;
     ex:swsS 2 ;
     ex:swsP 0 ;
     ex:digital "nein" ;
-    ex:bemerkung "Sommersemester • Bachelor" ;
-    ex:zugeordnetZu :Dozentenblatt_1756123705733 .
+    ex:bemerkung "Wintersemester • Bachelor" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+
+    :Einsatz_1756228034328_einsatz2 a ex:Einsatz ;
+    ex:lfd "2" ;
+    ex:fakultaet "FIM-INF" ;
+    ex:stg "INB+MIB" ;
+    ex:fs "1" ;
+    ex:gruppe "" ;
+    ex:modulnr "N662" ;
+    ex:modulname "Mathematik für Informatiker I" ;
+    ex:swsV 4 ;
+    ex:swsS 2 ;
+    ex:swsP 0 ;
+    ex:digital "nein" ;
+    ex:bemerkung "Wintersemester • Bachelor" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+ ;
+   ex:hinweis :Hinweis_1756228034328_hinweis1 .
+
+  :Hinweis_1756228034328_hinweis1 a ex:Hinweis ;
+    ex:lfd "1" ;
+    ex:dozentHinweis "keine" ;
+    ex:dekanatHinweis "" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+ ;
+   ex:einsatzzeit :Einsatzzeit_1756228034328_einsatzzeit1, :Einsatzzeit_1756228034328_einsatzzeit2 .
+
+  :Einsatzzeit_1756228034328_einsatzzeit1 a ex:Einsatzzeit ;
+    ex:lfd "1" ;
+    ex:wochen "aw" ;
+    ex:wochentag "Di" ;
+    ex:uhrzeit "" ;
+    ex:anmerkung "jk,ghkj" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+
+  :Einsatzzeit_1756228034328_einsatzzeit2 a ex:Einsatzzeit ;
+    ex:lfd "2" ;
+    ex:wochen "gw" ;
+    ex:wochentag "Fr" ;
+    ex:uhrzeit "" ;
+    ex:anmerkung "ghjkghjkhjgkhjg" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+ ;
+    ex:sperrzeit :Sperrzeit_1756228034328_sperrzeit1, :Sperrzeit_1756228034328_sperrzeit2 .
+
+  :Sperrzeit_1756228034328_sperrzeit1 a ex:Sperrzeit ;
+   ex:lfd "1" ;
+   ex:wochen "aw" ;
+   ex:wochentag "Mo" ;
+   ex:bisab "Bis 09:00" ;
+   ex:begruendung "ghjkhjgkhjkgh" ;
+   ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+
+  :Sperrzeit_1756228034328_sperrzeit2 a ex:Sperrzeit ;
+   ex:lfd "2" ;
+   ex:wochen "uw" ;
+   ex:wochentag "Mi" ;
+   ex:bisab "Ab 15:00" ;
+   ex:begruendung "ghjkgjhkgjhkjhgkghhkj" ;
+   ex:zugeordnetZu :Dozentenblatt_1756228034328 .
+
+    ex:df_tag_egal_D "D" ;
+    ex:df_tag_egal_F "F" ;
+    ex:df_mi_D "D" ;
+    ex:df_not_egal_D "D" ;
+    ex:df_not_egal_F "F" ;
+    ex:df_not_mi_D "D" ;
+.
+
+
+:Dozentenblatt_1756228261165 a ex:Dozentenblatt ;
+  ex:abgabeterminDS ""^^xsd:date ;
+  ex:eingangDS "" ;
+  // ex:hochschule "" ;
+  ex:semester "Wintersemester 2024/25" ;
+  ex:titel "Prof. Dr. rer. nat." ;
+  ex:vorname "Jens" ;
+  ex:name "Wagner" ;
+  ex:email "" ;
+  ex:telefon "" ;
+  ex:arbeitszeit "Vollzeit" ;
+  ex:fakultaet "FIM-INF" ;
+  ex:einsatz :Einsatz_1756228261165_einsatz1 .
+
+    :Einsatz_1756228261165_einsatz1 a ex:Einsatz ;
+    ex:lfd "1" ;
+    ex:fakultaet "FIM-INF" ;
+    ex:stg "INB+MIB" ;
+    ex:fs "1" ;
+    ex:gruppe "" ;
+    ex:modulnr "C752" ;
+    ex:modulname "Digitaltechnik I" ;
+    ex:swsV 3 ;
+    ex:swsS 1 ;
+    ex:swsP 1 ;
+    ex:digital "nein" ;
+    ex:bemerkung "Wintersemester • Bachelor" ;
+    ex:zugeordnetZu :Dozentenblatt_1756228261165 .
  .
  .
  .

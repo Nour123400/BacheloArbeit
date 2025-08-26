@@ -3,28 +3,72 @@
 @prefix : <http://example.org/data/> .
 
 
-:Zuarbeitsblatt_1756123772645 a ex:Zuarbeitsblatt ;
-  ex:abgabeterminDS ""^^xsd:date ;
+:Zuarbeitsblatt_1756228568141 a ex:Zuarbeitsblatt ;
+  ex:abgabeterminDS "2025-08-05"^^xsd:date ;
   ex:eingangDS "" ;
-  ex:semester "Sommersemester 2025" ;
+  ex:semester "Wintersemester 2024/25" ;
   ex:fakultaet "FIM-INF" ;
   ex:studiengang "INB+MIB" ;
-  ex:fachsemester 0 ;
-  ex:gruppen "5 Gr. geteilt in a und b, 25INB-1a, parallel 2 Gruppen a und b, 25INB-2a+25INB-3a, 25INB-1b+2b+3a+3b+25MIB-1b+1b+2a inkl. BIN" ;
+  ex:fachsemester 5 ;
+  ex:gruppen "" ;
   ex:anzahlStudierendeGruppen 0 ;
-  ex:modulnummer "C963" ;
-  ex:modulbezeichnung "Grundlagen der Programmierung" ;
+  ex:modulnummer "C622" ;
+  ex:modulbezeichnung "Grundlagen der Künstlichen Intelligenz" ;
   ex:teilmodulnummer "" ;
   ex:teilmodulbezeichnung "" ;
   ex:fachart "Pflichtmodul" ;
   ex:swsV 2 ;
-  ex:swsS 0 ;
-  ex:swsP 2 ;
+  ex:swsS 2 ;
+  ex:swsP 0 ;
   ex:raumV "Gu, Li, Tr" ;
   ex:raumS "Z423, Z430" ;
   ex:raumP "" ;
   ex:technikV "Beamer/WLAN" ;
   ex:technikS "" ;
   ex:technikP "" .
-:Zuarbeitsblatt_1756123772645 ex:planungswunsch "1" .
+
+:Zuarbeitsblatt_1756228568141 ex:lesende :Lesende_1756228568141_1, :Lesende_1756228568141_2 .
+
+:Lesende_1756228568141_1 a ex:Lesende ;
+  ex:fakultaet "dfgsdfgfd" ;
+  ex:gruppe "sdfgfdsgfd" ;
+  ex:erklaerung "sdfgsdfgfsdg" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+
+:Lesende_1756228568141_2 a ex:Lesende ;
+  ex:fakultaet "dsfgsdfgsdfg" ;
+  ex:gruppe "fdgsdgsdf" ;
+  ex:erklaerung "gdfsgsfd" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+
+:Seminarleiter_1756228568141_1 a ex:Seminarleiter ;
+  ex:fakultaet "dfsgfsdgsdf" ;
+  ex:gruppe "dfsgfdsgsfd" ;
+  ex:erklaerung "sdfgsfdgfd" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+  
+:Seminarleiter_1756228568141_2 a ex:Seminarleiter ;
+  ex:fakultaet "sdfgdfgdf" ;
+  ex:gruppe "sdfgsdfgsdf" ;
+  ex:erklaerung "sdfgsdfsgfd" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+  
+:Praktikum_1756228568141_1 a ex:Praktikumsverantwortlicher ;
+  ex:fakultaet "sdfgfdsgfsd" ;
+  ex:gruppe "dfsgdfggsfd" ;
+  ex:erklaerung "dfsgfdgssfdg" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+  
+:Praktikum_1756228568141_2 a ex:Praktikumsverantwortlicher ;
+  ex:fakultaet "fdsdfsgfgds" ;
+  ex:gruppe "fdgsgfdssdfg" ;
+  ex:erklaerung "fdgsfdgfdsg" ;
+  ex:zugeordnetZu :Zuarbeitsblatt_1756228568141 .
+  :Zuarbeitsblatt_1756228568141 ex:planungswunsch "1" .
+:Zuarbeitsblatt_1756228568141 ex:planungswunsch "2" .
+:Zuarbeitsblatt_1756228568141 ex:planungswunsch "3" .
+:Zuarbeitsblatt_1756228568141 ex:planungswunsch "4" .
+:Zuarbeitsblatt_1756228568141 ex:planungswunsch "5" .
+:Zuarbeitsblatt_1756228568141 ex:kw_27_1 "true" .
+:Zuarbeitsblatt_1756228568141 ex:kw_28_1 "true" .
 
